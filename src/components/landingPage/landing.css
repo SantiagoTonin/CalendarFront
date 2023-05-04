@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: black;
+  background-color: var(--main-color);
   color: white;
   padding: 2rem;
 }
@@ -28,7 +28,7 @@
 }
 
 .loginLanding {
-  background-image: url(../../assets/images/calendarImage.jpg);
+  background-image: url(../../assets/images/landing/calendarImage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -43,31 +43,31 @@
 }
 
 .loginBtn {
-  background-color: rgb(24, 24, 24);
-  color: #ffbf2b;
-  border: 4px solid #ffbf2b;
+  background-color: var(--btn-color);
+  color: var(--secondary-color);
+  border: 4px solid var(--secondary-color);
   letter-spacing: 0.3em;
   font-weight: 400;
 }
 
 .loginBtn:hover {
-  background-color: rgb(24, 24, 24);
-  color: #b27e12;
-  border: 4px solid #b27e12;
+  background-color: var(--btn-color);
+  color: var(--btn-contrast);
+  border: 4px solid var(--btn-contrast);
   transform: scale(95%);
 }
 
 .loginBtn:active {
-  background-color: rgb(24, 24, 24) !important;
-  color: #b27e12 !important;
-  border: 4px solid #b27e12 !important;
+  background-color: var(--btn-color)!important;
+  color:  var(--btn-contrast)!important;
+  border: 4px solid var(--btn-contrast)!important;
 }
 
 .landingMainContainer > div:nth-child(3) {
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 250px 250px;
-  background-color: #ffbf2b;
+  background-color: var(--secondary-color);
   border: 4px solid #e5ac26;
   text-align: justify;
   font-size: large;
@@ -96,11 +96,11 @@
 }
 
 .adImage1 {
-  background-image: url(../../assets/images/photoLanding.jpg);
+  background-image: url(../../assets/images/landing/photoLanding.jpg);
 }
 
 .adImage2 {
-  background-image: url(../../assets/images/socialLanding.jpg);
+  background-image: url(../../assets/images/landing/socialLanding.jpg);
 }
 
 .adImage2,
@@ -126,7 +126,7 @@
   }
 
   .loginBtn {
-    border: 4px solid #ffbf2b;
+    border: 4px solid var(--secondary-color);
     letter-spacing: 0.1em;
     font-weight: 200;
     margin: 0.3rem;
@@ -160,6 +160,6 @@
   }
 
   .loginBtn {
-    border: 3px solid #ffbf2b;
+    border: 3px solid var(--secondary-color);
   }
 }
