@@ -2,6 +2,7 @@ import { FloatingLabel, Form, Button } from "react-bootstrap";
 import Register from "../register/Register";
 import { useForm } from "react-hook-form";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -34,9 +35,9 @@ const Login = () => {
 
   return (
     <>
-      <div className="loginpage container d-flex align-items-center">
-        <div className="container mt-1 login-portada col d-flex justify-content-around align-items-center">
-          <div className="login-portada-text w-100">
+      <div className="back container mt-5 d-flex align-items-center">
+        <div className="container mt-1 col d-flex justify-content-around align-items-center">
+          <div className="w-100">
             <h4 className="mb-4 text-light">INICIÁ SESIÓN O REGISTRATE</h4>
             <form onSubmit={handleSubmit(handleLogin)}>
               <FloatingLabel
@@ -71,10 +72,9 @@ const Login = () => {
                 Ingresar
               </Button>
             </form>
-            <Register />
-          </div>
-          <div className="container col-6 d-flex justify-content-end">
-            <img className="back m-2"></img>
+            <Link to="/Register">
+              <Register />
+            </Link>
           </div>
         </div>
       </div>

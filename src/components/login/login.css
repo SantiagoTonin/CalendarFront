@@ -1,3 +1,7 @@
 .back {
+  width: 100vw;
+  height: 50vh;
   background-image: url(../../assets/images/landing/calendarImage.jpg);
+  background-size: 100%;
+  background-position: -30%;
 }
