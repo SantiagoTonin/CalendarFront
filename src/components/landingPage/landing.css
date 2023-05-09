@@ -50,17 +50,11 @@
   font-weight: 400;
 }
 
-.loginBtn:hover {
+.loginBtn:hover, .loginBtn:active, .loginBtn:focus  {
   background-color: var(--btn-color);
   color: var(--btn-contrast);
   border: 4px solid var(--btn-contrast);
   transform: scale(95%);
-}
-
-.loginBtn:active {
-  background-color: var(--btn-color)!important;
-  color:  var(--btn-contrast)!important;
-  border: 4px solid var(--btn-contrast)!important;
 }
 
 .landingMainContainer > div:nth-child(3) {
@@ -148,7 +142,7 @@
 
   .landingMainContainer > div:nth-child(3) {
     font-size: x-small;
-    grid-template-rows: 250px 250px;
+    grid-template-rows: auto auto;
   }
 
   .grid1 {
