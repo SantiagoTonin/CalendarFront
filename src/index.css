@@ -1,3 +1,14 @@
+:root {
+  --main-color:#121212;
+  --secondary-color:#ffbf2b;
+  --btn-color:#181818;
+  --btn-contrast:#b27e12;
+}
+
+*{
+  max-width: 100vw;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
