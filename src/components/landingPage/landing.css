@@ -22,16 +22,18 @@
   grid-template-columns: 1.5fr 2fr;
   grid-template-rows: 500px;
   text-align: center;
-  background-color: grey;
-  border: 2px solid rgb(118, 118, 118);
+  /* background-color: grey; */
+  background-color: rgb(29, 29, 29);
+  border: 2px solid rgb(77, 77, 77);
   font-size: x-large;
 }
 
 .loginLanding {
-  background-image: url(../../assets/images/landing/calendarImage.jpg);
+  background-image: url(../../assets/images/landing/calendar.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  box-shadow: inset 0px 0px 0px 6px #c8c8c87d;
 }
 
 .loginBtnContainer {
