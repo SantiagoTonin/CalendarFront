@@ -1,10 +1,12 @@
-main{
+/* main{
   display: grid;
-  grid-template-columns: 0.5fr 2fr;
+  grid-template-columns: auto 2fr;
   grid-template-rows: minmax(100vh,auto);
-}
+} */
 
 .homeContent {
+  min-height: 100vh;
+  width: auto;
   grid-area: "content";
   background-image: url(../../assets/images/background.jpg);
   background-position: center;
@@ -12,10 +14,11 @@ main{
   background-size: cover;
   background-attachment: fixed;
   background-color: var(--main-color);
-  color: var(--secondary-color);
+  color: black;
+  /* color: var(--secondary-color); */
 }
 
 .homeSide {
   grid-area: "side";
-  background-color: white;
+  background-color: var(--secondary-color);
 }
