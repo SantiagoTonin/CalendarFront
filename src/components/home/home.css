@@ -1,8 +1,8 @@
-/* main{
+main{
   display: grid;
-  grid-template-columns: auto 2fr;
+  grid-template-columns: 4.5rem auto;
   grid-template-rows: minmax(100vh,auto);
-} */
+}
 
 .homeContent {
   min-height: 100vh;
@@ -15,7 +15,6 @@
   background-attachment: fixed;
   background-color: var(--main-color);
   color: black;
-  /* color: var(--secondary-color); */
 }
 
 .homeSide {
