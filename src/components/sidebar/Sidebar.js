@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { FaBars } from "react-icons/fa";
-import {AiOutlineClose} from "react-icons/ai";
+import { FaBars, FaEnvelopeOpenText, FaCartPlus } from "react-icons/fa";
+import { AiOutlineClose, AiFillHome } from "react-icons/ai";
+import { IoMdHelpCircle, IoIosPaper, IoMdPeople } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData.js";
 import "./sidebar.css";
-import { IconContext } from "react-icons";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -12,16 +12,21 @@ const Sidebar = () => {
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
-          <Link to="#" className="menu-bars">
+          <Link to="#" className="menuIcon">
             <FaBars onClick={showSidebar} />
           </Link>
+          <Link href="#" className='navIcons'><AiFillHome /></Link>
+          <Link href="#" className='navIcons'><IoIosPaper /></Link>
+          <Link href="#" className='navIcons'><FaCartPlus /></Link>
+          <Link href="#" className='navIcons'><IoMdPeople /></Link>
+          <Link href="#" className='navIcons'><FaEnvelopeOpenText /></Link>
+          <Link href="#" className='navIcons'><IoMdHelpCircle /></Link>
         </div>
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSidebar}>
-            <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
+        <nav className={sidebar ? "navMenu active" : "navMenu"}>
+          <ul className="navMenuItems" onClick={showSidebar}>
+            <li className="navToggle">
+              <Link to="#" className="menuIcon">
                 <AiOutlineClose />
               </Link>
             </li>
@@ -37,7 +42,6 @@ const Sidebar = () => {
             })}
           </ul>
         </nav>
-      </IconContext.Provider>
     </>
   );
 };

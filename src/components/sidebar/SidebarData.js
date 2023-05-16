@@ -1,43 +1,43 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+import { FaEnvelopeOpenText, FaCartPlus } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
+import { IoMdHelpCircle, IoIosPaper, IoMdPeople } from "react-icons/io";
 
 export const SidebarData = [
   {
     title: 'Home',
-    path: '/',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
+    path: '/home',
+    icon: <AiFillHome />,
+    cName: 'navText'
   },
   {
     title: 'Reports',
     path: '/reports',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
+    icon: <IoIosPaper />,
+    cName: 'navText'
   },
   {
     title: 'Products',
     path: '/products',
-    icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
+    icon: <FaCartPlus />,
+    cName: 'navText'
   },
   {
     title: 'Team',
     path: '/team',
-    icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
+    icon: <IoMdPeople />,
+    cName: 'navText'
   },
   {
     title: 'Messages',
     path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
+    icon: <FaEnvelopeOpenText />,
+    cName: 'navText'
   },
   {
     title: 'Support',
     path: '/support',
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: 'nav-text'
+    icon: <IoMdHelpCircle />,
+    cName: 'navText'
   }
 ];
