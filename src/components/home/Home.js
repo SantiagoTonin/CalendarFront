@@ -1,15 +1,24 @@
-import "./home.css";
 import Sidebar from "../sidebar/Sidebar";
+import React, { useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./home.css";
+import "./calendar.css";
 
 const Home = () => {
+  const [date, setDate] = useState(new Date());
+  const onChange = (newDate) => {
+    setDate(newDate);
+  };
   return (
     <main>
       <aside className="homeSide">
         <Sidebar />
       </aside>
       <article className="homeContent">
-        <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta saepe quod recusandae quidem, perferendis molestias iure exercitationem praesentium, quibusdam, perspiciatis veniam omnis aspernatur sunt veritatis cumque architecto tempore optio aliquid.
+        <div className="calendarApp">
+          <h1>Mi Calendario</h1>
+          <Calendar onChange={onChange} value={date} className="calendarContainer"/>
         </div>
       </article>
     </main>

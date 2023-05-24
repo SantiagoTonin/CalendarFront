@@ -1,9 +1,9 @@
 :root {
   --main-color:#121212;
   --secondary-color:#ffbf2b;
-  --btn-color:#181818;
+  --btn-color:#1d1d1d;
   --btn-contrast:#b27e12;
-  --btn-backgroud-accent:#1d1d1d;
+  --btn-backgroud-accent:#2e2e2e;
 }
 
 *{

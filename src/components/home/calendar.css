@@ -1,0 +1,109 @@
+.react-calendar__tile {
+  width: 80px;
+  height: 80px;
+}
+
+.react-calendar__tile:is(:hover, :active) {
+  background-color: var(--btn-contrast);
+}
+
+.react-calendar__navigation button:is(:hover, :active, :focus) {
+  background-color: var(--btn-contrast);
+}
+
+.react-calendar__month-view__days__day {
+  background-color: var(--btn-backgroud-accent);
+  color: white;
+}
+
+.react-calendar__month-view__days__day:is(:hover, :active, :focus) {
+  border: 1px solid orangered;
+  color: white;
+}
+
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button,
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next2-button,
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev-button,
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next-button {
+  color: white;
+  background-color: var(--btn-color);
+}
+
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button:is(
+    :hover,
+    :active,
+    :focus
+  ),
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next2-button:is(
+    :hover,
+    :active,
+    :focus
+  ),
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev-button:is(
+    :hover,
+    :active,
+    :focus
+  ),
+.react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next-button:is(
+    :hover,
+    :active,
+    :focus
+  ) {
+  color: var(--secondary-color);
+  transform: scale(95%);
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: rgb(24, 24, 24);
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: orangered;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  color: white;
+}
+
+.react-calendar__tile:enabled:is(:hover, :active, :focus) {
+  background: var(--btn-backgroud-accent);
+}
+
+.react-calendar__tile--now {
+  border: 1px solid var(--secondary-color)!important;
+  background-color: transparent;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background-color: rgb(84, 84, 84);
+  color: white;
+}
+
+.react-calendar__tile--hasActive {
+  background-color: transparent;
+}
+
+.react-calendar__navigation button {
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: var(--btn-backgroud-accent);
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: var(--btn-backgroud-accent);
+}
