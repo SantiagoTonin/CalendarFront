@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <div className='landingMainContainer'>
       <div>
-        <h1 className='pt-5'>MY CALENDAR</h1>
+        <h1 className='pt-3'>MY CALENDAR</h1>
         <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos aspernatur tenetur doloremque iste </h4>
       </div>
       <div>
