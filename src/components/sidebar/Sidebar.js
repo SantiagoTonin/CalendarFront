@@ -16,8 +16,8 @@ const Sidebar = () => {
           <Link to="#" className="menuIcon">
             <FaBars onClick={showSidebar} />
           </Link>
-          <Link href="#" className='navIcons'><AiFillHome /></Link>
-          <Link href="#" className='navIcons'><IoIosPaper /></Link>
+          <Link href="/home" className='navIcons'><AiFillHome /></Link>
+          <Link href="/" className='navIcons'><IoIosPaper /></Link>
           <Link href="#" className='navIcons'><FaCartPlus /></Link>
           <Link href="#" className='navIcons'><IoMdPeople /></Link>
           <Link href="#" className='navIcons'><FaEnvelopeOpenText /></Link>
