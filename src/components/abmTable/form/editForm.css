@@ -1,0 +1,61 @@
+.formContainer {
+  background-color: var(--btn-backgroud-accent);
+  color: white;
+}
+
+.formContainer > div > form > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.formContainer > form > div > div:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.formContainer > form > div > div > input {
+  width: 100%;
+}
+
+#modalsButtons {
+  margin: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+  border-radius: 30px;
+  border: 1px solid #8f9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--DEEPBLUE-bs-);
+  text-shadow: 0 1px #fff;
+}
+
+#modalsButtons:hover {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
+}
+
+#modalsButtons:active {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+#modalsButtons:focus {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.inputArea {
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  padding: 3px 3px 3px 8px;
+}
