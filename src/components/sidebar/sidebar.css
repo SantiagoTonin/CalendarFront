@@ -47,7 +47,7 @@
 
 .navText {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   list-style: none;
   height: 60px;
@@ -81,7 +81,7 @@
   width: auto;
   height: 80px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 

@@ -1,0 +1,43 @@
+main {
+  /* height: calc(100vh - 11rem); */
+  display: grid;
+  grid-template-columns: 4.5rem auto;
+  grid-template-rows: 100vh auto;
+}
+
+.tableSection {
+  padding: 2rem;
+}
+
+#createUserBtn {
+  margin-right: 2rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+#createUserBtn:is(:hover, :active, :focus) {
+  background-color: var(--btn-contrast);
+  transform: scale(95%);
+  transition: 0.3s;
+}
+
+.tablePaginationBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tablePaginationBtn > .prevBtn,
+.tablePaginationBtn > .nextBtn {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+.tablePaginationBtn > .prevBtn:is(:hover, :active, :focus),
+.tablePaginationBtn > .nextBtn:is(:hover, :active, :focus) {
+  background-color: var(--btn-contrast);
+  transform: scale(95%);
+  transition: 0.3s;
+}

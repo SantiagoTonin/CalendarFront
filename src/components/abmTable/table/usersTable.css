@@ -1,0 +1,12 @@
+#mainTable {
+  background-color: var(--btn-backgroud-accent);
+  color: white;
+}
+
+.tHeadTr > th {
+  border: 1px solid var(--main-color);
+}
+
+.tBodyTr > td{
+  border: 1px solid var(--main-color);
+}
