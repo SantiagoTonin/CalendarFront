@@ -27,7 +27,7 @@ const Abm = () => {
 
   const getUsers = async () => {
     try {
-      const info = await axios.get("/api/users/user", { params: { page } });
+      const info = await axios.get("/user", { params: { page } });
       setPagesCount(info.data.totalPages);
       setUsers(info.data);
     } catch (error) {
@@ -85,7 +85,7 @@ const Abm = () => {
   const confirmDelete = (deleteUser) => {
     const id = deleteUser;
     axios
-      .delete(`/api/users/deleteUser/${id}`)
+      .delete(`/user/${id}`)
       .then((response) => {
         const filteredUsers = users.filter((user) => user._id !== deleteUser);
         setUsers(filteredUsers);

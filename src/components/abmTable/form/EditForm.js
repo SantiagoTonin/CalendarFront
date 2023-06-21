@@ -56,10 +56,10 @@ const EditForm = (props) => {
     const id = userToEditId;
     try {
       if (isEditingForm) {
-        await axios.put(`/api/products/editProducts/${id}`, formData);
+        await axios.put(`/user/${id}`, formData);
         return <h2>usuario editado correctamente</h2>;
       } else {
-        await axios.post("/api/products/addProducts", formData);
+        await axios.post("/user", formData);
       }
       return <h1>----</h1>;
     } catch (error) {
