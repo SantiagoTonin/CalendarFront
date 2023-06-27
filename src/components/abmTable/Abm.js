@@ -27,7 +27,7 @@ const Abm = () => {
 
   const getUsers = async () => {
     try {
-      const info = await axios.get("/user", { params: { page } });
+      const info = await axios.get("http://localhost:3000/user/", { params: { page } });
       setPagesCount(info.data.totalPages);
       setUsers(info.data);
     } catch (error) {
@@ -67,7 +67,7 @@ const Abm = () => {
       }
     }
     const newUsers = users.map((user) => {
-      if (user._id === userToEdit._id) {
+      if (user.userId === userToEdit.userId) {
         return userToEdit;
       } else {
         return user;
@@ -78,16 +78,17 @@ const Abm = () => {
   };
 
   const handleDelete = (user) => {
-    setDeleteUser(user._id);
+    setDeleteUser(user.userId);
     setDModalShow(true);
   };
 
   const confirmDelete = (deleteUser) => {
+    console.log(confirmDelete);
     const id = deleteUser;
     axios
-      .delete(`/user/${id}`)
+      .delete(`http://localhost:3000/user/${id}`)
       .then((response) => {
-        const filteredUsers = users.filter((user) => user._id !== deleteUser);
+        const filteredUsers = users.filter((user) => user.userId !== deleteUser);
         setUsers(filteredUsers);
         setDModalShow(false);
       })
@@ -98,7 +99,7 @@ const Abm = () => {
 
   const editTrigger = (user) => {
     setUserToEdit(user);
-    setUserToEditId(user._id);
+    setUserToEditId(user.userId);
     setEditModalShow(true);
   };
 
