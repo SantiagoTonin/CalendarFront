@@ -7,25 +7,23 @@ const EditForm = (props) => {
   const { isEditingForm, userToEdit, userToEditId } = props;
 
   const [formData, setFormData] = useState({
-    category: userToEdit?.category || "",
-    type: userToEdit?.type || "",
-    image: {
-      img1: userToEdit?.image?.img1 || "",
-    },
+    userName: userToEdit?.name || "",
     name: userToEdit?.name || "",
-    brand: userToEdit?.brand || "",
-    description: userToEdit?.description || "",
-    price: userToEdit?.price || "",
-    stock: userToEdit?.stock || "",
+    lastname: userToEdit?.name || "",
+    email: userToEdit?.email || "",
+    birthdate: userToEdit?.birthdate || "",
+    age: userToEdit?.age || "",
+    nacionality: userToEdit?.nationality || "",
+    rol: userToEdit?.rol || "",
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name.startsWith("image.")) {
+    if (name.startsWith("name.")) {
       setFormData({
         ...formData,
         image: {
-          ...formData.image,
+          ...formData.name,
           [name]: value,
         },
       });
@@ -56,10 +54,10 @@ const EditForm = (props) => {
     const id = userToEditId;
     try {
       if (isEditingForm) {
-        await axios.put(`/user/${id}`, formData);
+        await axios.put(`http://localhost:3000/user/:id`, formData);
         return <h2>usuario editado correctamente</h2>;
       } else {
-        await axios.post("/user", formData);
+        await axios.post("http://localhost:3000/user", formData);
       }
       return <h1>----</h1>;
     } catch (error) {
@@ -70,20 +68,11 @@ const EditForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <div>
-          <b>Avatar:</b>
-          <input
-            className="inputArea"
-            name="img1"
-            defaultValue={formData.image.img1}
-            onBlur={handleImageChange}
-          />
-        </div>
         <b>Usuario:</b>
         <input
           className="inputArea"
           name="category"
-          value={formData.category}
+          value={formData.name}
           onChange={handleChange}
         />
       </div>
@@ -92,7 +81,7 @@ const EditForm = (props) => {
         <input
           className="inputArea"
           name="type"
-          value={formData.type}
+          value={formData.name}
           onChange={handleChange}
         />
       </div>
@@ -106,38 +95,47 @@ const EditForm = (props) => {
         />
       </div>
       <div>
-        <b>Edad:</b>
-        <input
-          className="inputArea"
-          name="brand"
-          value={formData.brand}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
         <b>Email:</b>
         <input
           className="inputArea"
           name="description"
-          value={formData.description}
+          value={formData.email}
           onChange={handleChange}
         />
       </div>
       <div>
-        <b>Ciudad:</b>
+        <b>Fecha de cumpleaños:</b>
+        <input
+          className="inputArea"
+          name="brand"
+          value={formData.birthdate}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <b>Edad:</b>
+        <input
+          className="inputArea"
+          name="brand"
+          value={formData.age}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <b>Nacionalidad:</b>
         <input
           className="inputArea"
           name="price"
-          value={formData.price}
+          value={formData.nationality}
           onChange={handleChange}
         />
       </div>
       <div>
-        <b>País</b>
+        <b>Rol</b>
         <input
           className="inputArea"
           name="stock"
-          value={formData.stock}
+          value={formData.rol}
           onChange={handleChange}
         />
       </div>
