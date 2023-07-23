@@ -1,12 +1,29 @@
-#mainTable {
+#usersMainTable {
   background-color: var(--btn-backgroud-accent);
   color: white;
 }
 
-.tHeadTr > th {
+.usersTHeadTr > th {
   border: 1px solid var(--main-color);
 }
 
-.tBodyTr > td{
+.usersTBodyTr > td{
   border: 1px solid var(--main-color);
+}
+
+#usersDeleteBtn{
+  background-color: orangered;
+  border: none;
+}
+
+#usersEditBtn{
+  background-color: var(--secondary-color);
+  border: none;
+  margin-right: 0.5rem;
+}
+
+#usersDeleteBtn:is(:hover,:active,:focus), #usersEditBtn:is(:hover,:active,:focus) {
+  transform: scale(95%);
+  transition: 0.3s;
+  opacity: 75%;
 }

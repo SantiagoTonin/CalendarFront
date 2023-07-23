@@ -1,43 +1,63 @@
-main {
-  /* height: calc(100vh - 11rem); */
+.usersTableMainContainer {
+  background-color: var(--main-color);
   display: grid;
-  grid-template-columns: 4.5rem auto;
-  grid-template-rows: 100vh auto;
+  grid-template-columns: 4.5rem calc(100% - 4.5rem);
+  grid-template-rows: 100% 100%;
 }
 
-.tableSection {
-  padding: 2rem;
-}
-
-#createUserBtn {
-  margin-right: 2rem;
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-}
-
-#createUserBtn:is(:hover, :active, :focus) {
-  background-color: var(--btn-contrast);
-  transform: scale(95%);
-  transition: 0.3s;
-}
-
-.tablePaginationBtn {
+.usersBtnContainer {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
+  padding-right: 2rem;
 }
 
-.tablePaginationBtn > .prevBtn,
-.tablePaginationBtn > .nextBtn {
+.usersBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.usersTableCreateUserBtn {
   background-color: var(--secondary-color);
-  color: white;
+  color: black;
+  font-weight: 500;
   border: none;
 }
 
-.tablePaginationBtn > .prevBtn:is(:hover, :active, :focus),
-.tablePaginationBtn > .nextBtn:is(:hover, :active, :focus) {
-  background-color: var(--btn-contrast);
+.usersTableCreateUserBtn:is(:hover, :active, :focus) {
+  background-color: var(--secondary-color);
   transform: scale(95%);
   transition: 0.3s;
+  opacity: 85%;
+}
+
+#usersMainTable {
+  background-color: var(--btn-backgroud-accent);
+  color: white;
+}
+
+.usersTHeadTr > th {
+  border: 1px solid var(--main-color);
+}
+
+.usersTBodyTr > td{
+  border: 1px solid var(--main-color);
+}
+
+#usersDeleteBtn{
+  background-color: orangered;
+  border: none;
+}
+
+#usersEditBtn{
+  background-color: var(--secondary-color);
+  border: none;
+  margin-right: 0.5rem;
+}
+
+#usersDeleteBtn:is(:hover,:active,:focus), #usersEditBtn:is(:hover,:active,:focus) {
+  transform: scale(95%);
+  transition: 0.3s;
+  opacity: 75%;
 }
