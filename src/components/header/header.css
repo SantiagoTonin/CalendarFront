@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Daggersquare;
+    src: url(../../assets/fonts/DAGGERSQUARE.otf);
+    }
+
+.headerContainer{
+    background-color: white;
+    color: black;
+}
+
+.headerContainer h1 {
+    font-family: Daggersquare;
+}

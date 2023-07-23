@@ -11,7 +11,7 @@ const Home = () => {
     setDate(newDate);
   };
   return (
-    <main>
+    <main className="homeMainContainer">
       <aside className="homeSide">
         <Sidebar />
       </aside>

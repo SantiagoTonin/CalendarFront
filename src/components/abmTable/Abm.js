@@ -1,50 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import CreateModal from "./modals/createModal";
-import EditModal from "./modals/editModal";
-import DeleteModal from "./modals/deleteModal";
-import UsersTable from "./table/UsersTable";
-import Sidebar from "../sidebar/Sidebar";
 import axios from "../../config/axiosInit";
+import { Button } from "react-bootstrap";
+import UsersTable from "./table/UsersTable";
+import CreateUsersModal from "./usersModals/CreateUsersModal";
+import DeleteUsersModal from "./usersModals/DeleteUsersModal";
+import Sidebar from "../sidebar/Sidebar";
 import "./abm.css";
 
 const Abm = () => {
+  const url = "http://localhost:3000/user";
   const [users, setUsers] = useState([]);
-  const [userToEdit, setUserToEdit] = useState({});
-  const [userToEditId, setUserToEditId] = useState({});
-  const [deleteUser, setDeleteUser] = useState({});
-
   const [createModalShow, setCreateModalShow] = useState(false);
-  const [editModalShow, setEditModalShow] = useState(false);
+  const [deleteUser, setDeleteUser] = useState({});
   const [deleteModalShow, setDModalShow] = useState(false);
-
-  const [page, setPage] = useState(1);
-  const [pagesCount, setPagesCount] = useState(1);
 
   useEffect(() => {
     getUsers();
-  }, [page]); // eslint-disable-line
+  }, []);
 
   const getUsers = async () => {
-    try {
-      const info = await axios.get("http://localhost:3000/user/", { params: { page } });
-      setPagesCount(info.data.totalPages);
-      setUsers(info.data);
-    } catch (error) {
-      if (error?.response?.data?.error === "Usuarios no encontrados") {
-        setUsers([]);
-      } else {
-        alert("Algo salio mal intente mas tarde");
-      }
+    try{
+      const answer = await axios.get(url);
+      setUsers(answer.data);
+    }
+    catch(error){if (error?.response?.data?.error === 'Usuarios no encontrados') {
+      setUsers([]);
+    } else {
+      alert('Algo salio mal, intente mas tarde');
+    }
     }
   };
 
   const generateId = function () {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = { id: generateId() };
+    const user = { userId: generateId() };
     for (const target of e.target) {
       if (target.type !== "submit") {
         user[target.name] = target.value;
@@ -55,119 +48,60 @@ const Abm = () => {
     setCreateModalShow(false);
   };
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-    for (const target of e.target) {
-      if (target.type !== "submit") {
-        setUserToEdit({
-          ...userToEdit,
-          [target.name]: target.value,
-        });
-        target.value = "";
-      }
-    }
-    const newUsers = users.map((user) => {
-      if (user.userId === userToEdit.userId) {
-        return userToEdit;
-      } else {
-        return user;
-      }
-    });
-    setUsers(newUsers);
-    setEditModalShow(false);
-  };
-
-  const handleDelete = (user) => {
-    setDeleteUser(user.userId);
+  const handleDelete = (users) => {
+    setDeleteUser(users);
     setDModalShow(true);
   };
 
-  const confirmDelete = (deleteUser) => {
-    console.log(confirmDelete);
-    const id = deleteUser;
-    axios
-      .delete(`http://localhost:3000/user/${id}`)
-      .then((response) => {
-        const filteredUsers = users.filter((user) => user.userId !== deleteUser);
-        setUsers(filteredUsers);
-        setDModalShow(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const editTrigger = (user) => {
-    setUserToEdit(user);
-    setUserToEditId(user.userId);
-    setEditModalShow(true);
+  const confirmDelete = (userId) => {
+    const filteredUsers = users.filter(
+      (users) => users.userId !== deleteUser.userId
+    );
+    setUsers(filteredUsers);
+    setDModalShow(false);
   };
 
   return (
     <>
-      <main>
-        <aside className="homeSide">
+      <main className="usersTableMainContainer">
+        <section>
           <Sidebar />
-        </aside>
-        <div>
+        </section>
+        <section>
           <div className="tableContainer">
             <UsersTable
               data={users}
               deleteModalShow={deleteModalShow}
               setDModalShow={setDModalShow}
               handleDelete={handleDelete}
-              editTrigger={editTrigger}
             />
           </div>
-          <div className="createBtnContainer d-flex justify-content-end align-items-center">
+          <article className="usersBtnContainer container-fluid">
             <Button
-              id="createUserBtn"
-              variant="success"
+              className="usersTableCreateUserBtn"
+              data-bs-toggle="modal"
+              data-bs-target="modal"
               onClick={() => setCreateModalShow(true)}
             >
               Crear usuario
             </Button>
-          </div>
-          <div className="tablePaginationBtn">
-            <Button
-              className="prevBtn"
-              onClick={() => setPage(page - 1)}
-              disabled={page === 1}
-            >
-              {"<"}
-            </Button>
-            <b>Página {page}</b>
-            <Button
-              className="nextBtn"
-              onClick={() => setPage(page + 1)}
-              disabled={page === pagesCount}
-            >
-              {">"}
-            </Button>
-          </div>
-          <CreateModal
+          </article>
+          <CreateUsersModal
             createModalShow={createModalShow}
             setCreateModalShow={setCreateModalShow}
             handleSubmit={handleSubmit}
           />
-          <EditModal
-            editModalShow={editModalShow}
-            setEditModalShow={setEditModalShow}
-            handleSubmit={handleEdit}
-            isEditForm={true}
-            userToEdit={userToEdit}
-            userToEditId={userToEditId}
-          />
-          <DeleteModal
+          <DeleteUsersModal
             deleteModalShow={deleteModalShow}
             setDModalShow={setDModalShow}
             handleDelete={handleDelete}
             confirmDelete={confirmDelete}
             deleteUserId={deleteUser}
           />
-        </div>
+        </section>
       </main>
     </>
   );
 };
+
 export default Abm;

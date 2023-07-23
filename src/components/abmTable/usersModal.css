@@ -1,0 +1,83 @@
+.formContainer > div {
+    background-color: rgb(176, 176, 176);
+    color: var(--btn-contrast);
+  }
+  
+  .formContainer > div > form > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .formContainer > form > div > div:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+  }
+  
+  .formContainer > form > div > div > input {
+    width: 100%;
+  }
+  
+  .modalBtnContainer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  #modalButton {
+    margin: 0.5rem;
+    outline: none;
+    cursor: pointer;
+    width: 160px;
+    height: 1.8rem;
+    background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+    border-radius: 5px;
+    border: 1px solid #8f9092;
+    transition: all 0.2s ease;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--btn-contrast);
+    text-shadow: 0 1px #fff;
+  }
+  
+  #modalButton:hover {
+    box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+      0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
+  }
+  
+  #modalButton:active {
+    box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+      0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+  }
+  
+  #modalButton:focus {
+    box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+      0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+  }
+  
+  .inputArea {
+    border: 1px solid var(--btn-backgroud-accent);
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    padding: 3px 3px 3px 8px;
+  }
+  
+  #confirmDeleteUserBtn{
+    background-color: orangered;
+    border: none;
+  }
+
+  #regretDeleteUserBtn{
+    background-color: var(--btn-contrast);
+    border: none;
+  }
+
+  #confirmDeleteUserBtn:is(:hover,:active,:focus),#regretDeleteUserBtn:is(:hover,:active,:focus){
+    transform: scale(95%);
+    transition: 0.3s;
+  }
