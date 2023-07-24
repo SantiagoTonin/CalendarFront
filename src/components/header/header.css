@@ -1,13 +1,30 @@
-@font-face {
-    font-family: Daggersquare;
-    src: url(../../assets/fonts/DAGGERSQUARE.otf);
-    }
-
 .headerContainer{
-    background-color: white;
-    color: black;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+    color: azure;
+    border-bottom: 2px solid rgb(72, 72, 72);
 }
 
-.headerContainer h1 {
-    font-family: Daggersquare;
+.logoContainer{
+    width: 30%;
+}
+
+.logoContainer > span {
+    font-family: Expletus;
+    font-size: 2.8rem;
+    padding: 1rem 0 0 3.5rem;
+    text-shadow: -2px 2px 4px rgba(147, 147, 147, 0.813);
+}
+
+.wellcomeUserContainer{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

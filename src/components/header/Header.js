@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
-    return ( 
-        <div className="headerContainer">
-            <h1>My Calendar</h1>
-            <div>
-
-            </div>
+  return (
+    <main className="headerContainer">
+      <div className="logoContainer">
+        <span>My Calendar</span>
+      </div>
+      <div className="wellcomeUserContainer">
+        <div>
+            <h5>Bienvenido ---- !</h5>
         </div>
-     );
-}
- 
+      </div>
+    </main>
+  );
+};
+
 export default Header;
