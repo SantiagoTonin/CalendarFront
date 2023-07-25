@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './landing.css';
 
 const Landing = () => {
@@ -11,9 +11,9 @@ const Landing = () => {
       <div>
         <div className='loginLanding'> </div>
         <div className='loginBtnContainer'>
-          <Button className='loginBtn'>Registrate gratis aqui!</Button>
+          <Link className='loginBtn' to={'/login'}>Registrate gratis aqui!</Link>
           <span>¿Ya tienes cuenta? Ingresa aquí:</span>
-          <Button className='loginBtn'>Ingresar</Button>
+          <Link className='loginBtn' to={'/login'}>Ingresar</Link>
         </div>
       </div>
       <div>

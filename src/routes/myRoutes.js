@@ -1,8 +1,8 @@
 import Abm from "../components/abmTable/Abm";
-import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 import Home from "../components/home/Home";
 import Landing from "../components/landingPage/Landing";
+import Login from "../components/login/Login";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 const MyRoutes = () => {
@@ -12,10 +12,10 @@ const MyRoutes = () => {
       {redirect.pathname !== "/" && <Header />}
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/abm" element={<Abm />} />
       </Routes>
-      {redirect.pathname !== "/" && <Footer />}
     </>
   );
 };

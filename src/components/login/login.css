@@ -1,0 +1,60 @@
+.loginFormContainer {
+  height: calc(100vh - 14rem);
+  max-height: 100%;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+}
+
+.loginFormContainer > h3 {
+  color: azure;
+  font-weight: 800;
+}
+
+.loginFormContainer > Form {
+  width: 35%;
+  height: auto;
+  color: azure;
+}
+
+.formLoginBtn {
+  background-color: var(--btn-color);
+  color: var(--secondary-color);
+  border: 4px solid var(--secondary-color);
+  letter-spacing: 0.3em;
+  font-weight: 400;
+}
+
+.formLoginBtn:is(:hover, :active:focus) {
+  background-color: var(--btn-color) !important;
+  color: var(--btn-contrast);
+  border: 4px solid var(--btn-contrast);
+  transform: scale(95%);
+}
+
+.redirectContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.redirectContainer > a {
+  text-decoration: none;
+  color: azure;
+}
+
+.redirectContainer > a > span {
+  color: orangered;
+}
+
+.formLoginBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-block: 0.5rem;
+}
