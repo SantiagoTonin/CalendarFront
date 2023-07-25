@@ -1,7 +1,8 @@
 import Sidebar from "../sidebar/Sidebar";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./home.css";
 import "./calendar.css";
 
@@ -10,15 +11,20 @@ const Home = () => {
   const onChange = (newDate) => {
     setDate(newDate);
   };
+  const { lightMode } = useContext(ThemeContext);
   return (
     <main className="homeMainContainer">
       <aside className="homeSide">
         <Sidebar />
       </aside>
-      <article className="homeContent">
+      <article className={lightMode ? "homeContentLight" : "homeContent"}>
         <div className="calendarApp">
           <h1>Mi Calendario</h1>
-          <Calendar onChange={onChange} value={date} className="calendarContainer"/>
+          <Calendar
+            onChange={onChange}
+            value={date}
+            className="calendarContainer"
+          />
         </div>
       </article>
     </main>

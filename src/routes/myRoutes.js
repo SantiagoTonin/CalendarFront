@@ -1,7 +1,8 @@
-import Landing from "../components/landingPage/Landing";
+import Abm from "../components/abmTable/Abm";
+import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 import Home from "../components/home/Home";
-import Abm from "../components/abmTable/Abm";
+import Landing from "../components/landingPage/Landing";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 const MyRoutes = () => {
@@ -14,6 +15,7 @@ const MyRoutes = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/abm" element={<Abm />} />
       </Routes>
+      {redirect.pathname !== "/" && <Footer />}
     </>
   );
 };
