@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import ThemeButton from "../themeButton/ThemeButton";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./header.css";
 
 const Header = () => {
-    return ( 
-        <div className="headerContainer">
-            <h1>My Calendar</h1>
-            <div>
+  const { lightMode } = useContext(ThemeContext);
 
-            </div>
-        </div>
-     );
-}
- 
+  return (
+    <main className={lightMode ? "headerContainerLight" : "headerContainer"}>
+      <div className="logoContainer">
+        <span>My Calendar</span>
+      </div>
+      <div className="wellcomeUserContainer">
+        <h5>Bienvenido ---- !</h5>
+        <ThemeButton />
+      </div>
+    </main>
+  );
+};
+
 export default Header;

@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap");
+@font-face {
+  font-family: Expletus;
+  src: url(./assets/fonts/ExpletusSans-Medium.ttf);
+  }
 
 :root {
   --main-color: #121212;
