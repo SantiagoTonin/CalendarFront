@@ -94,8 +94,9 @@ const CreateUsersModal = ({ createModalShow, setCreateModalShow, handleSubmit })
               />
             </div>
             <div className="modalBtnContainer">
-              <Button id="modalButton" type="submit">
+              <Button id="modalButton" type="submit" onSubmit={handleSubmit}>
                 Guardar
+                {console.log("hola")}
               </Button>
             </div>
           </form>
