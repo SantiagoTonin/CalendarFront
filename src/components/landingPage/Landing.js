@@ -11,7 +11,7 @@ const Landing = () => {
       <div>
         <div className='loginLanding'> </div>
         <div className='loginBtnContainer'>
-          <Link className='loginBtn' to={'/login'}>Registrate gratis aqui!</Link>
+          <Link className='loginBtn' to={'/register'}>Registrate gratis aqui!</Link>
           <span>¿Ya tienes cuenta? Ingresa aquí:</span>
           <Link className='loginBtn' to={'/login'}>Ingresar</Link>
         </div>
