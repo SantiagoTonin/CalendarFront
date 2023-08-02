@@ -1,9 +1,9 @@
-import Abm from "../components/abmTable/Abm";
+import Abm from "../pages/dashboard/Abm";
 import Header from "../components/header/Header";
-import Home from "../components/home/Home";
-import Landing from "../components/landingPage/Landing";
-import Login from "../components/login/Login";
-import Register from "../components/register/Register";
+import Home from "../pages/home/Home";
+import Landing from "../pages/landingPage/Landing";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 const MyRoutes = () => {

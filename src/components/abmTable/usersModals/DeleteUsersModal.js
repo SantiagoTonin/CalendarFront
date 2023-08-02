@@ -1,5 +1,5 @@
 import { Modal, Button } from "react-bootstrap";
-import "../usersModal.css";
+import "./usersModal.css";
 
 const DeleteUsersModal = ({
   deleteModalShow,

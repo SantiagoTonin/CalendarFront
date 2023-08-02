@@ -1,8 +1,8 @@
-import Sidebar from "../sidebar/Sidebar";
 import React, { useState, useContext } from "react";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { ThemeContext } from "../../context/ThemeContext";
+import Calendar from "react-calendar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.css";
 import "./calendar.css";
 

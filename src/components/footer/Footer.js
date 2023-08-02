@@ -8,10 +8,10 @@ const Footer = () => {
     <main className={lightMode ? "footerContainerLight" : "footerContainer"}>
       <section className="footerContent">
         <span>My calendar</span>
-        <article className="footerListItems d-flex flex-row">
+        <article className="footerListItems d-flex flex-row col-3">
           <ul>
-            <li>Terminos y condiciones</li>
-            <li>Politicas de privacidad</li>
+            <li>Términos y condiciones</li>
+            <li>Políticas de privacidad</li>
             <li>Protección de datos</li>
             <li>Uso de cookies</li>
           </ul>
@@ -22,8 +22,8 @@ const Footer = () => {
             <li>Trabaja con nosotros</li>
           </ul>
           <ul>
-            <li>Nuestras redes sociales</li>
-            <li>Intagram</li>
+            <li>LinkedIn</li>
+            <li>Instagram</li>
             <li>Twitter</li>
             <li>Facebook</li>
           </ul>
