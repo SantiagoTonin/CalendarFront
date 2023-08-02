@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import "../usersModal.css";
+import "./usersModal.css";
 
 const CreateUsersModal = ({ createModalShow, setCreateModalShow, handleSubmit }) => {
   return (

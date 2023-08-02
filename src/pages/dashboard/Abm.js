@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../config/axiosInit";
 import { Button } from "react-bootstrap";
-import UsersTable from "./table/UsersTable";
-import CreateUsersModal from "./usersModals/CreateUsersModal";
-import DeleteUsersModal from "./usersModals/DeleteUsersModal";
-import Sidebar from "../sidebar/Sidebar";
+import UsersTable from "../../components/abmTable/table/UsersTable";
+import CreateUsersModal from "../../components/abmTable/usersModals/CreateUsersModal";
+import DeleteUsersModal from "../../components/abmTable/usersModals/DeleteUsersModal";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "./abm.css";
 
 const Abm = () => {
