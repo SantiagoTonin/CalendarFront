@@ -1,6 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import "./register.css";
-import "../login/login.css";
+import "../../components/loginForm/login.css";
 
 const Register = () => {
   return (

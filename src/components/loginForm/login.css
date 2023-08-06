@@ -15,13 +15,16 @@
   font-weight: 800;
 }
 
-.loginFormContainer > Form {
-  width: 35%;
+.loginFormContainer > .loginForm {
+  width: 30%;
   height: auto;
+  display: flex;
+  flex-direction: column;
   color: azure;
 }
 
 .formLoginBtn {
+  width: auto;
   background-color: var(--btn-color);
   color: var(--secondary-color);
   border: 4px solid var(--secondary-color);
@@ -59,12 +62,16 @@
   padding-block: 1rem;
 }
 
+.errorMessage{
+  color: orangered;
+}
+
 @media (min-width: 245px) and (max-width: 576px) {
   .loginFormContainer > h3 {
     padding-top: 0.5rem;
   }
 
-  .loginFormContainer > Form {
+  .loginFormContainer > .loginForm {
     width: auto;
   }
 }
