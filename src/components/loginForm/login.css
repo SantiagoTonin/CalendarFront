@@ -23,6 +23,16 @@
   color: azure;
 }
 
+.loginForm > input {
+padding-inline: 0.5rem;
+border-radius: 5px;
+height: 2.5rem;
+}
+
+.focused{
+  border: 5px solid var(--secondary-color);
+}
+
 .formLoginBtn {
   width: auto;
   background-color: var(--btn-color);
@@ -32,8 +42,8 @@
   font-weight: 400;
 }
 
-.formLoginBtn:is(:hover, :active:focus) {
-  background-color: var(--btn-color) !important;
+.formLoginBtn:is(:hover, :active, :focus, :disabled) {
+  background-color: var(--btn-color);
   color: var(--btn-contrast);
   border: 4px solid var(--btn-contrast);
   transform: scale(95%);

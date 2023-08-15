@@ -12,21 +12,21 @@ const LoginForm = () => {
   } = useForm({ defaultValues: { email: "", password: "" } });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [focusedField, setFocusedField] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setErrorMessage("");
-    }, 3000);
+    }, 4000);
     return () => clearTimeout(timer);
   }, [errorMessage]);
 
   const onSubmit = async (data) => {
     try {
       const response = await axiosInstance.post("/singin", data);
-      const responseData = response.data;
-      console.log("Respuesta de la API:", responseData);
+      sessionStorage.setItem("token", response?.data?.token);
+      window.location.replace("/home");
     } catch (error) {
-      console.error("Error al hacer la solicitud POST:", error.message);
       if (error.response) {
         setErrorMessage(error.response.data.message);
       } else {
@@ -35,12 +35,20 @@ const LoginForm = () => {
     }
   };
 
+  const handleBlur = (event) => {
+    setFocusedField(null);
+  };
+
+  const handleFocus = (field) => {
+    setFocusedField(field);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="loginForm">
         <label>Email</label>
         <input
-          className="mt-3 mb-2"
+          className={`mt-3 mb-2 ${focusedField === "email" ? "focused" : ""}`}
           type="text"
           placeholder="Ingresar email"
           {...register("email", {
@@ -54,11 +62,15 @@ const LoginForm = () => {
               message: "Formato de email inválido",
             },
           })}
+          onBlur={handleBlur}
+          onFocus={() => handleFocus("email")}
         />
         <p>{errors.email?.message}</p>
         <label>Contraseña</label>
         <input
-          className="mt-3 mb-2"
+          className={`mt-3 mb-2 ${
+            focusedField === "password" ? "focused" : ""
+          }`}
           type="password"
           placeholder="Ingresar contraseña"
           {...register("password", {
@@ -74,6 +86,8 @@ const LoginForm = () => {
                 "La contraseña tiene que tener al menos 8 caracteres, una letra y un numero",
             },
           })}
+          onBlur={handleBlur}
+          onFocus={() => handleFocus("password")}
         />
         <p>{errors.password?.message}</p>
         {errorMessage && <p className="errorMessage">{errorMessage}</p>}
