@@ -1,6 +1,7 @@
-import React, { useState, useEffect} from "react";
-import { FaBars, FaEnvelopeOpenText, FaCartPlus } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaBars, FaEnvelopeOpenText } from "react-icons/fa";
 import { AiOutlineClose, AiFillHome } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
 import { IoMdHelpCircle, IoIosPaper, IoMdPeople } from "react-icons/io";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../config/axiosInit.js";
@@ -20,11 +21,10 @@ const Sidebar = () => {
     } else setToken("");
   }, []);
 
-  useEffect(() => {
-    if (token) {
-      
-    }
-  }, [userRol]);
+  // useEffect(() => {
+  //   if (token) {
+  //   }
+  // }, [userRol]);
 
   const getAuthStatus = async () => {
     try {
@@ -49,7 +49,7 @@ const Sidebar = () => {
         <Link href="/home" className="navIcons">
           <AiFillHome />
         </Link>
-        {userRol === "ADMINISTRADOR" ? (
+        {userRol === "superADMIN" || "ADMINISTRADOR" ? (
           <Link href="#" className="navIcons">
             <IoIosPaper />
           </Link>
@@ -58,10 +58,10 @@ const Sidebar = () => {
           <FaEnvelopeOpenText />
         </Link>
         <Link href="#" className="navIcons">
-          <FaCartPlus />
+          <IoMdPeople />
         </Link>
         <Link href="#" className="navIcons" onClick={handleLogOut}>
-          <IoMdPeople />
+          <FiLogOut />
         </Link>
         <Link href="#" className="navIcons">
           <IoMdHelpCircle />
@@ -88,10 +88,10 @@ const Sidebar = () => {
                 <FaEnvelopeOpenText /> Mensajes
               </Link>
               <Link to="#" className="navText">
-                <FaCartPlus /> Perfil
+                <IoMdPeople /> Perfil
               </Link>
               <Link to="#" className="navText" onClick={handleLogOut}>
-                <IoMdPeople /> Logout
+                <FiLogOut/> Logout
               </Link>
               <Link to="#" className="navText">
                 <IoMdHelpCircle /> Ayuda
