@@ -93,13 +93,13 @@ const LoginForm = () => {
         {errorMessage && <p className="errorMessage">{errorMessage}</p>}
         <div className="redirectContainer">
           <a href="./error404">¿Olvidaste tu contraseña?</a>
-          <a href="./registerPage">
-            ¿No tienes cuenta? Crea una<span>aquí</span>
+          <a href="./register">
+            ¿No tienes cuenta? Crea una<span> aquí</span>
           </a>
         </div>
         <div className="formLoginBtnContainer">
           <Button className="formLoginBtn" type="submit">
-            Registrarse
+            Ingresar
           </Button>
         </div>
       </form>
