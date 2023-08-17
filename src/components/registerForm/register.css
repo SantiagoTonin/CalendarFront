@@ -1,0 +1,46 @@
+.registerFormContainer {
+  height: auto;
+  max-height: 100%;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+}
+
+.registerFormContainer > h3 {
+  color: azure;
+  font-weight: 800;
+  padding-top: 0.5rem;
+}
+
+.registerFormContainer > .registerForm {
+  width: 40%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  color: azure;
+}
+
+.registerForm > input {
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+  height: 2.5rem;
+}
+
+.registerRedirectContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.registerRedirectContainer > a {
+  text-decoration: none;
+  color: azure;
+}
+
+.registerRedirectContainer > a > span {
+  color: orangered;
+}
