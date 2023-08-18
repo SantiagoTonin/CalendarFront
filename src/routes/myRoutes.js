@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import Landing from "../pages/landingPage/Landing";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import PassRecovery from "../pages/passrecovery/PassRecovery";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 const MyRoutes = () => {
@@ -17,6 +18,7 @@ const MyRoutes = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/abm" element={<Abm />} />
+        <Route path="/passwordRecovery" element={<PassRecovery />} />
       </Routes>
     </>
   );

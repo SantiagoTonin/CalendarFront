@@ -92,7 +92,7 @@ const LoginForm = () => {
         <p>{errors.password?.message}</p>
         {errorMessage && <p className="errorMessage">{errorMessage}</p>}
         <div className="redirectContainer">
-          <a href="./error404">¿Olvidaste tu contraseña?</a>
+          <a href="./passwordRecovery">¿Olvidaste tu contraseña?</a>
           <a href="./register">
             ¿No tienes cuenta? Crea una<span> aquí</span>
           </a>
