@@ -79,7 +79,7 @@ const Sidebar = () => {
               <Link to="/home" className="navText">
                 <AiFillHome /> Home
               </Link>
-              {userRol === "ADMINISTRADOR" ? (
+              {userRol === "superADMIN" || "ADMINISTRADOR" ? (
                 <Link to="#" className="navText">
                   <IoIosPaper /> Usuarios
                 </Link>
