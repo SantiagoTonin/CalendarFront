@@ -21,10 +21,10 @@ const Sidebar = () => {
     } else setToken("");
   }, []);
 
-  // useEffect(() => {
-  //   if (token) {
-  //   }
-  // }, [userRol]);
+  useEffect(() => {
+    if (token) {
+    }
+  }, [userRol]);
 
   const getAuthStatus = async () => {
     try {
@@ -49,7 +49,7 @@ const Sidebar = () => {
         <Link href="/home" className="navIcons">
           <AiFillHome />
         </Link>
-        {userRol === "superADMIN" || "ADMINISTRADOR" ? (
+        {userRol === "superADMIN" || userRol === "ADMINISTRADOR" ? (
           <Link href="#" className="navIcons">
             <IoIosPaper />
           </Link>
@@ -79,9 +79,9 @@ const Sidebar = () => {
               <Link to="/home" className="navText">
                 <AiFillHome /> Home
               </Link>
-              {userRol === "superADMIN" || "ADMINISTRADOR" ? (
-                <Link to="#" className="navText">
-                  <IoIosPaper /> Usuarios
+              {userRol === "superADMIN" || userRol === "ADMINISTRADOR" ? (
+                <Link href="#" className="navIcons">
+                  <IoIosPaper />
                 </Link>
               ) : null}
               <Link to="#" className="navText">
@@ -91,7 +91,7 @@ const Sidebar = () => {
                 <IoMdPeople /> Perfil
               </Link>
               <Link to="#" className="navText" onClick={handleLogOut}>
-                <FiLogOut/> Logout
+                <FiLogOut /> Logout
               </Link>
               <Link to="#" className="navText">
                 <IoMdHelpCircle /> Ayuda
