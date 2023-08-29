@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import axiosInstance from "../../config/axiosInit";
 import ThemeButton from "../themeButton/ThemeButton";
 import { ThemeContext } from "../../context/ThemeContext";
 import "./header.css";
@@ -6,10 +7,26 @@ import "./header.css";
 const Header = () => {
   const { lightMode } = useContext(ThemeContext);
   const [hasToken, setHasToken] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     const tokenFromStorage = sessionStorage.getItem("token");
     setHasToken(tokenFromStorage ? true : false);
+    if (tokenFromStorage) {
+      axiosInstance
+        .post("/user/info", {}, {
+          headers: {
+            Authorization: tokenFromStorage,
+          },
+        })
+        .then((response) => {
+          const user = response.data;
+          setUserName(user.name);
+        })
+        .catch((error) => {
+          console.error("Error fetching user info:", error);
+        });
+    }
   }, []);
 
   return (
@@ -19,7 +36,7 @@ const Header = () => {
       </div>
       {hasToken && (
         <div className="wellcomeUserContainer">
-          <h5>Bienvenido/a ---- !</h5>
+          <h5>Bienvenido/a {userName} !</h5>
           <ThemeButton />
         </div>
       )}
@@ -28,3 +45,4 @@ const Header = () => {
 };
 
 export default Header;
+
