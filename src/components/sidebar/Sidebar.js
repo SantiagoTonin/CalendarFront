@@ -9,30 +9,40 @@ import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
   const [token, setToken] = useState("");
   const [userRol, setUserRol] = useState("");
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      getAuthStatus();
-      setToken(token);
-    } else setToken("");
+    const storedToken = sessionStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+      getAuthStatus(storedToken);
+    } else {
+      setToken("");
+    }
   }, []);
 
   useEffect(() => {
     if (token) {
+      // Realiza acciones cuando cambia el userRol
     }
   }, [userRol]);
 
-  const getAuthStatus = async () => {
+  const getAuthStatus = async (token) => {
     try {
-      const { data } = await axiosInstance.get("/user?rol=");
-      setUserRol(data?.rol);
+      const response = await axiosInstance.get("/user", {
+        headers: {
+          Authorization: token,
+        },
+      });
+      setUserRol(response.data[1]?.rol);
     } catch (error) {
       alert(error.response?.data?.message);
     }
+  };
+
+  const showSidebar = () => {
+    setSidebar(!sidebar);
   };
 
   const handleLogOut = () => {
@@ -43,27 +53,27 @@ const Sidebar = () => {
   return (
     <>
       <section className="navbar">
-        <Link to="#" className="menuIcon">
-          <FaBars onClick={showSidebar} />
+        <Link to="#" className="menuIcon" onClick={showSidebar}>
+          <FaBars />
         </Link>
-        <Link href="/home" className="navIcons">
+        <Link to="/home" className="navIcons">
           <AiFillHome />
         </Link>
-        {userRol === "superADMIN" || userRol === "ADMINISTRADOR" ? (
-          <Link href="#" className="navIcons">
+        {["superADMIN", "ADMIN"].includes(userRol) && (
+          <Link to="#" className="navIcons">
             <IoIosPaper />
           </Link>
-        ) : null}
-        <Link href="#" className="navIcons">
+        )}
+        <Link to="#" className="navIcons">
           <FaEnvelopeOpenText />
         </Link>
-        <Link href="#" className="navIcons">
+        <Link to="#" className="navIcons">
           <IoMdPeople />
         </Link>
-        <Link href="#" className="navIcons" onClick={handleLogOut}>
+        <Link to="#" className="navIcons" onClick={handleLogOut}>
           <FiLogOut />
         </Link>
-        <Link href="#" className="navIcons">
+        <Link to="#" className="navIcons">
           <IoMdHelpCircle />
         </Link>
       </section>
@@ -74,30 +84,28 @@ const Sidebar = () => {
               <AiOutlineClose />
             </Link>
           </li>
-          <>
-            <section className="navbar">
-              <Link to="/home" className="navText">
-                <AiFillHome /> Home
-              </Link>
-              {userRol === "superADMIN" || userRol === "ADMINISTRADOR" ? (
-                <Link href="#" className="navIcons">
-                  <IoIosPaper />
-                </Link>
-              ) : null}
+          <section className="navbar">
+            <Link to="/home" className="navText">
+              <AiFillHome /> Home
+            </Link>
+            {["superADMIN", "ADMIN"].includes(userRol) && (
               <Link to="#" className="navText">
-                <FaEnvelopeOpenText /> Mensajes
+                <IoIosPaper /> Usuarios
               </Link>
-              <Link to="#" className="navText">
-                <IoMdPeople /> Perfil
-              </Link>
-              <Link to="#" className="navText" onClick={handleLogOut}>
-                <FiLogOut /> Logout
-              </Link>
-              <Link to="#" className="navText">
-                <IoMdHelpCircle /> Ayuda
-              </Link>
-            </section>
-          </>
+            )}
+            <Link to="#" className="navText">
+              <FaEnvelopeOpenText /> Mensajes
+            </Link>
+            <Link to="#" className="navText">
+              <IoMdPeople /> Perfil
+            </Link>
+            <Link to="#" className="navText" onClick={handleLogOut}>
+              <FiLogOut /> Logout
+            </Link>
+            <Link to="#" className="navText">
+              <IoMdHelpCircle /> Ayuda
+            </Link>
+          </section>
         </ul>
       </nav>
     </>
