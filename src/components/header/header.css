@@ -38,7 +38,6 @@
 }
 
 .wellcomeUserContainer {
-  padding-right: 1.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -47,6 +46,20 @@
 
 .wellcomeUserContainer > h5 {
   padding-right: 5rem;
+}
+
+.userImage{
+  height: 3rem;
+  width: 3rem;
+  margin-right: 0.8rem;
+  border: 1px solid azure;
+}
+
+.themeBtnContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1.5rem;
 }
 
 @media (min-width: 245px) and (max-width: 576px) {
@@ -61,13 +74,22 @@
   .wellcomeUserContainer {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-between;
     padding-top: 0.5rem;
   }
 
   .wellcomeUserContainer > h5 {
     padding-right: 1rem;
     font-size: 0.8rem;
+  }
+
+  .userImage{
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 1px solid azure;
+  }
+
+  .themeBtnContainer{
+    padding-right: 0.5rem;
   }
 }
 

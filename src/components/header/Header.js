@@ -14,11 +14,15 @@ const Header = () => {
     setHasToken(tokenFromStorage ? true : false);
     if (tokenFromStorage) {
       axiosInstance
-        .post("/user/info", {}, {
-          headers: {
-            Authorization: tokenFromStorage,
-          },
-        })
+        .post(
+          "/user/info",
+          {},
+          {
+            headers: {
+              Authorization: tokenFromStorage,
+            },
+          }
+        )
         .then((response) => {
           const user = response.data;
           setUserName(user.name);
@@ -36,13 +40,15 @@ const Header = () => {
       </div>
       {hasToken && (
         <div className="wellcomeUserContainer">
+          <div className="userImage"></div>
           <h5>Bienvenido/a {userName} !</h5>
-          <ThemeButton />
         </div>
       )}
+      <div className="themeBtnContainer">
+        <ThemeButton />
+      </div>
     </main>
   );
 };
 
 export default Header;
-
