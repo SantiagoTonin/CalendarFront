@@ -1,5 +1,5 @@
 .navbar {
-  min-height: 100vh;
+  min-height: calc(100%-15rem);
   font-size: 1.8rem;
   background-color: var(--secondary-color);
   display: flex;
