@@ -67,7 +67,7 @@ const Sidebar = () => {
         <Link to="#" className="navIcons">
           <FaEnvelopeOpenText />
         </Link>
-        <Link to="#" className="navIcons">
+        <Link to="/userProfile" className="navIcons">
           <IoMdPeople />
         </Link>
         <Link to="#" className="navIcons" onClick={handleLogOut}>
