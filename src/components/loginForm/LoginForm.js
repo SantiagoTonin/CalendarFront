@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "./login.css";
+import "../../styles/buttonStyles.css"
 import axiosInstance from "../../config/axiosInit";
 
 const LoginForm = () => {
@@ -98,7 +99,7 @@ const LoginForm = () => {
           </a>
         </div>
         <div className="formLoginBtnContainer">
-          <Button className="formLoginBtn" type="submit">
+          <Button className="allBtns" type="submit">
             Ingresar
           </Button>
         </div>
