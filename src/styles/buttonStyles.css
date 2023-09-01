@@ -1,0 +1,31 @@
+.allBtns {
+    width: auto;
+    background-color: var(--btn-color);
+    color: var(--secondary-color);
+    border: 4px solid var(--secondary-color);
+    letter-spacing: 0.3em;
+    font-weight: 400;
+  }
+  
+  .allBtns:is(:hover, :active, :focus, :disabled) {
+    background-color: var(--btn-color);
+    color: var(--btn-contrast);
+    border: 4px solid var(--btn-contrast);
+    transform: scale(95%);
+  }
+
+  .allBtnsLight {
+    width: auto;
+    background-color: var(--lightMode);
+    color: var(--btn-contrast);
+    border: 4px solid var(--secondary-color);
+    letter-spacing: 0.3em;
+    font-weight: 600;
+  }
+  
+  .allBtnsLight:is(:hover, :active, :focus, :disabled) {
+    background-color: var(--lightMode);
+    color: var(--btn-contrast);
+    border: 4px solid var(--btn-contrast);
+    transform: scale(95%);
+  }

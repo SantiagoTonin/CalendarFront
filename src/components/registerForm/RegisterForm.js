@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import "../../styles/buttonStyles.css"
 import "./register.css";
 import axiosInstance from "../../config/axiosInit";
 
@@ -179,7 +180,7 @@ const RegisterForm = () => {
           </a>
         </div>
         <div className="formLoginBtnContainer">
-          <Button className="formLoginBtn" type="submit">
+          <Button className="allBtns" type="submit">
             Registrarse
           </Button>
         </div>

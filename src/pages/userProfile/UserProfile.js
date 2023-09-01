@@ -1,15 +1,19 @@
+import { useContext } from "react";
+import {ImProfile} from "react-icons/im";
+import { ThemeContext } from "../../context/ThemeContext";
 import ProfileForm from "../../components/profileForm/ProfileForm";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "../../components/profileForm/profileForm.css";
 
 const UserProfile = () => {
+  const { lightMode } = useContext(ThemeContext);
   return (
     <main className="profileMainContainer">
       <aside className="homeSide">
         <Sidebar />
       </aside>
-      <section className="userProfileContainer">
-        <h3>Mi perfil</h3>
+      <section className={lightMode ? "userProfileContainerLight" : "userProfileContainer"}>
+        <h3><ImProfile/> Mi perfil</h3>
         <ProfileForm />
       </section>
     </main>

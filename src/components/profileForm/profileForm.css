@@ -8,8 +8,18 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--main-color);
-  color: azure;
+  color: var(--lightMode);
   padding-block: 1.5rem;
+}
+
+.userProfileContainerLight{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--lightMode);
+  color: var(--main-color);
+  padding-block: 1.5rem;
+  font-weight: 800;
 }
 
 .grid-container {
@@ -36,3 +46,16 @@
   width: 40vw;
 }
 
+.registerForm > :last-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+}
+
+@media (min-width: 221px) and (max-width: 768px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

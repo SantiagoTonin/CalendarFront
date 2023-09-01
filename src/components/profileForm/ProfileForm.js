@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "react-bootstrap";
+import { ThemeContext } from "../../context/ThemeContext";
 import axiosInstance from "../../config/axiosInit";
+import "../../styles/buttonStyles.css";
 import "./profileForm.css";
 
 const ProfileForm = () => {
@@ -11,32 +14,29 @@ const ProfileForm = () => {
   const onSubmit = (data) => console.log(data);
 
   const [user, setUserData] = useState(null);
+  const { lightMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const tokenFromStorage = sessionStorage.getItem("token");
     if (tokenFromStorage) {
-      axiosInstance
-        .post(
-          "/user/info",
-          {},
-          {
-            headers: {
-              Authorization: tokenFromStorage,
-            },
-          }
-        )
-        .then((response) => {
-          const userData = response.data;
-          setUserData(userData);
-        })
-        .catch((error) => {
-          console.error("Error fetching user info:", error);
-        });
+      axiosInstance.post("/user/info",{},
+        {
+          headers: {
+            Authorization: tokenFromStorage,
+          },
+        }
+      )
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user info:", error);
+      });
     }
   }, []);
 
   return (
-    <main className="profileFormContainer">
+    <main className="profileContainer">
       <form onSubmit={handleSubmit(onSubmit)} className="registerForm">
         <div className="grid-container">
           <div className="grid-item">
@@ -53,7 +53,7 @@ const ProfileForm = () => {
           </div>
           <div className="grid-item">
             <label>Edad</label>
-            <input  defaultValue={user?.age} readOnly />
+            <input defaultValue={user?.age} readOnly />
           </div>
           <div className="grid-item">
             <label>Email</label>
@@ -65,7 +65,14 @@ const ProfileForm = () => {
           </div>
           {errors.exampleRequired && <span>This field is required</span>}
         </div>
-        <input type="submit" />
+        <div>
+          <Button
+            className={lightMode ? "allBtnsLight" : "allBtns"}
+            type="submit"
+          >
+            Editar
+          </Button>
+        </div>
       </form>
     </main>
   );
