@@ -22,24 +22,24 @@
   font-weight: 800;
 }
 
-.grid-container {
+.gridContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   padding-top: 1.5rem;
 }
 
-.grid-item {
+.gridItem {
   grid-column: span 1;
   width: 100%;
 }
 
-.grid-item label {
+.gridItem label {
   display: block;
   margin-bottom: 0.5rem;
 }
 
-.grid-item > input {
+.gridItem > input {
   padding-inline: 0.5rem;
   border-radius: 5px;
   height: 2.5rem;
@@ -53,8 +53,37 @@
   padding-top: 1.5rem;
 }
 
+.modalGridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  padding-top: 1rem;
+}
+
+.modalGridItem {
+  grid-column: span 1;
+  padding-left: 2rem;
+}
+
+.modalGridItem label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.modalGridItem > input {
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+  height: 2.5rem;
+  width: 90%;
+}
+
 @media (min-width: 221px) and (max-width: 768px) {
-  .grid-container {
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .modalGridContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
