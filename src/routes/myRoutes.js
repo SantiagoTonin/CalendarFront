@@ -16,7 +16,7 @@ const MyRoutes = () => {
       {redirect.pathname !== "/" && <Header />}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/abm" element={<Abm />} />

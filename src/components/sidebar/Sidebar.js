@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { FaBars, FaEnvelopeOpenText } from "react-icons/fa";
 import { AiOutlineClose, AiFillHome } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
@@ -11,6 +12,7 @@ const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [token, setToken] = useState("");
   const [userRol, setUserRol] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     const storedToken = sessionStorage.getItem("token");
@@ -24,7 +26,6 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (token) {
-      // Realiza acciones cuando cambia el userRol
     }
   }, [userRol]);
 
@@ -96,7 +97,7 @@ const Sidebar = () => {
             <Link to="#" className="navText">
               <FaEnvelopeOpenText /> Mensajes
             </Link>
-            <Link to="#" className="navText">
+            <Link to="/userProfile" className="navText">
               <IoMdPeople /> Perfil
             </Link>
             <Link to="#" className="navText" onClick={handleLogOut}>
