@@ -1,64 +1,113 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../config/axiosInit";
-import { Button } from "react-bootstrap";
-import UsersTable from "../../components/abmTable/table/UsersTable";
-import CreateUsersModal from "../../components/abmTable/usersModals/CreateUsersModal";
-import DeleteUsersModal from "../../components/abmTable/usersModals/DeleteUsersModal";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { FaCheck, FaTimes } from "react-icons/fa";
 import "./abm.css";
+import axiosInstance from "../../config/axiosInit";
 
 const Abm = () => {
   const url = "http://localhost:3000/user";
-  const [users, setUsers] = useState([]);
-  const [createModalShow, setCreateModalShow] = useState(false);
-  const [deleteUser, setDeleteUser] = useState({});
-  const [deleteModalShow, setDModalShow] = useState(false);
+  const [dataForTable, setDataForTable] = useState([]);
+
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
 
   useEffect(() => {
-    getUsers();
-  }, []);
-
-  const getUsers = async () => {
-    try{
-      const answer = await axios.get(url);
-      setUsers(answer.data);
-    }
-    catch(error){if (error?.response?.data?.error === 'Usuarios no encontrados') {
-      setUsers([]);
-    } else {
-      alert('Algo salio mal, intente mas tarde');
-    }
-    }
-  };
-
-  const generateId = function () {
-    return "_" + Math.random().toString(36).substr(2, 9);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const user = { userId: generateId() };
-    for (const target of e.target) {
-      if (target.type !== "submit") {
-        user[target.name] = target.value;
-        target.value = "";
+    async function listUsers() {
+      try {
+        const response = await axios.get(url);
+        return response.data;
+      } catch (error) {
+        console.log("Error al traer los datos", error);
+        throw error;
       }
     }
-    setUsers([...users, user]);
-    setCreateModalShow(false);
+
+    const fetchUsers = async () => {
+      const userList = await listUsers();
+      const initializedUserList = userList.map((user) => ({
+        ...user,
+        editedRole: user.rol,
+        isEditing: false,
+      }));
+      setDataForTable(initializedUserList);
+    };
+
+    fetchUsers();
+  }, []);
+
+  const requestSort = (key) => {
+    let direction = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
   };
 
-  const handleDelete = (users) => {
-    setDeleteUser(users);
-    setDModalShow(true);
-  };
+  const sortedData = [...dataForTable].sort((a, b) => {
 
-  const confirmDelete = (userId) => {
-    const filteredUsers = users.filter(
-      (users) => users.userId !== deleteUser.userId
+    let aValue = a[sortConfig.key] || "";
+    let bValue = b[sortConfig.key] || "";
+
+
+  if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
+    if (sortConfig.direction === 'asc') {
+      return aValue - bValue;
+    } else {
+      return bValue - aValue;
+    }
+  }
+
+  aValue = String(aValue || '');
+  bValue = String(bValue || '');
+
+    if (sortConfig.direction === "asc") {
+      return aValue.localeCompare(bValue);
+    } else {
+      return bValue.localeCompare(aValue);
+    }
+  });
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = sortedData.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const totalPages = Math.ceil(sortedData.length / usersPerPage);
+
+  const handleDoubleClick = (userId) => {
+    const newDataForTable = dataForTable.map((user) =>
+      user.userId === userId ? { ...user, isEditing: true } : user
     );
-    setUsers(filteredUsers);
-    setDModalShow(false);
+    setDataForTable(newDataForTable);
+  };
+
+  const handleRoleChange = (event, userId) => {
+    const newDataForTable = dataForTable.map((user) =>
+      user.userId === userId
+        ? { ...user, editedRole: event.target.value }
+        : user
+    );
+    setDataForTable(newDataForTable);
+  };
+
+  const saveRoleChanges = (userId) => {
+    const userToUpdate = dataForTable.find((user) => user.userId === userId);
+    let newRole = userToUpdate.editedRole;
+    newRole = newRole.toUpperCase();
+    const data = { userId: userId, userRol: newRole };
+
+    axiosInstance
+      .post("/createAdmin", data)
+      .then((res) => {
+        console.log(res.response.data);
+      })
+      .catch((error) => {
+        console.error(error.response.data.error);
+      });
+      // window.location.reload();
   };
 
   return (
@@ -67,38 +116,87 @@ const Abm = () => {
         <section>
           <Sidebar />
         </section>
-        <section>
-          <div className="tableContainer">
-            <UsersTable
-              data={users}
-              deleteModalShow={deleteModalShow}
-              setDModalShow={setDModalShow}
-              handleDelete={handleDelete}
-            />
+        <div className="containerDashboard">
+          <h1 className="title">DASHBOARD</h1>
+          <div className="boxUser">
+            <div className="boxContainer">
+              <h2 className="boxTitle">USER</h2>
+              <table className="table">
+                <thead>
+                  <tr className="boxColumn">
+                    <th onClick={() => requestSort("userId")}>User ID</th>
+                    <th onClick={() => requestSort("name")}>Name</th>
+                    <th onClick={() => requestSort("email")}>Email</th>
+                    <th onClick={() => requestSort("nationality")}>
+                      Nationality
+                    </th>
+                    <th onClick={() => requestSort("birthdate")}>Birthdate</th>
+                    <th onClick={() => requestSort("age")}>Age</th>
+                    <th onClick={() => requestSort("rol")}>Role</th>
+                    <th onClick={() => requestSort("checkEmail")}>Check Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentUsers.map((user) => (
+                    <tr key={user.userId}>
+                      <td>{user.userId}</td>
+                      <td>
+                        {user.name} {user.lastName}
+                      </td>
+                      <td>{user.email}</td>
+                      <td>{user.nationality}</td>
+                      <td>{user.birthdate}</td>
+                      <td>{user.age}</td>
+                      <td onDoubleClick={() => handleDoubleClick(user.userId)}>
+                        {user.isEditing ? (
+                          <input
+                          className="textEdit"
+                            type="text"
+                            value={user.editedRole}
+                            onChange={(e) => handleRoleChange(e, user.userId)}
+                            onBlur={() => saveRoleChanges(user.userId)}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter") {
+                                saveRoleChanges(user.userId);
+                              }
+                            }}
+                          />
+                        ) : (
+                          user.rol
+                        )}
+                      </td>
+                      <td>{user.checkEmail ? <FaCheck /> : <FaTimes />}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="pagination">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    className={currentPage === index + 1 ? "active" : ""}
+                    key={index}
+                    onClick={() => paginate(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="boxContainer">
+              <h2 className="boxTitle">INFO</h2>
+              <div className="containerInfo">
+                <div className="infoItem">
+                  <span className="infoNumber">{dataForTable.length}</span>
+                  <span className="infoLabel">total users</span>
+                </div>
+                <div className="infoItem">
+                  <span className="infoNumber">1</span>
+                  <span className="infoLabel">online users</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <article className="usersBtnContainer container-fluid">
-            <Button
-              className="usersTableCreateUserBtn"
-              data-bs-toggle="modal"
-              data-bs-target="modal"
-              onClick={() => setCreateModalShow(true)}
-            >
-              Crear usuario
-            </Button>
-          </article>
-          <CreateUsersModal
-            createModalShow={createModalShow}
-            setCreateModalShow={setCreateModalShow}
-            handleSubmit={handleSubmit}
-          />
-          <DeleteUsersModal
-            deleteModalShow={deleteModalShow}
-            setDModalShow={setDModalShow}
-            handleDelete={handleDelete}
-            confirmDelete={confirmDelete}
-            deleteUserId={deleteUser}
-          />
-        </section>
+        </div>
       </main>
     </>
   );
