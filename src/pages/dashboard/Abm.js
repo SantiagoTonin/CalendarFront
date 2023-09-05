@@ -46,21 +46,19 @@ const Abm = () => {
   };
 
   const sortedData = [...dataForTable].sort((a, b) => {
-
     let aValue = a[sortConfig.key] || "";
     let bValue = b[sortConfig.key] || "";
 
-
-  if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
-    if (sortConfig.direction === 'asc') {
-      return aValue - bValue;
-    } else {
-      return bValue - aValue;
+    if (typeof aValue === "boolean" && typeof bValue === "boolean") {
+      if (sortConfig.direction === "asc") {
+        return aValue - bValue;
+      } else {
+        return bValue - aValue;
+      }
     }
-  }
 
-  aValue = String(aValue || '');
-  bValue = String(bValue || '');
+    aValue = String(aValue || "");
+    bValue = String(bValue || "");
 
     if (sortConfig.direction === "asc") {
       return aValue.localeCompare(bValue);
@@ -107,21 +105,21 @@ const Abm = () => {
       .catch((error) => {
         console.error(error.response.data.error);
       });
-      // window.location.reload();
+    // window.location.reload();
   };
 
   return (
     <>
       <main className="usersTableMainContainer">
-        <section>
+        <section className="homeSide">
           <Sidebar />
         </section>
         <div className="containerDashboard">
           <h1 className="title">DASHBOARD</h1>
           <div className="boxUser">
-            <div className="boxContainer">
-              <h2 className="boxTitle">USER</h2>
-              <table className="table">
+            <h2 className="boxTitle">USER</h2>
+            <div className="boxContainer table-responsive">
+              <table className="abmTable">
                 <thead>
                   <tr className="boxColumn">
                     <th onClick={() => requestSort("userId")}>User ID</th>
@@ -133,7 +131,9 @@ const Abm = () => {
                     <th onClick={() => requestSort("birthdate")}>Birthdate</th>
                     <th onClick={() => requestSort("age")}>Age</th>
                     <th onClick={() => requestSort("rol")}>Role</th>
-                    <th onClick={() => requestSort("checkEmail")}>Check Email</th>
+                    <th onClick={() => requestSort("checkEmail")}>
+                      Check Email
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -150,7 +150,7 @@ const Abm = () => {
                       <td onDoubleClick={() => handleDoubleClick(user.userId)}>
                         {user.isEditing ? (
                           <input
-                          className="textEdit"
+                            className="textEdit"
                             type="text"
                             value={user.editedRole}
                             onChange={(e) => handleRoleChange(e, user.userId)}
