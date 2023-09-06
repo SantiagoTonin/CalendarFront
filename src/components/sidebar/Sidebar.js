@@ -10,37 +10,29 @@ import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-  const [token, setToken] = useState("");
-  const [userRol, setUserRol] = useState("");
-  const { id } = useParams();
+  const [userRol, setUserRol] = useState(null); 
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-      getAuthStatus(storedToken);
-    } else {
-      setToken("");
+    const tokenFromStorage = sessionStorage.getItem("token");
+    if (tokenFromStorage) {
+      axiosInstance
+        .post(
+          "/user/info",
+          {},
+          {
+            headers: {
+              Authorization: tokenFromStorage,
+            },
+          }
+        )
+        .then((response) => {
+          setUserRol(response.data.rol);
+        })
+        .catch((error) => {
+          alert(error.response?.data?.message);
+        });
     }
   }, []);
-
-  useEffect(() => {
-    if (token) {
-    }
-  }, [userRol]);
-
-  const getAuthStatus = async (token) => {
-    try {
-      const response = await axiosInstance.get("/user", {
-        headers: {
-          Authorization: token,
-        },
-      });
-      setUserRol(response.data[1]?.rol);
-    } catch (error) {
-      alert(error.response?.data?.message);
-    }
-  };
 
   const showSidebar = () => {
     setSidebar(!sidebar);
@@ -61,7 +53,7 @@ const Sidebar = () => {
           <AiFillHome />
         </Link>
         {["superADMIN", "ADMIN"].includes(userRol) && (
-          <Link to="#" className="navIcons">
+          <Link to="/abm" className="navIcons">
             <IoIosPaper />
           </Link>
         )}
@@ -90,7 +82,7 @@ const Sidebar = () => {
               <AiFillHome /> Home
             </Link>
             {["superADMIN", "ADMIN"].includes(userRol) && (
-              <Link to="#" className="navText">
+              <Link to="/abm" className="navText">
                 <IoIosPaper /> Usuarios
               </Link>
             )}
