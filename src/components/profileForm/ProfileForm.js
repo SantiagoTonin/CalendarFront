@@ -143,9 +143,11 @@ const ProfileForm = () => {
         show={showModal}
         onHide={handleCloseModal}
         dialogClassName="modal-xl"
+        centered
+        className="profileModal"
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Información</Modal.Title>
+        <Modal.Header closeButton className="profileModalHeader">
+          <Modal.Title>Editar información de perfil</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="modalGridContainer">
@@ -200,10 +202,10 @@ const ProfileForm = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button id="profileModalCloseBtn" onClick={handleCloseModal}>
             Cerrar
           </Button>
-          <Button variant="primary" onClick={handleEditUserInModal}>
+          <Button id="profileModalConfirmBtn" onClick={handleEditUserInModal}>
             Guardar Cambios
           </Button>
         </Modal.Footer>
