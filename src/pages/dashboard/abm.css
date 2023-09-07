@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.title {
+.dashboardTitle {
   background-color: var(--main-color);
   color:var(--secondary-color);
   font-size: 2rem;
@@ -19,7 +19,17 @@
 }
 
 .boxUser {
-  background-color: white;
+  background-color: var(--btn-accent);
+  color: var(--lightMode);
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.boxUserLight {
+  background-color: var(--lightMode);
   margin: 5px;
   padding: 10px;
   border: 1px solid lightgray;
@@ -60,7 +70,7 @@
 
 .abmTable > th:active {
   background-color: #007bff;
-  color: white;
+  color: var(--lightMode);
 }
 
 .pagination {
@@ -73,7 +83,7 @@
 .pagination button {
   width: 40px;
   height: 40px;
-  background-color: white;
+  background-color: var(--lightMode);
   border: 1px solid #ccc;
   color: #333;
   margin: 0 1px; 
@@ -83,15 +93,25 @@
 
 .pagination button:active {
   background-color: black;
-  color: white;
+  color: var(--lightMode);
 }
 
 .pagination button.active {
   background-color: var(--secondary-color);
-  color: white;
+  color: var(--lightMode);
 }
 
 .boxTitle {
+  background-color: var(--btn-backgroud-accent);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.boxTitleLight {
   background-color: var(--main-color);
   color: var(--secondary-color);
   text-align: center;
@@ -136,5 +156,5 @@
 
 .textEdit::selection {
   background-color: blue; /* Cambia el color de fondo */
-  color: white; /* Cambia el color del texto */
+  color: var(--lightMode); /* Cambia el color del texto */
 }

@@ -1,31 +1,31 @@
 .headerContainer {
   width: 100%;
-  height: 5rem;
+  height: 6rem;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: black;
-  color: azure;
+  background-color: var(--main-color);
+  color: var(--lightMode);
   border-bottom: 2px solid rgb(72, 72, 72);
 }
 
 .headerContainerLight {
   width: 100%;
-  height: 5rem;
+  height: 6rem;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: azure;
-  color: black;
+  background-color: var(--lightMode);
+  color: var(--main-color);
   border-bottom: 2px solid rgb(72, 72, 72);
 }
 
 .logoContainer {
-  padding-left: 1.5rem;
+  padding-left: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,26 +33,22 @@
 
 .logoContainer > span {
   font-family: Expletus;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   text-shadow: -2px 2px 4px rgba(147, 147, 147, 0.813);
 }
 
 .wellcomeUserContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.wellcomeUserContainer > h5 {
-  padding-right: 5rem;
-}
-
 .userImage{
-  height: 3rem;
-  width: 3rem;
-  margin-right: 0.8rem;
-  border: 1px solid azure;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0 0.8rem 0.2rem 0;
+  border: 1px solid var(--lightMode);
 }
 
 .themeBtnContainer{
@@ -64,7 +60,7 @@
 
 @media (min-width: 245px) and (max-width: 576px) {
   .logoContainer{
-    padding-left: 0.5rem;
+    padding-left: 0.3rem;
   }
 
   .logoContainer > span {
@@ -73,7 +69,7 @@
 
   .wellcomeUserContainer {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding-top: 0.5rem;
   }
 
@@ -85,11 +81,11 @@
   .userImage{
     height: 1.5rem;
     width: 1.5rem;
-    border: 1px solid azure;
+    border: 1px solid var(--lightMode);
   }
 
   .themeBtnContainer{
-    padding-right: 0.5rem;
+    padding-right: 0.3rem;
   }
 }
 

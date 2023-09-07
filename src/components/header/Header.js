@@ -41,7 +41,7 @@ const Header = () => {
       {hasToken && (
         <div className="wellcomeUserContainer">
           <div className="userImage"></div>
-          <h5>Bienvenido/a {userName} !</h5>
+          <h5>Hola {userName} !</h5>
         </div>
       )}
       <div className="themeBtnContainer">

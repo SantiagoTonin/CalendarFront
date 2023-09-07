@@ -101,7 +101,7 @@ const ProfileForm = () => {
   return (
     <main className="profileContainer">
       <form onSubmit={handleSubmit(onSubmit)} className="registerForm">
-        <div className="gridContainer">
+        <div className={lightMode ? "gridContainerLight" : "gridContainer"}>
           <div className="gridItem">
             <label>Nombre</label>
             <input defaultValue={user?.name} readOnly />

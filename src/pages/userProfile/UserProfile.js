@@ -13,7 +13,7 @@ const UserProfile = () => {
         <Sidebar />
       </aside>
       <section className={lightMode ? "userProfileContainerLight" : "userProfileContainer"}>
-        <h3><ImProfile/> Mi perfil</h3>
+        <h2><ImProfile/> Mi perfil</h2>
         <ProfileForm />
       </section>
     </main>
