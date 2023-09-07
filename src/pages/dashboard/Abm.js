@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "../../config/axiosInit";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./abm.css";
 import axiosInstance from "../../config/axiosInit";
 
 const Abm = () => {
   const url = "http://localhost:3000/user";
   const [dataForTable, setDataForTable] = useState([]);
+  const { lightMode } = useContext(ThemeContext);
 
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
@@ -115,9 +117,9 @@ const Abm = () => {
           <Sidebar />
         </section>
         <div className="containerDashboard">
-          <h1 className="title">DASHBOARD</h1>
-          <div className="boxUser">
-            <h2 className="boxTitle">USER</h2>
+          <h2 className="dashboardTitle">Panel de Usuarios</h2>
+          <div className={lightMode ? "boxUserLight" : "boxUser"}>
+            <h2 className={lightMode ? "boxTitleLight" : "boxTitle"}>Usuarios</h2>
             <div className="boxContainer table-responsive">
               <table className="abmTable">
                 <thead>
@@ -183,7 +185,7 @@ const Abm = () => {
               </div>
             </div>
             <div className="boxContainer">
-              <h2 className="boxTitle">INFO</h2>
+              <h2 className={lightMode ? "boxTitleLight" : "boxTitle"}>INFO</h2>
               <div className="containerInfo">
                 <div className="infoItem">
                   <span className="infoNumber">{dataForTable.length}</span>
