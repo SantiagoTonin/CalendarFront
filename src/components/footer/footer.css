@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: black;
-  color: azure;
+  background-color: var(--main-color);
+  color: var(--lightMode);
   border-top: 2px solid rgb(72, 72, 72);
 }
 
@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-  color: black;
+  background-color: var(--lightMode);
+  color: var(--main-color);
   border-top: 2px solid rgb(72, 72, 72);
 }
 
@@ -36,9 +36,9 @@
 }
 
 .footerListItems{
-  width: 50%;
-  font-size: 1.1em;
-  gap: 5%;
+  width: 60%;
+  font-size: 1em;
+  gap: 20%;
 }
 
 .footerListItems > ul {
@@ -58,13 +58,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
 
   .footerContent > span {
     text-align: center;
-    font-size: 1.4em;
-    padding-bottom: 0.5rem;
+    font-size: 1.2em;
+    padding-top: 0.1em;
   }
   
   .footerListItems{
@@ -72,6 +71,7 @@
     justify-content: center;  
     width: 100%;
     font-size: 0.6em;
+    gap: 10%;
   }
 
   .rightsContainer {
@@ -97,6 +97,7 @@
     justify-content: center;  
     width: 100%;
     font-size: 0.8em;
+    gap: 10%;
   }
 
   .rightsContainer {
@@ -104,7 +105,7 @@
   }
 }
 
-@media (min-width: 769px) and (max-width: 992px){
+@media (min-width: 769px) and (max-width: 1124px){
   .footerContent > span {
     font-size: 2em;
   }
@@ -112,5 +113,6 @@
   .footerListItems{
     font-size: 0.8em;
     padding: 0.2rem;
+    gap: 10%;
   }
 }

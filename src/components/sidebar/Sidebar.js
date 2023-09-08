@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { FaBars, FaEnvelopeOpenText } from "react-icons/fa";
 import { AiOutlineClose, AiFillHome } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";

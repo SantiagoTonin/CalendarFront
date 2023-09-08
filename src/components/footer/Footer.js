@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { BsMeta, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 import "./footer.css";
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
     <main className={lightMode ? "footerContainerLight" : "footerContainer"}>
       <section className="footerContent">
         <span>My calendar</span>
-        <article className="footerListItems d-flex flex-row col-3">
+        <article className="footerListItems d-flex flex-row">
           <ul>
             <li>Términos y condiciones</li>
             <li>Políticas de privacidad</li>
@@ -18,14 +19,14 @@ const Footer = () => {
           <ul>
             <li>Acerca de nosotros</li>
             <li>Contactanos</li>
-            <li>Ubicacion</li>
+            <li>Ubicación</li>
             <li>Trabaja con nosotros</li>
           </ul>
           <ul>
-            <li>LinkedIn</li>
-            <li>Instagram</li>
-            <li>Twitter</li>
-            <li>Facebook</li>
+            <li><BsLinkedin/> LinkedIn</li>
+            <li><BsInstagram/> Instagram</li>
+            <li><BsTwitter/> Twitter</li>
+            <li><BsMeta/> Facebook</li>
           </ul>
         </article>
       </section>
