@@ -105,21 +105,67 @@
   background-color: var(--btn-backgroud-accent);
   color: var(--secondary-color);
   text-align: center;
-  padding: 10px 0;
+  padding: 10px;
   margin: 0;
+  display: flex;
+  justify-content: space-between;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+.boxTitle span {
+  flex-grow: 1;
+  margin-left: 15%;
+  font-size: xx-large;
+}
+
+.boxTitleLight span {
+  flex-grow: 1;
+  margin-left: 15%;
+  font-size: xx-large;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+}
+
+.rounded-input {
+  flex-grow: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  outline: none;
+}
+
+.search-button {
+  border: none;
+  padding: 5px 10px;
+  background-color: #625f5f;
+  border-radius: 0px 20px 20px 0px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
 }
 
 .boxTitleLight {
   background-color: var(--main-color);
   color: var(--secondary-color);
   text-align: center;
-  padding: 10px 0;
+  padding: 10px;
   margin: 0;
+  display: flex;
+  justify-content: space-between;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
+
 
 .containerInfo {
   display: flex;
@@ -157,4 +203,29 @@
 .textEdit::selection {
   background-color: blue; /* Cambia el color de fondo */
   color: var(--lightMode); /* Cambia el color del texto */
+}
+
+.loading{
+  right: auto;
+}
+
+.boxTitleLight2 {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  justify-content: space-between;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.boxTitle2 {
+  background-color: var(--btn-backgroud-accent);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 10px;
+  justify-content: space-between;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }

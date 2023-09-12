@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "../../config/axiosInit";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { FaCheck, FaTimes } from "react-icons/fa";
+import  Loading  from "../../components/loading/loading.jsx";
+import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeContext";
 import "./abm.css";
 import axiosInstance from "../../config/axiosInit";
 
 const Abm = () => {
-  const url = "http://localhost:3000/user";
   const [dataForTable, setDataForTable] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const { lightMode } = useContext(ThemeContext);
 
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -18,7 +19,7 @@ const Abm = () => {
   useEffect(() => {
     async function listUsers() {
       try {
-        const response = await axios.get(url);
+        const response = await axiosInstance.get("/user");
         return response.data;
       } catch (error) {
         console.log("Error al traer los datos", error);
@@ -34,10 +35,40 @@ const Abm = () => {
         isEditing: false,
       }));
       setDataForTable(initializedUserList);
+      setFilterData(initializedUserList);
     };
 
     fetchUsers();
   }, []);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    filter(inputValue);
+  };
+
+  const filter = (input) => {
+    const filteredSet = new Set();
+
+    if (input === "") {
+      setFilterData(dataForTable);
+      return;
+    }
+
+    for (const obj of dataForTable) {
+      Object.keys(obj).forEach((key) => {
+        let value = obj[key];
+        value = value.toString();
+        if (value === input) {
+          filteredSet.add(obj);
+        }
+      });
+    }
+
+    return setFilterData(filteredSet);
+  };
 
   const requestSort = (key) => {
     let direction = "asc";
@@ -47,7 +78,7 @@ const Abm = () => {
     setSortConfig({ key, direction });
   };
 
-  const sortedData = [...dataForTable].sort((a, b) => {
+  const sortedData = [...filterData].sort((a, b) => {
     let aValue = a[sortConfig.key] || "";
     let bValue = b[sortConfig.key] || "";
 
@@ -119,7 +150,29 @@ const Abm = () => {
         <div className="containerDashboard">
           <h2 className="dashboardTitle">Panel de Usuarios</h2>
           <div className={lightMode ? "boxUserLight" : "boxUser"}>
-            <h2 className={lightMode ? "boxTitleLight" : "boxTitle"}>Usuarios</h2>
+            <div className={lightMode ? "boxTitleLight" : "boxTitle"}>
+              <span>Usuarios</span>
+              <div className="search-container">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSearchClick();
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Buscar"
+                    className="rounded-input"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                  />
+                  <button className="search-button" type="submit">
+                    <FaSearch />
+                  </button>
+                </form>
+              </div>
+            </div>
+
             <div className="boxContainer table-responsive">
               <table className="abmTable">
                 <thead>
@@ -139,7 +192,7 @@ const Abm = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentUsers.map((user) => (
+                  {dataForTable.length === 0 ?<tr className="loading" ><td colSpan="100"><Loading/></td></tr> : currentUsers.length === 0 ? <tr><td colSpan="100">NO DATA</td></tr> : currentUsers.map((user) => (
                     <tr key={user.userId}>
                       <td>{user.userId}</td>
                       <td>
@@ -185,7 +238,7 @@ const Abm = () => {
               </div>
             </div>
             <div className="boxContainer">
-              <h2 className={lightMode ? "boxTitleLight" : "boxTitle"}>INFO</h2>
+              <h2 className={lightMode ? "boxTitleLight2" : "boxTitle2"}>INFO</h2>
               <div className="containerInfo">
                 <div className="infoItem">
                   <span className="infoNumber">{dataForTable.length}</span>
