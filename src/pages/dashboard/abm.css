@@ -11,7 +11,7 @@
 
 .dashboardTitle {
   background-color: var(--main-color);
-  color:var(--secondary-color);
+  color: var(--secondary-color);
   font-size: 2rem;
   font-weight: bold;
   padding-top: 20px;
@@ -37,7 +37,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.boxContainer{
+.boxContainer,
+.infoBoxContainer {
   margin-top: 12px;
   padding: 10px;
   border: 1px solid lightgray;
@@ -46,7 +47,11 @@
   width: 100%;
 }
 
-.boxColumn{
+.boxContainer {
+  min-height: 35rem;
+}
+
+.boxColumn {
   background-color: var(--secondary-color);
 }
 
@@ -56,7 +61,8 @@
   margin-top: 10px;
 }
 
-.abmTable th, .abmTable td {
+.abmTable th,
+.abmTable td {
   border: 1px solid lightgray;
   padding: 8px;
   text-align: center;
@@ -86,9 +92,10 @@
   background-color: var(--lightMode);
   border: 1px solid #ccc;
   color: #333;
-  margin: 0 1px; 
+  margin: 0 1px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  justify-content: flex-end;
 }
 
 .pagination button:active {
@@ -117,6 +124,18 @@
   flex-grow: 1;
   margin-left: 15%;
   font-size: xx-large;
+}
+
+.boxTitleLight {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .boxTitleLight span {
@@ -154,19 +173,6 @@
   transform: translateY(-50%);
 }
 
-.boxTitleLight {
-  background-color: var(--main-color);
-  color: var(--secondary-color);
-  text-align: center;
-  padding: 10px;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-
 .containerInfo {
   display: flex;
   justify-content: space-around;
@@ -194,7 +200,7 @@
   text-align: center;
 }
 
-.textEdit{
+.textEdit {
   text-align: center;
   border-style: none;
   outline: none;
@@ -203,10 +209,6 @@
 .textEdit::selection {
   background-color: blue; /* Cambia el color de fondo */
   color: var(--lightMode); /* Cambia el color del texto */
-}
-
-.loading{
-  right: auto;
 }
 
 .boxTitleLight2 {
@@ -228,4 +230,80 @@
   justify-content: space-between;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .boxTitle,
+  .boxTitleLight {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .boxTitle span,
+  .boxTitleLight span {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 245px) and (max-width: 577px) {
+  .boxTitle,
+  .boxTitleLight {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .boxTitle span,
+  .boxTitleLight span,
+  .boxTitle2 span,
+  .boxTitleLight2 span {
+    margin-left: 0;
+    font-size: x-large;
+  }
+
+  .dashboardTitle {
+    font-size: 1.5rem;
+    padding-top: 10px;
+  }
+
+  .infoNumber {
+    font-size: 1.5rem;
+  }
+
+  .abmTable th,
+  .abmTable td {
+    font-size: 0.8rem;
+    text-size-adjust: auto;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 2px;
+    position: relative;
+  }
+  
+  .rounded-input {
+    flex-grow: 1;
+    border: none;
+    border-radius: 20px;
+    padding: 2px 5px;
+    outline: none;
+    width: 100%;
+  }
+  
+  .search-button {
+    border: none;
+    padding: 2px 5px;
+    background-color: #625f5f;
+    border-radius: 0px 20px 20px 0px;
+    cursor: pointer;
+    position: absolute;
+    top: 25%;
+    right: 2px;
+    transform: translateY(-25%);
+  }
 }
