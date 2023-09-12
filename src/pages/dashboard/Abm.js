@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
-import  Loading  from "../../components/loading/loading.jsx";
+import Loading from "../../components/loading/loading.jsx";
 import { FaCheck, FaTimes, FaSearch } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeContext";
 import "./abm.css";
@@ -148,10 +148,10 @@ const Abm = () => {
           <Sidebar />
         </section>
         <div className="containerDashboard">
-          <h2 className="dashboardTitle">Panel de Usuarios</h2>
+          <h2 className="dashboardTitle">PANEL DE USUARIOS</h2>
           <div className={lightMode ? "boxUserLight" : "boxUser"}>
             <div className={lightMode ? "boxTitleLight" : "boxTitle"}>
-              <span>Usuarios</span>
+              <span>USUARIOS</span>
               <div className="search-container">
                 <form
                   onSubmit={(e) => {
@@ -177,52 +177,68 @@ const Abm = () => {
               <table className="abmTable">
                 <thead>
                   <tr className="boxColumn">
-                    <th onClick={() => requestSort("userId")}>User ID</th>
-                    <th onClick={() => requestSort("name")}>Name</th>
+                    <th onClick={() => requestSort("userId")}>Id de usuario</th>
+                    <th onClick={() => requestSort("name")}>Nombre</th>
                     <th onClick={() => requestSort("email")}>Email</th>
                     <th onClick={() => requestSort("nationality")}>
-                      Nationality
+                      Nacionalidad
                     </th>
-                    <th onClick={() => requestSort("birthdate")}>Birthdate</th>
-                    <th onClick={() => requestSort("age")}>Age</th>
-                    <th onClick={() => requestSort("rol")}>Role</th>
+                    <th onClick={() => requestSort("birthdate")}>
+                      Fecha de nacimiento
+                    </th>
+                    <th onClick={() => requestSort("age")}>Edad</th>
+                    <th onClick={() => requestSort("rol")}>Rol</th>
                     <th onClick={() => requestSort("checkEmail")}>
                       Check Email
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {dataForTable.length === 0 ?<tr className="loading" ><td colSpan="100"><Loading/></td></tr> : currentUsers.length === 0 ? <tr><td colSpan="100">NO DATA</td></tr> : currentUsers.map((user) => (
-                    <tr key={user.userId}>
-                      <td>{user.userId}</td>
-                      <td>
-                        {user.name} {user.lastName}
+                  {dataForTable.length === 0 ? (
+                    <tr>
+                      <td colSpan="100">
+                        <Loading />
                       </td>
-                      <td>{user.email}</td>
-                      <td>{user.nationality}</td>
-                      <td>{user.birthdate}</td>
-                      <td>{user.age}</td>
-                      <td onDoubleClick={() => handleDoubleClick(user.userId)}>
-                        {user.isEditing ? (
-                          <input
-                            className="textEdit"
-                            type="text"
-                            value={user.editedRole}
-                            onChange={(e) => handleRoleChange(e, user.userId)}
-                            onBlur={() => saveRoleChanges(user.userId)}
-                            onKeyPress={(e) => {
-                              if (e.key === "Enter") {
-                                saveRoleChanges(user.userId);
-                              }
-                            }}
-                          />
-                        ) : (
-                          user.rol
-                        )}
-                      </td>
-                      <td>{user.checkEmail ? <FaCheck /> : <FaTimes />}</td>
                     </tr>
-                  ))}
+                  ) : currentUsers.length === 0 ? (
+                    <tr>
+                      <td colSpan="100">NO DATA</td>
+                    </tr>
+                  ) : (
+                    currentUsers.map((user) => (
+                      <tr key={user.userId}>
+                        <td>{user.userId}</td>
+                        <td>
+                          {user.name} {user.lastName}
+                        </td>
+                        <td>{user.email}</td>
+                        <td>{user.nationality}</td>
+                        <td>{user.birthdate}</td>
+                        <td>{user.age}</td>
+                        <td
+                          onDoubleClick={() => handleDoubleClick(user.userId)}
+                        >
+                          {user.isEditing ? (
+                            <input
+                              className="textEdit"
+                              type="text"
+                              value={user.editedRole}
+                              onChange={(e) => handleRoleChange(e, user.userId)}
+                              onBlur={() => saveRoleChanges(user.userId)}
+                              onKeyPress={(e) => {
+                                if (e.key === "Enter") {
+                                  saveRoleChanges(user.userId);
+                                }
+                              }}
+                            />
+                          ) : (
+                            user.rol
+                          )}
+                        </td>
+                        <td>{user.checkEmail ? <FaCheck /> : <FaTimes />}</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
               <div className="pagination">
@@ -237,8 +253,10 @@ const Abm = () => {
                 ))}
               </div>
             </div>
-            <div className="boxContainer">
-              <h2 className={lightMode ? "boxTitleLight2" : "boxTitle2"}>INFO</h2>
+            <div className="infoBoxContainer">
+              <h2 className={lightMode ? "boxTitleLight2" : "boxTitle2"}>
+                INFO
+              </h2>
               <div className="containerInfo">
                 <div className="infoItem">
                   <span className="infoNumber">{dataForTable.length}</span>
