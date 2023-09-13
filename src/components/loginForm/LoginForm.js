@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./login.css";
 import "../../styles/buttonStyles.css"
 import axiosInstance from "../../config/axiosInit";
@@ -12,6 +13,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm({ defaultValues: { email: "", password: "" } });
 
+  const { lightMode } = useContext(ThemeContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [focusedField, setFocusedField] = useState(null);
 
@@ -46,7 +48,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="loginForm">
+      <form onSubmit={handleSubmit(onSubmit)} className={lightMode ? "loginFormLight" : "loginForm"}>
         <label>Email</label>
         <input
           className={`mt-3 mb-2 ${focusedField === "email" ? "focused" : ""}`}
@@ -92,14 +94,14 @@ const LoginForm = () => {
         />
         <p>{errors.password?.message}</p>
         {errorMessage && <p className="errorMessage">{errorMessage}</p>}
-        <div className="redirectContainer">
+        <div className={lightMode ? "redirectContainerLight" : "redirectContainer"}>
           <a href="./passwordRecovery">¿Olvidaste tu contraseña?</a>
           <a href="./register">
             ¿No tienes cuenta? Crea una<span> aquí</span>
           </a>
         </div>
         <div className="formLoginBtnContainer">
-          <Button className="allBtns" type="submit">
+          <Button className={lightMode ? "allBtnsLight" : "allBtns"} type="submit">
             Ingresar
           </Button>
         </div>

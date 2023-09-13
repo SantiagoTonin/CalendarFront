@@ -10,6 +10,18 @@
   background-color: var(--main-color);
 }
 
+.loginFormContainerLight {
+  height: auto;
+  min-height: calc(100vh - 15rem);
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lightMode);
+}
+
 .loginFormContainer > h3 {
   color: azure;
   font-weight: 800;
@@ -20,16 +32,31 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  color: azure;
+  color: var(--lightMode);
 }
 
 .loginForm > input {
-padding-inline: 0.5rem;
-border-radius: 5px;
-height: 2.5rem;
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+  height: 2.5rem;
 }
 
-.focused{
+.loginFormContainerLight > .loginFormLight {
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+.loginFormLight > input {
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+  height: 2.5rem;
+}
+
+.focused {
   border: 5px solid var(--secondary-color);
 }
 
@@ -42,10 +69,27 @@ height: 2.5rem;
 
 .redirectContainer > a {
   text-decoration: none;
-  color: azure;
+  color: var(--lightMode);
 }
 
 .redirectContainer > a > span {
+  color: orangered;
+}
+
+.redirectContainerLight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.redirectContainerLight > a {
+  text-decoration: none;
+  color: var(--main-color);
+  font-weight: 400;
+}
+
+.redirectContainerLight > a > span {
   color: orangered;
 }
 
@@ -56,7 +100,7 @@ height: 2.5rem;
   padding-block: 1rem;
 }
 
-.errorMessage{
+.errorMessage {
   color: orangered;
 }
 
@@ -65,7 +109,11 @@ height: 2.5rem;
     padding-top: 0.5rem;
   }
 
-  .loginFormContainer > .loginForm {
+  .loginFormContainerLight > h3 {
+    padding-top: 0.5rem;
+  }
+
+  .loginFormContainerLight > .loginFormLight {
     width: auto;
   }
 }

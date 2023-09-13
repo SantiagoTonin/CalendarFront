@@ -5,6 +5,7 @@
     border: 1px solid var(--secondary-color);
     letter-spacing: 0.3em;
     font-weight: 400;
+    padding-block: 0.5rem;
   }
   
   .allBtns:is(:hover, :active, :focus, :disabled) {
@@ -16,17 +17,17 @@
 
   .allBtnsLight {
     width: auto;
-    background-color: var(--lightMode)!important;
-    color: var(--btn-contrast)!important;
-    border: 1px solid var(--secondary-color)!important;
+    background-color: var(--secondary-color);
+    color: var(--lightMode);
+    border: 1px solid var(--secondary-color);
     letter-spacing: 0.3em;
     font-weight: 600;
   }
   
   .allBtnsLight:is(:hover, :active, :focus, :disabled) {
-    background-color: var(--lightMode);
-    color: var(--btn-contrast);
-    border: 1px solid var(--btn-contrast);
+    background-color: var(--secondary-color);
+    color: var(--lightMode);
+    border: 1px solid var(--secondary-color);
     transform: scale(95%);
   }
 
