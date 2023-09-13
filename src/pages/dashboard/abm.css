@@ -206,9 +206,17 @@
   outline: none;
 }
 
+
 .textEdit::selection {
   background-color: blue; /* Cambia el color de fondo */
   color: var(--lightMode); /* Cambia el color del texto */
+}
+
+.errorMessage{
+  font-size: 55%;
+  color: red;
+  font-weight: bold;
+  display: block;
 }
 
 .boxTitleLight2 {

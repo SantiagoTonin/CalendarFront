@@ -16,6 +16,8 @@ const Abm = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     async function listUsers() {
       try {
@@ -61,7 +63,7 @@ const Abm = () => {
       Object.keys(obj).forEach((key) => {
         let value = obj[key];
         value = value.toString();
-        if (value === input) {
+        if (value === input || value.includes(input)) {
           filteredSet.add(obj);
         }
       });
@@ -112,20 +114,20 @@ const Abm = () => {
     const newDataForTable = dataForTable.map((user) =>
       user.userId === userId ? { ...user, isEditing: true } : user
     );
-    setDataForTable(newDataForTable);
+    setFilterData(newDataForTable);
   };
 
   const handleRoleChange = (event, userId) => {
-    const newDataForTable = dataForTable.map((user) =>
+    const newDataForTable = filterData.map((user) =>
       user.userId === userId
         ? { ...user, editedRole: event.target.value }
         : user
     );
-    setDataForTable(newDataForTable);
+    setFilterData(newDataForTable);
   };
 
   const saveRoleChanges = (userId) => {
-    const userToUpdate = dataForTable.find((user) => user.userId === userId);
+    const userToUpdate = filterData.find((user) => user.userId === userId);
     let newRole = userToUpdate.editedRole;
     newRole = newRole.toUpperCase();
     const data = { userId: userId, userRol: newRole };
@@ -133,12 +135,15 @@ const Abm = () => {
     axiosInstance
       .post("/createAdmin", data)
       .then((res) => {
-        console.log(res.response.data);
+        if (res.status === 200) {
+          window.location.reload();
+        }
       })
       .catch((error) => {
-        console.error(error.response.data.error);
+        setErrorMessage(error.response.data.error);
       });
-    // window.location.reload();
+
+    return;
   };
 
   return (
@@ -219,18 +224,26 @@ const Abm = () => {
                           onDoubleClick={() => handleDoubleClick(user.userId)}
                         >
                           {user.isEditing ? (
-                            <input
-                              className="textEdit"
-                              type="text"
-                              value={user.editedRole}
-                              onChange={(e) => handleRoleChange(e, user.userId)}
-                              onBlur={() => saveRoleChanges(user.userId)}
-                              onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                  saveRoleChanges(user.userId);
+                            <div>
+                              <input
+                                className="textEdit"
+                                type="text"
+                                value={user.editedRole}
+                                onChange={(e) =>
+                                  handleRoleChange(e, user.userId)
                                 }
-                              }}
-                            />
+                                onKeyPress={(e) => {
+                                  if (e.key === "Enter") {
+                                    saveRoleChanges(user.userId);
+                                  }
+                                }}
+                              />
+                              {errorMessage.length > 0 ? (
+                                <span className="errorMessage">
+                                  *{errorMessage}
+                                </span>
+                              ) : null}
+                            </div>
                           ) : (
                             user.rol
                           )}
