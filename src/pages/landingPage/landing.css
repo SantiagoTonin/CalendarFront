@@ -47,24 +47,6 @@
   gap: 1.5rem;
 }
 
-.loginBtn {
-  height: 2.8rem;
-  width: auto;
-  padding-inline: 0.5rem;
-  background-color: var(--btn-color);
-  color: var(--secondary-color);
-  border: 4px solid var(--secondary-color);
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.loginBtn:is(:hover,:active:focus)  {
-  background-color: var(--btn-color)!important;
-  color: var(--btn-contrast);
-  border: 4px solid var(--btn-contrast);
-  transform: scale(95%);
-}
-
 .landingMainContainer > div:nth-child(3) {
   display: grid;
   grid-template-columns: 1;
@@ -126,13 +108,6 @@
   .landingMainContainer > div:nth-child(3) {
     font-size: small;
   }
-
-  .loginBtn {
-    border: 4px solid var(--secondary-color);
-    letter-spacing: 0.1em;
-    font-weight: 200;
-    margin: 0.3rem;
-  }
 }
 
 @media (max-width: 580px) {
@@ -159,9 +134,5 @@
 
   .grid2 {
     grid-template-columns: 2fr 0.1fr;
-  }
-
-  .loginBtn {
-    border: 3px solid var(--secondary-color);
   }
 }

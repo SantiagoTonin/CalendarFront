@@ -19,11 +19,11 @@
 }
 
 .error404Container > div:last-child span {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 0.5rem;
 }
 
 .imageContainer {
@@ -97,5 +97,47 @@
     text-shadow: -0.025em 0 0 var(--lightMode),
       -0.025em -0.025em 0 var(--btn-backgroud-accent),
       -0.025em -0.05em 0 var(--btn-contrast);
+  }
+}
+
+@media (min-width: 245px) and (max-width: 577px) {
+  .error404Container {
+    flex-direction: column;
+    border: 3px solid var(--secondary-color);
+  }
+
+  .imageContainer {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .glitch {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .error404Container div:last-child {
+    font-size: 1rem;
+    border-top: 1px solid var(--secondary-color);
+  }
+
+  .glitchContainer {
+    border: none;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .imageContainer {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .glitch {
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  .error404Container div:last-child {
+    font-size: 1.5rem;
   }
 }
