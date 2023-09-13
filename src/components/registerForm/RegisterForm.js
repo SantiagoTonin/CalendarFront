@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { ThemeContext } from "../../context/ThemeContext";
 import "../../styles/buttonStyles.css"
 import "./register.css";
 import axiosInstance from "../../config/axiosInit";
@@ -22,6 +23,7 @@ const RegisterForm = () => {
     },
   });
 
+  const { lightMode } = useContext(ThemeContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [focusedField, setFocusedField] = useState(null);
 
@@ -54,7 +56,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="registerForm">
+      <form onSubmit={handleSubmit(onSubmit)} className={lightMode ? "registerFormLight" : "registerForm"}>
         <label>Nombre</label>
         <input
           className={`mt-3 mb-2 ${focusedField === "name" ? "focused" : ""}`}
@@ -174,13 +176,13 @@ const RegisterForm = () => {
         />
         <p>{errors.password?.message}</p>
         {errorMessage && <p className="errorMessage">{errorMessage}</p>}
-        <div className="registerRedirectContainer">
+        <div className={lightMode ? "registerRedirectContainerLight" : "registerRedirectContainer"}>
           <a href="./login">
             ¿Ya tienes cuenta?<span> Ingresa aqui</span>
           </a>
         </div>
         <div className="formLoginBtnContainer">
-          <Button className="allBtns" type="submit">
+          <Button className={lightMode ? "allBtnsLight" : "allBtns"} type="submit">
             Registrarse
           </Button>
         </div>
