@@ -7,11 +7,14 @@ import "./home.css";
 import "./calendar.css";
 
 const Home = () => {
-  const [date, setDate] = useState(new Date());
-  const onChange = (newDate) => {
-    setDate(newDate);
-  };
   const { lightMode } = useContext(ThemeContext);
+  const [date, setDate] = useState(new Date());
+
+  const handleDateChange = (selectedDate) => {
+    setDate(selectedDate);
+    console.log(selectedDate);
+  };
+
   return (
     <main className="homeMainContainer">
       <aside className="homeSide">
@@ -21,7 +24,7 @@ const Home = () => {
         <div className="calendarApp">
           <h1>Mi Calendario</h1>
           <Calendar
-            onChange={onChange}
+            onChange={handleDateChange}
             value={date}
             className="calendarContainer"
           />
