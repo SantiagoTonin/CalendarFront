@@ -31,8 +31,13 @@ const Home = () => {
     setDate(newDate);
   };
 
-  const handleClick = (event) => {
-
+  const handleClick = () => {
+    const data = infoUser.userId;
+    const res = apiCreateCalendar(data,sessionStorage.getItem("token"));
+    if (res.status === 200) {
+      window.location.reload();
+    }
+    return;
   }
   const { lightMode } = useContext(ThemeContext);
   return (
@@ -49,7 +54,8 @@ const Home = () => {
               to={{ pathname: `/user/${infoUser.name}` }}
               state={infoUser}
               style={{ textDecoration: "none", color: "inherit" }}
-            >
+              className="containerLink"
+              >
               <Calendar
                 onChange={onChange}
                 value={date}
@@ -58,7 +64,7 @@ const Home = () => {
             </Link>
           ) : (
             <div className="button-container">
-              <button className="orange-button">+NewCalendar</button>
+              <button className="orange-button" onClick={()=>handleClick()}>+NewCalendar</button>
             </div>
           )}
         </div>

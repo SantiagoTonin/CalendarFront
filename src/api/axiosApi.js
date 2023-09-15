@@ -49,9 +49,9 @@ export const apiUploadPicture = async(formData,token)=>{
 };
 
 
-export const apiCreateCalendar = async (id,token) => {
+export const apiCreateCalendar = async (userId,token) => {
 
-  return await axiosInstance.post(`/calendar/${id}`,{},{
+  return await axiosInstance.post(`/calendar`,{userId},{
     headers: {
       Authorization:token,
     },
