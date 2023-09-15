@@ -182,6 +182,7 @@ const ProfileForm = () => {
                 name="age"
                 value={editableData.age}
                 onChange={handleFieldChange}
+                type="number"
               />
             </div>
             <div className="modalGridItem">
