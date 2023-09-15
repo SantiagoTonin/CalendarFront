@@ -105,6 +105,17 @@
   color: var(--lightMode);
 }
 
+.profileErrorMsgContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.profileErrorMsg{
+  color: orangered;
+}
+
 #profileModalCloseBtn {
   border: 3px solid orangered;
   background-color: transparent;

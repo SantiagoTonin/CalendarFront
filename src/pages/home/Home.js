@@ -9,6 +9,7 @@ import "./home.css";
 import "./calendar.css";
 
 const Home = () => {
+  const { lightMode } = useContext(ThemeContext);
   const [date, setDate] = useState(new Date());
   const [infoUser, setInfoUser] = useState([]);
 
@@ -35,6 +36,12 @@ const Home = () => {
 
   }
   const { lightMode } = useContext(ThemeContext);
+
+
+  const handleDateChange = (selectedDate) => {
+    setDate(selectedDate);
+    console.log(selectedDate);
+  };
   return (
     <main className="homeMainContainer">
       <aside className="homeSide">
