@@ -16,6 +16,7 @@ const ProfileForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [user, setUserData] = useState(null);
   const { lightMode } = useContext(ThemeContext);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const [editableData, setEditableData] = useState({
     name: "",
@@ -88,7 +89,7 @@ const ProfileForm = () => {
           window.location.reload();
         })
         .catch((error) => {
-          console.error("Error al editar usuario:", error);
+          setErrorMsg(error.response.data.error);
         });
     }
   };
@@ -181,6 +182,7 @@ const ProfileForm = () => {
                 name="age"
                 value={editableData.age}
                 onChange={handleFieldChange}
+                type="number"
               />
             </div>
             <div className="modalGridItem">
@@ -199,6 +201,9 @@ const ProfileForm = () => {
                 onChange={handleFieldChange}
               />
             </div>
+          </div>
+          <div className="profileErrorMsgContainer">
+            <span className="profileErrorMsg">{errorMsg}</span>
           </div>
         </Modal.Body>
         <Modal.Footer>
