@@ -10,6 +10,7 @@ import ChangePasswordPage from "../pages/passrecovery/ChangePasswordPage";
 import UserProfile from "../pages/userProfile/UserProfile";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ErrorPage from "../pages/error404/Error404";
+import Publications from "../pages/publications/Publications";
 
 const MyRoutes = () => {
   const redirect = useLocation();
@@ -27,6 +28,7 @@ const MyRoutes = () => {
         <Route path="/passwordRecovery" element={<PassRecovery />} />
         <Route path="/changePassword" element={<ChangePasswordPage />} />
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/user/:username" element={<Publications/>}/>
         <Route path="/error404" element={<ErrorPage />} />
       </Routes>
       {redirect.pathname !== "/error404" && <Footer />}
