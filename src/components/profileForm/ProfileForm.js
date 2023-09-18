@@ -125,7 +125,7 @@ const ProfileForm = () => {
         });
     }
   };
-  
+
   const tokenReplace = (newToken) => {
     sessionStorage.clear();
     sessionStorage.setItem("token", newToken);
