@@ -35,7 +35,7 @@ const Home = () => {
   const handleClick = (event) => {
 
   }
-  const { lightMode } = useContext(ThemeContext);
+  // const { lightMode } = useContext(ThemeContext);
 
 
   const handleDateChange = (selectedDate) => {
