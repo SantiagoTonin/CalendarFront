@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Modal } from "react-bootstrap";
 import { ThemeContext } from "../../context/ThemeContext";
+import { ImProfile } from "react-icons/im";
 import axiosInstance from "../../config/axiosInit";
 import "../../styles/buttonStyles.css";
 import "./profileForm.css";
@@ -12,10 +13,9 @@ const ProfileForm = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
-
+  const { lightMode } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
   const [user, setUserData] = useState(null);
-  const { lightMode } = useContext(ThemeContext);
   const [errorMsg, setErrorMsg] = useState("");
 
   const [editableData, setEditableData] = useState({
@@ -73,13 +73,45 @@ const ProfileForm = () => {
     }
   }, []);
 
+  // const handleEditUserInModal = async () => {
+  //   const tokenFromStorage = sessionStorage.getItem("token");
+  //   if (tokenFromStorage) {
+  //     await axiosInstance
+  //       .put(`/user/${user.userId}`, editableData, {
+  //         headers: {
+  //           Authorization: tokenFromStorage,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         console.log("Usuario actualizado:", response.data);
+  //         handleCloseModal();
+  //         tokenReplace(response.data.token);
+  //         window.location.reload();
+  //       })
+  //       .catch((error) => {
+  //         setErrorMsg(error.response.data.error);
+  //       });
+  //   }
+  // };
+
   const handleEditUserInModal = async () => {
     const tokenFromStorage = sessionStorage.getItem("token");
     if (tokenFromStorage) {
+      const formData = new FormData();
+      formData.append("name", editableData.name);
+      formData.append("lastName", editableData.lastName);
+      formData.append("birthdate", editableData.birthdate);
+      formData.append("age", editableData.age);
+      formData.append("email", editableData.email);
+      formData.append("nationality", editableData.nationality);
+      if (editableData.picture) {
+        formData.append("image", editableData.picture[0]);
+      }
       await axiosInstance
-        .put(`/user/${user.userId}`, editableData, {
+        .put(`/user/${user.userId}`, formData, {
           headers: {
             Authorization: tokenFromStorage,
+            "Content-Type": "multipart/form-data",
           },
         })
         .then((response) => {
@@ -148,7 +180,9 @@ const ProfileForm = () => {
         className="profileModal"
       >
         <Modal.Header closeButton className="profileModalHeader">
-          <Modal.Title>Editar información de perfil</Modal.Title>
+          <Modal.Title>
+            <ImProfile /> Editar información de perfil
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="modalGridContainer">
@@ -201,6 +235,15 @@ const ProfileForm = () => {
                 onChange={handleFieldChange}
               />
             </div>
+          </div>
+          <div className="modalGridItem">
+            <label>Imagen de perfil</label>
+            <input
+              name="image"
+              onChange={handleFieldChange}
+              type="file"
+              accept="image/*"
+            />
           </div>
           <div className="profileErrorMsgContainer">
             <span className="profileErrorMsg">{errorMsg}</span>
