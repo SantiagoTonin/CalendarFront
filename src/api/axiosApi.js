@@ -18,44 +18,67 @@ export const apiTranslateToken = async (dir, token) => {
 
 export const apiFullInfo = async (dir, token) => {
   return await axiosInstance
-  .get(
-    dir,
-    {},
-    {
-      headers: {
-        Authorization: token,
-      },
-    }
-  )
-  .catch((error) => {
-    console.error("Error fetching user info:", error);
-  });
+    .get(
+      dir,
+      {},
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
 };
 
-export const apiUploadPicture = async(formData,token)=>{
+export const apiUploadPicture = async (formData, token) => {
   return await axiosInstance
-  .post(
-    "/picture",
-    {formData},
-    {
-      headers: {
-        Authorization: token,
-      },
-    }
-  )
-  .catch((error) => {
-    console.error("Error fetching user info:", error);
-  });
+    .post(
+      "/picture",
+      { formData },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
 };
 
+export const apiCreateCalendar = async (userId, token) => {
+  return await axiosInstance
+    .post(
+      `/calendar`,
+      { userId },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
+};
 
-export const apiCreateCalendar = async (userId,token) => {
-
-  return await axiosInstance.post(`/calendar`,{userId},{
-    headers: {
-      Authorization:token,
-    },
-  }).catch((error) => {
-    console.error("Error fetching user info:", error);
-  })
+export const apiCreateCells = async (date,calendarId, token) => {
+  return await axiosInstance
+    .post(
+      `/cells`,
+      {
+        date: date,
+        calendarId: calendarId,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
 };
