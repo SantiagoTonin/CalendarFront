@@ -1,18 +1,18 @@
-import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import React from "react";
+import { useLocation } from "react-router-dom";
+import Sidebar from "../../components/sidebar/Sidebar";
+import AddPublications from "../../components/addPublications/AddPublications.js";
 
 export default function Publications() {
-  const { username } = useParams();
   const location = useLocation();
-  const infoUser = location.state;
-
+  const { date, user } = location.state;
+  console.log( location.state)
   return (
-    <div>
-      <p>Username: {username}</p>
-      <p>age:{infoUser.age}</p>
-    </div>
+    <main className="homeMainContainer">
+      <aside className="homeSide">
+        <Sidebar />
+      </aside>
+      <AddPublications date={date} user={user} />
+    </main>
   );
 }
-
-
-

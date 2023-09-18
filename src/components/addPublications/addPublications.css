@@ -1,0 +1,58 @@
+.file-uploader {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 20px 0;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1px;
+  padding-top: 5px;
+  height: 48%;
+}
+.box {
+  border: 6px dashed var(--secondary-color);
+  border-top: none;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.inputPost {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  color:var(--secondary-color);
+  background: var(--main-color);
+  border-bottom: 1px solid var(--secondary-color);
+  border-radius: 5px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 33px;
+  margin: 10px;
+  color: #444; /* Cambiamos el color del ícono a un gris oscuro */
+}
+
+.buttonPost{
+  background-color: var(--secondary-color);
+  width: 23%;
+  font-size: 2vh;
+  color: white;
+  font-weight: bold;
+  border-radius: 9px;
+}
