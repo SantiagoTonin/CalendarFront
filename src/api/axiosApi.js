@@ -16,10 +16,10 @@ export const apiTranslateToken = async (dir, token) => {
     });
 };
 
-export const apiFullInfo = async (dir, token) => {
+export const apiGetUser = async (userId, token) => {
   return await axiosInstance
     .get(
-      dir,
+      `/user/${userId}`,
       {},
       {
         headers: {
@@ -64,7 +64,7 @@ export const apiCreateCalendar = async (userId, token) => {
     });
 };
 
-export const apiCreateCells = async (date,calendarId, token) => {
+export const apiCreateCells = async (date, calendarId, token) => {
   return await axiosInstance
     .post(
       `/cells`,
@@ -81,4 +81,59 @@ export const apiCreateCells = async (date,calendarId, token) => {
     .catch((error) => {
       console.error("Error fetching user info:", error);
     });
+};
+
+export const apiCreateTasks = async (formData, token) => {
+  return await axiosInstance
+    .post(`/tasks`, formData, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
+};
+
+export const apiCreateImages = async (formData, token) => {
+  return await axiosInstance
+    .post(`/image`, formData, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
+};
+
+export const apiCreatePost = async (cellsId, token) => {
+  return await axiosInstance
+    .post(
+      `/post`,
+      {
+        cellsId: cellsId,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
+};
+
+export const getDateInfo = async (date) => {
+  return await axiosInstance
+  .post(
+    `/api/v1/getDataByCell`,
+    {
+      date: date,
+    },
+  )
+  .catch((error) => {
+    console.error("Error fetching user info:", error);
+  });
 };
