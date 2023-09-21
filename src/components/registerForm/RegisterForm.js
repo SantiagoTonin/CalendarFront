@@ -2,9 +2,9 @@ import { Button } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeContext } from "../../context/ThemeContext";
-import "../../styles/buttonStyles.css"
-import "./register.css";
 import axiosInstance from "../../config/axiosInit";
+import "../../styles/buttonStyles.css";
+import "./register.css";
 
 const RegisterForm = () => {
   const {
@@ -13,10 +13,10 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      name: "",
+      lastName: "",
       email: "",
       password: "",
-      name: "",
-      lastname: "",
       birthdate: "",
       age: "",
       nationality: "",
@@ -24,24 +24,26 @@ const RegisterForm = () => {
   });
 
   const { lightMode } = useContext(ThemeContext);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [focusedField, setFocusedField] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setErrorMessage("");
+      setErrorMsg("");
     }, 4000);
     return () => clearTimeout(timer);
-  }, [errorMessage]);
+  }, [errorMsg]);
 
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance.post("/singup", data);
+      const response = await axiosInstance.post("/signup", data);
+      window.location.replace("/");
+      console.log(response);
     } catch (error) {
       if (error.response) {
-        setErrorMessage(error.response.data.message);
+        setErrorMsg(error.response.data.error);
       } else {
-        setErrorMessage("Hubo un error al procesar la solicitud.");
+        setErrorMsg("Hubo un error al procesar la solicitud.");
       }
     }
   };
@@ -56,7 +58,10 @@ const RegisterForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={lightMode ? "registerFormLight" : "registerForm"}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={lightMode ? "registerFormLight" : "registerForm"}
+      >
         <label>Nombre</label>
         <input
           className={`mt-3 mb-2 ${focusedField === "name" ? "focused" : ""}`}
@@ -76,11 +81,11 @@ const RegisterForm = () => {
         <label>Apellido</label>
         <input
           className={`mt-3 mb-2 ${
-            focusedField === "lastname" ? "focused" : ""
+            focusedField === "lastName" ? "focused" : ""
           }`}
           type="text"
           placeholder="Ingresar apellido/s"
-          {...register("lastname", {
+          {...register("lastName", {
             required: "Este campo es obligatorio.",
             minLength: {
               value: 3,
@@ -88,13 +93,13 @@ const RegisterForm = () => {
             },
           })}
           onBlur={handleBlur}
-          onFocus={() => handleFocus("lastname")}
+          onFocus={() => handleFocus("lastName")}
         />
-        <p>{errors.lastname?.message}</p>
+        <p>{errors.lastName?.message}</p>
         <label>Email</label>
         <input
           className={`mt-3 mb-2 ${focusedField === "email" ? "focused" : ""}`}
-          type="text"
+          type="email"
           placeholder="Ingresar email"
           {...register("email", {
             required: "Este campo es obligatorio.",
@@ -111,12 +116,31 @@ const RegisterForm = () => {
           onFocus={() => handleFocus("email")}
         />
         <p>{errors.email?.message}</p>
+        <label>Contraseña</label>
+        <input
+          className={`mt-3 mb-2 ${
+            focusedField === "password" ? "focused" : ""
+          }`}
+          type="password"
+          placeholder="Ingresar contraseña"
+          {...register("password", {
+            required: "Este campo es obligatorio.",
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              message:
+                "La contraseña debe tener al menos 8 caracteres, una letra y un número",
+            },
+          })}
+          onBlur={handleBlur}
+          onFocus={() => handleFocus("password")}
+        />
+        <p>{errors.password?.message}</p>
         <label>Fecha de nacimiento</label>
         <input
           className={`mt-3 mb-2 ${
             focusedField === "birthdate" ? "focused" : ""
           }`}
-          type="number"
+          type="date"
           placeholder="Ingresar edad"
           {...register("birthdate", {
             required: "Este campo es obligatorio.",
@@ -151,38 +175,23 @@ const RegisterForm = () => {
           onFocus={() => handleFocus("nationality")}
         />
         <p>{errors.nationality?.message}</p>
-        <label>Contraseña</label>
-        <input
-          className={`mt-3 mb-2 ${
-            focusedField === "password" ? "focused" : ""
-          }`}
-          type="password"
-          placeholder="Ingresar contraseña"
-          {...register("password", {
-            required: "Este campo es obligatorio.",
-            minLength: {
-              value: 8,
-              message: "La contraseña debe tener al menos 8 caracteres",
-              pattern: "/.{6,16}$/",
-            },
-            pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-              message:
-                "La contraseña tiene que tener al menos 8 caracteres, una letra y un numero",
-            },
-          })}
-          onBlur={handleBlur}
-          onFocus={() => handleFocus("password")}
-        />
-        <p>{errors.password?.message}</p>
-        {errorMessage && <p className="errorMessage">{errorMessage}</p>}
-        <div className={lightMode ? "registerRedirectContainerLight" : "registerRedirectContainer"}>
+        {errorMsg && <p className="errorMessage">{errorMsg}</p>}
+        <div
+          className={
+            lightMode
+              ? "registerRedirectContainerLight"
+              : "registerRedirectContainer"
+          }
+        >
           <a href="./login">
             ¿Ya tienes cuenta?<span> Ingresa aqui</span>
           </a>
         </div>
         <div className="formLoginBtnContainer">
-          <Button className={lightMode ? "allBtnsLight" : "allBtns"} type="submit">
+          <Button
+            className={lightMode ? "allBtnsLight" : "allBtns"}
+            type="submit"
+          >
             Registrarse
           </Button>
         </div>
