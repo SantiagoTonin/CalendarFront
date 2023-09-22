@@ -1,31 +1,25 @@
-import React, { useState } from "react";
+
 import "./post.css";
 
-function Post(props) {
-  const { userDb, date } = props.data;
-  const [infoLoaded, setInfoLoaded] = useState(false);
-  const [image, setImage] = useState();
-
-
+function Post({ post,user }) {
   return (
     <div className="post-container">
       <div className="infoPost-container">
-        <span className="user">
-          {userDb.name} {userDb.lastName}
-        </span>
+        <span className="user">{user.name} {user.lastName}</span>
         <span className="iconPost">x</span>
       </div>
-      <div className="image-container">
-        {image && (
-          <img
-            className="image"
-            src=""
-            alt="Imagen del post"
-            onLoad={() => console.log("Imagen cargada")} // Puedes hacer algo cuando la imagen se carga
-          />
-        )}
+      <div className="tasks-container">
+        <span className="tasksPost">{post.tasks[0].postMessage}</span>
       </div>
-      <span className="title">titulo de la imagen</span>
+      <div className="image-container">
+        <img
+          className="image"
+          src={post.images[0].path}
+          alt="Imagen del post"
+          onLoad={() => console.log("Imagen cargada")} // Puedes hacer algo cuando la imagen se carga
+        />
+      </div>
+      <span className="title">{post.images[0].name}</span>
       <div className="dataPost">
         <span className="iconPost">icono de me gusta</span>
         <span className="countComment">1</span>
@@ -35,4 +29,3 @@ function Post(props) {
 }
 
 export default Post;
-

@@ -10,12 +10,14 @@ import {
 } from "../../api/axiosApi.js";
 import { getDateInfo } from "../../api/axiosApi";
 import Post from "../post/Post.js";
+import Loading from "../../components/loading/loading.jsx";
 import "./addPublications.css";
 
 const AddPublications = ({ date, user }) => {
   const { register, handleSubmit, reset } = useForm();
   const [userDb, setUserDb] = useState();
-  const [postSubmitted, setPostSubmitted] = useState(false);
+  const [imagePost, setImagePost] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const token = sessionStorage.getItem("token");
   const Id = user.userId;
 
@@ -24,18 +26,20 @@ const AddPublications = ({ date, user }) => {
       try {
         const res = await apiGetUser(Id, sessionStorage.getItem("token"));
         setUserDb(res.data);
-        await callGetInfoIfNeeded();
       } catch (error) {
         console.log("Error al traer los datos", error);
       }
     }
-    if (postSubmitted) {
-      fetchData();
-      setPostSubmitted(false);
-      return;
-    }
+
     fetchData();
-  }, [Id, postSubmitted]);
+  }, [Id]);
+
+  useEffect(() => {
+    if (userDb) {
+      callGetInfoIfNeeded();
+    }
+    // eslint-disable-next-line
+  }, [userDb]);
 
   const newDate = new Date(date);
   const day = newDate.getDate();
@@ -75,8 +79,8 @@ const AddPublications = ({ date, user }) => {
         formData.append("postId", result);
         await apiCreateImages(formData, sessionStorage.getItem("token"));
       }
-      setPostSubmitted(true);
       reset();
+      window.location.reload();
     }
   };
 
@@ -85,11 +89,9 @@ const AddPublications = ({ date, user }) => {
     return results.data.postId;
   };
 
-  
   const getInfo = async (date) => {
     try {
       const result = await getDateInfo(date);
-      console.log(result);
       return result;
     } catch (error) {
       console.error("Error al obtener información:", error);
@@ -97,19 +99,17 @@ const AddPublications = ({ date, user }) => {
   };
 
   const callGetInfoIfNeeded = async () => {
-    if (userDb?.calendar?.cells?.length > 0) {
+    if (userDb?.calendar?.cells.length > 0) {
       const dateInfo = await getInfo(date);
-      console.log(dateInfo);
-    } else {
-      console.log("userDb.calendar.cells está vacío");
+      setImagePost(dateInfo);
     }
   };
-  
-  
-  const postData = {
-    userDb: userDb || {},
-    date: date,
-  };
+  useEffect(() => {
+    if (userDb && imagePost && imagePost.status !== 404) {
+      setIsLoading(false);
+    }
+    // eslint-disable-next-line
+  }, [imagePost]);
 
   return (
     <div>
@@ -144,7 +144,20 @@ const AddPublications = ({ date, user }) => {
             {day} {month}
           </h3>
         </div>
-        <Post data={postData} />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          imagePost &&
+          imagePost.data &&
+          imagePost.data.data &&
+          imagePost.data.data.posts && (
+            <div>
+              {imagePost.data.data.posts.map((post, index) => (
+                <Post key={index} post={post} user={userDb} />
+              ))}
+            </div>
+          )
+        )}
       </div>
     </div>
   );
