@@ -5,8 +5,8 @@ import AddPublications from "../../components/addPublications/AddPublications.js
 
 export default function Publications() {
   const location = useLocation();
-  const { date, user } = location.state;
-  console.log( location.state)
+  const { date, user } = location.state ||{};
+
   return (
     <main className="homeMainContainer">
       <aside className="homeSide">
