@@ -113,7 +113,7 @@ const AddPublications = ({ date, user }) => {
 
   return (
     <div>
-      <div className="file-uploader">
+      <div className="fileUploader">
         <div className="box">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -123,23 +123,25 @@ const AddPublications = ({ date, user }) => {
               {...register("messages")}
             />
             <div className="buttonContainer">
-              <label htmlFor="file-input">
-                <FaCamera className="icon" />
-              </label>
-              <input
-                {...register("images")}
-                multiple
-                type="file"
-                id="file-input"
-                name="images"
-              />
+              <div>
+                <label htmlFor="file-input">
+                  <FaCamera className="icon pb-1" />
+                </label>
+                <input
+                  {...register("images")}
+                  multiple
+                  type="file"
+                  id="file-input"
+                  name="images"
+                />
+              </div>
               <button className="buttonPost" type="submit">
                 Post
               </button>
             </div>
           </form>
         </div>
-        <div className="date-container">
+        <div className="dateContainer">
           <h3 className="date">
             {day} {month}
           </h3>
