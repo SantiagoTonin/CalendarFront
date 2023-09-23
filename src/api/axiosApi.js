@@ -137,3 +137,32 @@ export const getDateInfo = async (date) => {
     console.error("Error fetching user info:", error);
   });
 };
+
+
+export const apiEditProfile = async (Id,data,token) => {
+  return await axiosInstance
+  .put(
+    `/user/${Id}`,
+  data,
+  {
+    headers: {
+      Authorization: token,
+    },
+  }
+  )
+  .catch((error) => {
+    return error;
+  });
+}
+
+export const apiCreatePicture = async(formData,token) =>{
+  return await axiosInstance
+  .post(`/picture`, formData, {
+    headers: {
+      Authorization: token,
+    },
+  })
+  .catch((error) => {
+    return error;
+  });
+}
