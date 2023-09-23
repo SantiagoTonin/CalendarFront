@@ -1,18 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import { useForm } from "react-hook-form";
 import { Button, Modal } from "react-bootstrap";
 import { ThemeContext } from "../../context/ThemeContext";
 import { ImProfile } from "react-icons/im";
+import { apiEditProfile } from "../../api/axiosApi";
 import axiosInstance from "../../config/axiosInit";
+import ProfileLetter from "../profileLetter/ProfileLetter";
 import "../../styles/buttonStyles.css";
 import "./profileForm.css";
 
 const ProfileForm = () => {
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+
   const { lightMode } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
   const [user, setUserData] = useState(null);
@@ -73,56 +70,18 @@ const ProfileForm = () => {
     }
   }, []);
 
-  // const handleEditUserInModal = async () => {
-  //   const tokenFromStorage = sessionStorage.getItem("token");
-  //   if (tokenFromStorage) {
-  //     await axiosInstance
-  //       .put(`/user/${user.userId}`, editableData, {
-  //         headers: {
-  //           Authorization: tokenFromStorage,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         console.log("Usuario actualizado:", response.data);
-  //         handleCloseModal();
-  //         tokenReplace(response.data.token);
-  //         window.location.reload();
-  //       })
-  //       .catch((error) => {
-  //         setErrorMsg(error.response.data.error);
-  //       });
-  //   }
-  // };
-
   const handleEditUserInModal = async () => {
     const tokenFromStorage = sessionStorage.getItem("token");
-    if (tokenFromStorage) {
-      const formData = new FormData();
-      formData.append("name", editableData.name);
-      formData.append("lastName", editableData.lastName);
-      formData.append("birthdate", editableData.birthdate);
-      formData.append("age", editableData.age);
-      formData.append("email", editableData.email);
-      formData.append("nationality", editableData.nationality);
-      if (editableData.picture) {
-        formData.append("image", editableData.picture[0]);
-      }
-      await axiosInstance
-        .put(`/user/${user.userId}`, formData, {
-          headers: {
-            Authorization: tokenFromStorage,
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          console.log("Usuario actualizado:", response.data);
-          handleCloseModal();
-          tokenReplace(response.data.token);
-          window.location.reload();
-        })
-        .catch((error) => {
-          setErrorMsg(error.response.data.error);
-        });
+
+    const result = await apiEditProfile(user.userId, editableData, tokenFromStorage);
+    if (result.status === 200) {
+      tokenReplace(result.data.token);
+      window.location.reload();
+      return;
+    }
+
+    if (result.response.status === 400) {
+      setErrorMsg(result.response.data.error);
     }
   };
 
@@ -133,34 +92,7 @@ const ProfileForm = () => {
 
   return (
     <main className="profileContainer">
-      <form onSubmit={handleSubmit(onSubmit)} className="registerForm">
-        <div className={lightMode ? "gridContainerLight" : "gridContainer"}>
-          <div className="gridItem">
-            <label>Nombre</label>
-            <input defaultValue={user?.name} readOnly />
-          </div>
-          <div className="gridItem">
-            <label>Apellido</label>
-            <input defaultValue={user?.lastName} readOnly />
-          </div>
-          <div className="gridItem">
-            <label>Fecha de nacimiento</label>
-            <input defaultValue={user?.birthdate} readOnly />
-          </div>
-          <div className="gridItem">
-            <label>Edad</label>
-            <input defaultValue={user?.age} readOnly />
-          </div>
-          <div className="gridItem">
-            <label>Email</label>
-            <input defaultValue={user?.email} readOnly />
-          </div>
-          <div className="gridItem">
-            <label>Nacionalidad</label>
-            <input defaultValue={user?.nationality} readOnly />
-          </div>
-          {errors.exampleRequired && <span>This field is required</span>}
-        </div>
+      <ProfileLetter data={user}/>
         <div>
           <Button
             className={lightMode ? "allBtnsLight" : "allBtns"}
@@ -170,7 +102,7 @@ const ProfileForm = () => {
             Editar
           </Button>
         </div>
-      </form>
+
 
       <Modal
         show={showModal}
@@ -178,7 +110,7 @@ const ProfileForm = () => {
         dialogClassName="modal-xl"
         centered
         className="profileModal"
-      >
+        >
         <Modal.Header closeButton className="profileModalHeader">
           <Modal.Title>
             <ImProfile /> Editar información de perfil
@@ -235,15 +167,6 @@ const ProfileForm = () => {
                 onChange={handleFieldChange}
               />
             </div>
-          </div>
-          <div className="modalGridItem">
-            <label>Imagen de perfil</label>
-            <input
-              name="image"
-              onChange={handleFieldChange}
-              type="file"
-              accept="image/*"
-            />
           </div>
           <div className="profileErrorMsgContainer">
             <span className="profileErrorMsg">{errorMsg}</span>
