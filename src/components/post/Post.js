@@ -1,24 +1,26 @@
+import {AiOutlineLike} from "react-icons/ai";
+import {BsFillChatTextFill} from "react-icons/bs";
 import "./post.css";
 
 function Post({ post, user }) {
   const images = post?.images[0]?.path || "";
   const imageName = post?.images[0]?.name || "";
   return (
-    <div className="post-container">
-      <div className="infoPost-container">
+    <div className="postContainer">
+      <div className="infoPostContainer">
         <span className="user">
           {user.name} {user.lastName}
         </span>
-        <span className="iconPost">x</span>
+        <span className="iconPost"><BsFillChatTextFill/></span>
       </div>
-      <div className="tasks-container">
+      <div className="tasksContainer">
         <span className="tasksPost">{post.tasks[0].postMessage}</span>
       </div>
         {images === "" ? (
           <div>MODIFICAR PARA Q SOLO SE MUESTRE EL POSTEO POR TEXTO Y NO ESTO</div>
         ) : (
           <>
-      <div className="image-container">
+      <div className="imageContainer">
         <img
           className="image"
           src={images}
@@ -28,7 +30,7 @@ function Post({ post, user }) {
       </div>
           <span className="title">{imageName}</span>
           <div className="dataPost">
-            <span className="iconPost">icono de me gusta</span>
+            <span className="iconPost"><AiOutlineLike/></span>
             <span className="countComment">1</span>
           </div>
         </>

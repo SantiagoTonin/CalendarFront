@@ -47,7 +47,7 @@
 
 
 
-.button-container {
+.buttonContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +55,7 @@
 }
 
 
-.orange-button {
+.orangeButton {
   background-color: orange;
   color: white;
   font-size: 24px; 

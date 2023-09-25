@@ -57,8 +57,8 @@ const Home = () => {
               className="calendarContainer"
             ></Calendar>
           ) : (
-            <div className="button-container">
-              <button className="orange-button" onClick={handleClick}>
+            <div className="buttonContainer">
+              <button className="orangeButton" onClick={handleClick}>
                 +NewCalendar
               </button>
             </div>
