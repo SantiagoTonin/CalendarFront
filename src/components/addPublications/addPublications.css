@@ -1,5 +1,5 @@
 .fileUploader {
-  background-color: black;
+  background-color: var(--main-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,18 @@
   color: var(--lightMode);
 }
 
-.fileUploader > div:last-child {
+.fileUploaderLight{
+  background-color: var(--lightMode);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 100%;
+  padding: 20px 0;
+  color: var(--icons-colors);
+}
+
+.imagePost {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +31,14 @@
 
 .box {
   border: 1px dashed var(--secondary-color);
+  border-radius: 10px;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.boxLight {
+  border: 2px dashed var(--secondary-color);
   border-radius: 10px;
   width: 80%;
   padding: 20px;
@@ -48,14 +67,13 @@
   outline: none;
   resize: none;
   color:var(--secondary-color);
-  background: var(--main-color);
+  background: rgb(226, 226, 226);
   border-bottom: 1px solid var(--secondary-color);
   border-radius: 5px;
 }
 
-.box > input[type="file"] {
+#file-input{
   display: none;
-  cursor: pointer;
 }
 
 .box > label {
@@ -66,6 +84,7 @@
   font-size: 33px;
   margin: 10px;
   color: var(--icons-colors);
+  cursor: pointer;
 }
 
 .dateContainer{
@@ -80,9 +99,21 @@
   color: white;
   font-weight: bold;
   border-radius: 9px;
+  border: none;
 }
 
-.buttonPost:is(:active, :hover, :focus){
+.buttonPostLight{
+  background-color: var(--btn-contrast);
+  width: 23%;
+  height: 2.2rem;
+  font-size: 0.8em;
+  color: white;
+  font-weight: bold;
+  border-radius: 9px;
+  border: none;
+}
+
+.buttonPost:is(:active, :hover, :focus), .buttonPostLight:is(:active, :hover, :focus) {
   background-color: var(--btn-contrast);
   transform: scale(98%);
 }
@@ -100,7 +131,7 @@
     font-size: 0.8em;
   }
 
-  .buttonPost{
+  .buttonPost, .buttonPostLight {
     width: 50%;
     font-size: 0.8em;
     height: 2.5rem;
@@ -120,7 +151,7 @@
     font-size: 0.5em;
   }
 
-  .buttonPost{
+  .buttonPost, .buttonPostLight{
     width: 80%;
     margin-top: 0.5rem;
     font-size: 0.8em;
@@ -128,7 +159,7 @@
   }
 
   .icon{
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2rem;
+    width: 2rem;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FaCamera } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import {
@@ -11,9 +11,11 @@ import {
 import { getDateInfo } from "../../api/axiosApi";
 import Post from "../post/Post.js";
 import Loading from "../../components/loading/loading.jsx";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./addPublications.css";
 
 const AddPublications = ({ date, user }) => {
+  const { lightMode } = useContext(ThemeContext);
   const { register, handleSubmit, reset } = useForm();
   const [userDb, setUserDb] = useState();
   const [imagePost, setImagePost] = useState({});
@@ -38,7 +40,6 @@ const AddPublications = ({ date, user }) => {
     if (userDb) {
       callGetInfoIfNeeded();
     }
-    // eslint-disable-next-line
   }, [userDb]);
 
   const newDate = new Date(date);
@@ -108,13 +109,12 @@ const AddPublications = ({ date, user }) => {
     if (userDb && imagePost && imagePost.status !== 404) {
       setIsLoading(false);
     }
-    // eslint-disable-next-line
   }, [imagePost]);
 
   return (
     <div>
-      <div className="fileUploader">
-        <div className="box">
+      <div className={lightMode ? "fileUploaderLight" : "fileUploader"}>
+        <div className={lightMode ? "boxLight" : "box"}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               className="inputPost"
@@ -135,7 +135,7 @@ const AddPublications = ({ date, user }) => {
                   name="images"
                 />
               </div>
-              <button className="buttonPost" type="submit">
+              <button className={lightMode ? "buttonPostLight" : "buttonPost"} type="submit">
                 Publicar
               </button>
             </div>
@@ -153,7 +153,7 @@ const AddPublications = ({ date, user }) => {
           imagePost.data &&
           imagePost.data.data &&
           imagePost.data.data.posts && (
-            <div>
+            <div className="imagePost">
               {imagePost.data.data.posts.map((post, index) => (
                 <Post key={index} post={post} user={userDb} />
               ))}

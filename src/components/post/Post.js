@@ -17,7 +17,7 @@ function Post({ post, user }) {
         <span className="tasksPost">{post.tasks[0].postMessage}</span>
       </div>
         {images === "" ? (
-          <div>MODIFICAR PARA Q SOLO SE MUESTRE EL POSTEO POR TEXTO Y NO ESTO</div>
+          <div></div>
         ) : (
           <>
       <div className="imageContainer">
