@@ -12,7 +12,7 @@ export const apiTranslateToken = async (dir, token) => {
       }
     )
     .catch((error) => {
-      console.error("Error fetching user info:", error);
+      return error;
     });
 };
 

@@ -8,28 +8,49 @@ import Register from "../pages/register/Register";
 import PassRecovery from "../pages/passrecovery/PassRecovery";
 import ChangePasswordPage from "../pages/passrecovery/ChangePasswordPage";
 import UserProfile from "../pages/userProfile/UserProfile";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { validRoutes } from "../security/ValidRoutes";
 import ErrorPage from "../pages/error404/Error404";
 import Publications from "../pages/publications/Publications";
+import ProtectedRoutes from "../security/ProtectedRoutes";
+import { useEffect } from "react";
 
 const MyRoutes = () => {
   const redirect = useLocation();
+  const validate = validRoutes(redirect);
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    if (!validate) {
+      navigate("/error404");
+      return;
+    }
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       {redirect.pathname !== "/" && redirect.pathname !== "/error404" && (
         <Header />
       )}
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          element={<ProtectedRoutes isAllowed={!token} redirectTo={"/home"} />}
+        >
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/abm" element={<Abm />} />
+        <Route path="/error404" element={<ErrorPage />} />
         <Route path="/passwordRecovery" element={<PassRecovery />} />
         <Route path="/changePassword" element={<ChangePasswordPage />} />
-        <Route path="/userProfile" element={<UserProfile />} />
-        <Route path="/user/:username" element={<Publications/>}/>
-        <Route path="/error404" element={<ErrorPage />} />
+        <Route element={<ProtectedRoutes isAllowed={!!token} />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/abm" element={<Abm />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/user/:username" element={<Publications />} />
+        </Route>
       </Routes>
       {redirect.pathname !== "/error404" && <Footer />}
     </>
