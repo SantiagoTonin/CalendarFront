@@ -1,39 +1,33 @@
-/* post.css */
-
-.post-container {
-  border: 2px solid #ccc;
-  border-radius: 2px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 60vh;
-  width: 80vh;
-  box-shadow: 0 0 5px rgb(255, 254, 254);
+.postContainer {
+  width: 80%;
+  height: auto;
+  border: 2px solid var(--icons-colors);
+  border-radius: 10px;
+  padding: 1rem;
 }
 
-.infoPost-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 4vh;
-  padding: 0 10px;
-  background-color: #f5f5f5;
+.infoPostContainer {
+  padding-block: 0.5rem;
 }
 
 .user {
   font-weight: bold;
   font-size: 18px;
+  padding-right: 0.8rem;
+}
+
+.tasksContainer{
+  text-align: left;
 }
 
 .iconPost {
-  font-size: 18px;
-  cursor: pointer;
+  padding-right: 0.3rem;
+  font-size: 20px;
 }
 
-.image-container {
-  border: 1px solid red;
-  height: 75%;
+.imageContainer {
+  height: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,6 +38,7 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .title {
@@ -53,11 +48,10 @@
 
 .dataPost {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: auto;
   padding: 0 10px;
-  background-color: #f5f5f5;
 }
 
 .countComment {
@@ -67,11 +61,11 @@
 
 /* Estilos para pantallas más pequeñas */
 @media (max-width: 768px) {
-  .post-container {
+  .postContainer {
     height: auto;
   }
 
-  .infoPost-container,
+  .infoPostContainer,
   .dataPost {
     padding: 5px;
     font-size: 14px;

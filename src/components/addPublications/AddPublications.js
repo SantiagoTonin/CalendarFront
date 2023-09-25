@@ -136,7 +136,7 @@ const AddPublications = ({ date, user }) => {
                 />
               </div>
               <button className="buttonPost" type="submit">
-                Post
+                Publicar
               </button>
             </div>
           </form>
