@@ -11,13 +11,13 @@ function Post({ post, user }) {
         <span className="user">
           {user.name} {user.lastName}
         </span>
-        <span className="iconPost"><BsFillChatTextFill/></span>
+        <span className="nameIconPost"><BsFillChatTextFill/></span>
       </div>
       <div className="tasksContainer">
         <span className="tasksPost">{post.tasks[0].postMessage}</span>
       </div>
         {images === "" ? (
-          <div></div>
+          <span className="iconPost"><AiOutlineLike className="likeBtn"/></span>
         ) : (
           <>
       <div className="imageContainer">
@@ -30,7 +30,7 @@ function Post({ post, user }) {
       </div>
           <span className="title">{imageName}</span>
           <div className="dataPost">
-            <span className="iconPost"><AiOutlineLike/></span>
+            <span className="iconPost"><AiOutlineLike className="likeBtn"/></span>
             <span className="countComment">1</span>
           </div>
         </>

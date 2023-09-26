@@ -102,8 +102,7 @@ const ProfileForm = () => {
             Editar
           </Button>
         </div>
-
-
+        
       <Modal
         show={showModal}
         onHide={handleCloseModal}
