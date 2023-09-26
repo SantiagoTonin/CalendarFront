@@ -127,42 +127,47 @@ export const apiCreatePost = async (cellsId, token) => {
 
 export const getDateInfo = async (date) => {
   return await axiosInstance
-  .post(
-    `/api/v1/getDataByCell`,
-    {
+    .post(`/api/v1/getDataByCell`, {
       date: date,
-    },
-  )
-  .catch((error) => {
-    console.error("Error fetching user info:", error);
-  });
+    })
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
 };
 
-
-export const apiEditProfile = async (Id,data,token) => {
+export const apiEditProfile = async (Id, data, token) => {
   return await axiosInstance
-  .put(
-    `/user/${Id}`,
-  data,
-  {
-    headers: {
-      Authorization: token,
-    },
+    .put(`/user/${Id}`, data, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export const apiCreatePicture = async (formData, token) => {
+  return await axiosInstance
+    .post(`/picture`, formData, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export const apiGetPostByCalendarId = async (calendarId,token) => {
+  try {
+    return await axiosInstance.post("/api/v1/getDataByPost", {calendarId}, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    
+  } catch (error) {
+    return error
   }
-  )
-  .catch((error) => {
-    return error;
-  });
-}
-
-export const apiCreatePicture = async(formData,token) =>{
-  return await axiosInstance
-  .post(`/picture`, formData, {
-    headers: {
-      Authorization: token,
-    },
-  })
-  .catch((error) => {
-    return error;
-  });
-}
+};
