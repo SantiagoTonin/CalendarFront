@@ -20,9 +20,22 @@
   text-align: left;
 }
 
+.nameIconPost {
+  padding-right: 0.3rem;
+  font-size: 20px;
+}
+
 .iconPost {
   padding-right: 0.3rem;
   font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.likeBtn:is(:hover,:active,:focus) {
+  transform: scale(95%);
+  color: var(--secondary-color);
+  cursor: pointer;
 }
 
 .imageContainer {
@@ -59,7 +72,6 @@
   font-weight: bold;
 }
 
-/* Estilos para pantallas más pequeñas */
 @media (max-width: 768px) {
   .postContainer {
     height: auto;
