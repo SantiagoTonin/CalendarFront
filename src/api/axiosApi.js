@@ -148,16 +148,23 @@ export const apiEditProfile = async (Id, data, token) => {
 };
 
 export const apiCreatePicture = async (formData, token) => {
-  return await axiosInstance
-    .post(`/picture`, formData, {
+  try {
+    const response = await axiosInstance.post(`/picture`, formData, {
       headers: {
         Authorization: token,
       },
-    })
-    .catch((error) => {
-      return error;
     });
+    return { data: response.data, status: response.status };
+  } catch (error) {
+    if (error.response && error.response.data) {
+      return { message: error.response.data.message };
+    } else {
+      return { message: 'Error en la solicitud' };
+    }
+  }
 };
+
+
 
 export const apiGetPostByCalendarId = async (calendarId,token) => {
   try {

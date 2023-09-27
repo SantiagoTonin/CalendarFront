@@ -80,6 +80,7 @@ const ProfileForm = () => {
       return;
     }
 
+
     if (result.response.status === 400) {
       setErrorMsg(result.response.data.error);
     }
