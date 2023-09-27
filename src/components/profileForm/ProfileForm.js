@@ -93,7 +93,7 @@ const ProfileForm = () => {
   return (
     <main className="profileContainer">
       <ProfileLetter data={user}/>
-        <div>
+        <div className="profileBtnContainer">
           <Button
             className={lightMode ? "allBtnsLight" : "allBtns"}
             type="submit"
