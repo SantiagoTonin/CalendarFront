@@ -28,8 +28,8 @@ function ProfileLetter({ data }) {
   };
 
   return (
-    <div className="profile-card">
-      <div className="profile-header">
+    <div className="profileCard">
+      <div className="profileHeader">
         <input
           type="file"
           id="imageInput"
@@ -37,30 +37,30 @@ function ProfileLetter({ data }) {
           onChange={handleImageChange}
         />
         <img
-          className="profile-image"
+          className="profileImage"
           src={data?.pictures[0]?.path || "default-image.jpg"}
           alt="Foto de perfil"
           onClick={handleImageClick}
         />
       </div>
-      <div className="profile-info">
-        <label className="profile-label">Nombre:</label>
-        <span className="profile-value">{data?.name}</span>
+      <div className="profileInfo">
+        <label className="profileLabel">Nombre:</label>
+        <span className="profileValue">{data?.name}</span>
 
-        <label className="profile-label">Apellido:</label>
-        <span className="profile-value">{data?.lastName}</span>
+        <label className="profileLabel">Apellido:</label>
+        <span className="profileValue">{data?.lastName}</span>
 
-        <label className="profile-label">Edad:</label>
-        <span className="profile-value">{data?.age}</span>
+        <label className="profileLabel">Edad:</label>
+        <span className="profileValue">{data?.age}</span>
 
-        <label className="profile-label">Nacionalidad:</label>
-        <span className="profile-value">{data?.nationality}</span>
+        <label className="profileLabel">Nacionalidad:</label>
+        <span className="profileValue">{data?.nationality}</span>
 
-        <label className="profile-label">Fecha de Nacimiento:</label>
-        <span className="profile-value">{data?.birthdate}</span>
+        <label className="profileLabel">Fecha de Nacimiento:</label>
+        <span className="profileValue">{data?.birthdate}</span>
 
-        <label className="profile-label">Email:</label>
-        <span className="profile-value">{data?.email}</span>
+        <label className="profileLabel">Email:</label>
+        <span className="profileValue">{data?.email}</span>
       </div>
       <div className="errorPicture">
         <span>{pictureError}</span>

@@ -4,13 +4,20 @@
   min-height: calc(100vh - 6rem);
 }
 
+.profileBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-block: 2rem;
+}
+
 .userProfileContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--main-color);
   color: var(--lightMode);
-  padding-top: 4rem;
+  padding-top: 2rem;
+  gap: 2rem;
 }
 
 .userProfileContainerLight {
@@ -19,8 +26,9 @@
   align-items: center;
   background-color: var(--lightMode);
   color: var(--main-color);
-  padding-top: 4rem;
-  font-weight: 800;
+  padding-top: 2rem;
+  font-weight: 400;
+  gap: 2rem;
 }
 
 .profileImg{
@@ -153,11 +161,5 @@
   .modalGridContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-  }
-
-  .profileImg{
-    height: 5rem;
-    width: 5rem;
-    padding: 0 0.5rem 1rem 0;
   }
 }
