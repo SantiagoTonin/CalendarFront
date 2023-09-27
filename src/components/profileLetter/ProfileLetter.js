@@ -20,10 +20,8 @@ function ProfileLetter({ data }) {
     );
     if (resultPicture.status === 200) {
       window.location.reload();
-    }
-
-    if (resultPicture.response.status === 400) {
-      setPictureError(resultPicture.response.data.error);
+    }else{
+      setPictureError(resultPicture.message)
     }
   };
 
@@ -63,7 +61,7 @@ function ProfileLetter({ data }) {
         <span className="profileValue">{data?.email}</span>
       </div>
       <div className="errorPicture">
-        <span>{pictureError}</span>
+      <span>{pictureError}</span>
       </div>
     </div>
   );
