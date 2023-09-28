@@ -131,7 +131,7 @@ export const getDateInfo = async (date) => {
       date: date,
     })
     .catch((error) => {
-      console.error("Error fetching user info:", error);
+      console.error("Error fetching user info");
     });
 };
 

@@ -16,10 +16,16 @@ import "./addPublications.css";
 
 const AddPublications = ({ date, user }) => {
   const { lightMode } = useContext(ThemeContext);
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   const [userDb, setUserDb] = useState();
   const [imagePost, setImagePost] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [charCount, setCharCount] = useState(0);
   const token = sessionStorage.getItem("token");
   const Id = user.userId;
 
@@ -40,6 +46,7 @@ const AddPublications = ({ date, user }) => {
     if (userDb) {
       callGetInfoIfNeeded();
     }
+    // eslint-disable-next-line
   }, [userDb]);
 
   const newDate = new Date(date);
@@ -52,36 +59,37 @@ const AddPublications = ({ date, user }) => {
       const dateDb = userDb.calendar.cells;
       const postMessage = data.messages || "";
       let result;
-
-      let dateExists = false;
-      for (let i = 0; i < dateDb.length; i++) {
-        if (dateDb[i]?.date === date) {
-          dateExists = true;
-          result = await post(dateDb[i].cellsId);
-          break;
+      if (postMessage.length <= 200) {
+        let dateExists = false;
+        for (let i = 0; i < dateDb.length; i++) {
+          if (dateDb[i]?.date === date) {
+            dateExists = true;
+            result = await post(dateDb[i].cellsId);
+            break;
+          }
         }
-      }
 
-      if (!dateExists) {
-        const res = await apiCreateCells(
-          date,
-          userDb.calendar.calendarId,
-          token
-        );
-        const newCellsId = res.data.cellsId;
-        result = await post(newCellsId);
-      }
+        if (!dateExists) {
+          const res = await apiCreateCells(
+            date,
+            userDb.calendar.calendarId,
+            token
+          );
+          const newCellsId = res.data.cellsId;
+          result = await post(newCellsId);
+        }
 
-      const postSend = { postId: result, postMessage: postMessage };
-      await apiCreateTasks(postSend, token);
+        const postSend = { postId: result, postMessage: postMessage };
+        await apiCreateTasks(postSend, token);
 
-      if (data.images.length > 0) {
-        formData.append("image", data.images[0]);
-        formData.append("postId", result);
-        await apiCreateImages(formData, sessionStorage.getItem("token"));
+        if (data.images.length > 0) {
+          formData.append("image", data.images[0]);
+          formData.append("postId", result);
+          await apiCreateImages(formData, sessionStorage.getItem("token"));
+        }
+        reset();
+        window.location.reload();
       }
-      reset();
-      window.location.reload();
     }
   };
 
@@ -109,19 +117,36 @@ const AddPublications = ({ date, user }) => {
     if (userDb && imagePost && imagePost.status !== 404) {
       setIsLoading(false);
     }
+    // eslint-disable-next-line
   }, [imagePost]);
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    setCharCount(inputValue.length);
+  };
+  const isCharCountRed = charCount >= 200;
 
   return (
     <div>
       <div className={lightMode ? "fileUploaderLight" : "fileUploader"}>
         <div className={lightMode ? "boxLight" : "box"}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="inputPost"
-              type="text"
-              placeholder="Escribe tu mensaje aquí"
-              {...register("messages")}
-            />
+          <input
+        className="inputPost"
+        type="text"
+        placeholder="Escribe tu mensaje aquí"
+        {...register("messages", {
+          maxLength: {
+            value: 200,
+            message: "El mensaje no puede tener más de 200 caracteres",
+          },
+        })}
+        onChange={handleInputChange}
+      />
+      <div className="infoCharError">
+      {errors.messages && <p className="errorInput">*{errors.messages.message}</p>}
+      <p className={`charCount ${isCharCountRed ? 'redText' : ''}`}>{charCount}/200</p>
+      </div>
             <div className="buttonContainer">
               <div>
                 <label htmlFor="file-input">
@@ -135,7 +160,10 @@ const AddPublications = ({ date, user }) => {
                   name="images"
                 />
               </div>
-              <button className={lightMode ? "buttonPostLight" : "buttonPost"} type="submit">
+              <button
+                className={lightMode ? "buttonPostLight" : "buttonPost"}
+                type="submit"
+              >
                 Publicar
               </button>
             </div>
