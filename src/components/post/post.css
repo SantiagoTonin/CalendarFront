@@ -1,4 +1,86 @@
+/* Estilo del contenedor del carrusel */
 .postContainer {
+  width: 80%;
+  height: auto;
+  border: 2px solid var(--icons-colors);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.imageContainer{
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+/* Estilos específicos para el carrusel */
+.imageContainer .slick-slider {
+  height: 300px; /* Ajusta la altura según tus necesidades */
+}
+
+/* Estilos para las imágenes dentro del carrusel */
+.imageContainer .slick-slide img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Ajusta el tamaño de la imagen al carrusel */
+  border-radius: 8px;
+}
+
+/* Estilos para los títulos de las imágenes */
+.imageContainer .slick-slide .title {
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 16px; /* Ajusta el tamaño de fuente según tus necesidades */
+}
+
+.dataPost {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: auto;
+  padding: 0 10px;
+}
+
+.infoPostContainer {
+  padding-block: 0.5rem;
+}
+
+.user{
+  padding: 1px;
+}
+
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .postContainer {
+    height: auto;
+  }
+
+  .infoPostContainer,
+  .dataPost {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .user {
+    font-size: 16px;
+  }
+
+  .iconPost {
+    font-size: 16px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .countComment {
+    font-size: 16px;
+  }
+}
+
+
+/* .postContainer {
   width: 80%;
   height: auto;
   border: 2px solid var(--icons-colors);
@@ -97,6 +179,11 @@
 
   .countComment {
     font-size: 16px;
-  }
-}
+  } */
+
+
+
+
+
+
 
