@@ -12,6 +12,7 @@ import { getDateInfo } from "../../api/axiosApi";
 import Post from "../post/Post.js";
 import Loading from "../../components/loading/loading.jsx";
 import { ThemeContext } from "../../context/ThemeContext";
+import css from "./addPublications.module.css";
 import "./addPublications.css";
 
 const AddPublications = ({ date, user }) => {
@@ -28,6 +29,9 @@ const AddPublications = ({ date, user }) => {
   const [charCount, setCharCount] = useState(0);
   const token = sessionStorage.getItem("token");
   const Id = user.userId;
+
+  const [preImg, setpreImg] = useState([]);
+  const [imagenFile, setimagenFile] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -54,10 +58,11 @@ const AddPublications = ({ date, user }) => {
   const month = newDate.toLocaleString("en-US", { month: "long" });
 
   const onSubmit = async (data) => {
-    if (data.images.length > 0 || data.messages !== "") {
+    if (imagenFile.length > 0 || data.messages !== "") {
       const formData = new FormData();
       const dateDb = userDb.calendar.cells;
       const postMessage = data.messages || "";
+      let sendTasks = true;
       let result;
       if (postMessage.length <= 200) {
         let dateExists = false;
@@ -79,16 +84,29 @@ const AddPublications = ({ date, user }) => {
           result = await post(newCellsId);
         }
 
-        const postSend = { postId: result, postMessage: postMessage };
-        await apiCreateTasks(postSend, token);
 
-        if (data.images.length > 0) {
-          formData.append("image", data.images[0]);
+        if (imagenFile.length > 0) {
+          const arrayImage = matrizToArray(imagenFile);
+          console.log(arrayImage);
+
+          arrayImage.forEach(file => {
+      
+            formData.append("image", file);
+          })
           formData.append("postId", result);
-          await apiCreateImages(formData, sessionStorage.getItem("token"));
+          const res = await apiCreateImages(formData, sessionStorage.getItem("token"));
+          if (typeof res.message === "string") {
+            sendTasks = false
+          }
         }
+        if (sendTasks) {         
+          const postSend = { postId: result, postMessage: postMessage };
+          await apiCreateTasks(postSend, token);
+        }
+
+
         reset();
-        window.location.reload();
+         window.location.reload();
       }
     }
   };
@@ -126,27 +144,91 @@ const AddPublications = ({ date, user }) => {
   };
   const isCharCountRed = charCount >= 200;
 
+  function changeInput(e) {
+    let indexImg;
+
+    if (preImg.length > 0) {
+      indexImg = preImg[preImg.length - 1].index + 1;
+    } else {
+      indexImg = 0;
+    }
+
+    const newImgsToState = readmultifile(e, indexImg);
+    const newImgsState = [...preImg, ...newImgsToState];
+    setpreImg(newImgsState);
+  }
+
+  function readmultifile(e, startIndex) {
+    const files = e.currentTarget.files;
+    const arrayImages = [];
+    let arrayFiles = [];
+
+    let indexImg = startIndex; // Utiliza el índice proporcionado (startIndex) como índice inicial
+
+    Object.keys(files).forEach((i) => {
+      const file = files[i];
+
+      let url = URL.createObjectURL(file);
+      arrayFiles = [...arrayFiles, file]; // Agrega el archivo al arrayFiles
+
+      arrayImages.push({
+        index: indexImg, // Utiliza el índice actualizado
+        name: file.name,
+        url,
+        file,
+      });
+      indexImg++; // Incrementa el índice
+    });
+    setimagenFile([...imagenFile, arrayFiles]);
+    return arrayImages;
+  }
+
+  function deleteImg(indice) {
+    let name = "";
+
+    const newImgs = preImg.filter(function (element) {
+      if (element.index === indice) {
+        name = element.name;
+      }
+      return element.index !== indice;
+    });
+    setpreImg(newImgs);
+    const concatArray = [].concat(...imagenFile);
+    const newArrayFiles = concatArray.filter((file) => file.name !== name);
+
+    setimagenFile(newArrayFiles);
+  }
+
+  function matrizToArray(matriz) {
+    const concatArray = [].concat(...matriz);
+    return concatArray;
+  }
+
   return (
     <div>
       <div className={lightMode ? "fileUploaderLight" : "fileUploader"}>
         <div className={lightMode ? "boxLight" : "box"}>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-        className="inputPost"
-        type="text"
-        placeholder="Escribe tu mensaje aquí"
-        {...register("messages", {
-          maxLength: {
-            value: 200,
-            message: "El mensaje no puede tener más de 200 caracteres",
-          },
-        })}
-        onChange={handleInputChange}
-      />
-      <div className="infoCharError">
-      {errors.messages && <p className="errorInput">*{errors.messages.message}</p>}
-      <p className={`charCount ${isCharCountRed ? 'redText' : ''}`}>{charCount}/200</p>
-      </div>
+            <input
+              className="inputPost"
+              type="text"
+              placeholder="Escribe tu mensaje aquí"
+              {...register("messages", {
+                maxLength: {
+                  value: 200,
+                  message: "El mensaje no puede tener más de 200 caracteres",
+                },
+              })}
+              onChange={handleInputChange}
+            />
+            <div className="infoCharError">
+              {errors.messages && (
+                <p className="errorInput">*{errors.messages.message}</p>
+              )}
+              <p className={`charCount ${isCharCountRed ? "redText" : ""}`}>
+                {charCount}/200
+              </p>
+            </div>
             <div className="buttonContainer">
               <div>
                 <label htmlFor="file-input">
@@ -158,6 +240,7 @@ const AddPublications = ({ date, user }) => {
                   type="file"
                   id="file-input"
                   name="images"
+                  onChange={changeInput}
                 />
               </div>
               <button
@@ -168,6 +251,29 @@ const AddPublications = ({ date, user }) => {
               </button>
             </div>
           </form>
+          {preImg.length > 0 && (
+            <div className={css.filaImg}>
+              {preImg.map((imagen) => {
+                return (
+                  <div className={css.caja} key={imagen.index}>
+                    <button
+                      className={css.btnDelete}
+                      onClick={deleteImg.bind(this, imagen.index)}
+                    >
+                      X
+                    </button>
+                    <img
+                      alt="algo"
+                      src={imagen.url}
+                      data-toggle="modal"
+                      data-target="#ModalPreViewImg"
+                      className={css.img_responsive}
+                    ></img>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="dateContainer">
           <h3 className="date">

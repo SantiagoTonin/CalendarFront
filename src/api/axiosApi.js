@@ -103,7 +103,9 @@ export const apiCreateImages = async (formData, token) => {
       },
     })
     .catch((error) => {
-      console.error("Error fetching user info:", error);
+      if (error.response.status === 500) {
+        return  {message: "El numero de imagen maximo superado"}
+      }
     });
 };
 
