@@ -50,7 +50,6 @@ const AddPublications = ({ date, user }) => {
     if (userDb) {
       callGetInfoIfNeeded();
     }
-    // eslint-disable-next-line
   }, [userDb]);
 
   const newDate = new Date(date);
@@ -135,7 +134,6 @@ const AddPublications = ({ date, user }) => {
     if (userDb && imagePost && imagePost.status !== 404) {
       setIsLoading(false);
     }
-    // eslint-disable-next-line
   }, [imagePost]);
 
   const handleInputChange = (event) => {
@@ -163,21 +161,21 @@ const AddPublications = ({ date, user }) => {
     const arrayImages = [];
     let arrayFiles = [];
 
-    let indexImg = startIndex; // Utiliza el índice proporcionado (startIndex) como índice inicial
+    let indexImg = startIndex;
 
     Object.keys(files).forEach((i) => {
       const file = files[i];
 
       let url = URL.createObjectURL(file);
-      arrayFiles = [...arrayFiles, file]; // Agrega el archivo al arrayFiles
+      arrayFiles = [...arrayFiles, file];
 
       arrayImages.push({
-        index: indexImg, // Utiliza el índice actualizado
+        index: indexImg,
         name: file.name,
         url,
         file,
       });
-      indexImg++; // Incrementa el índice
+      indexImg++;
     });
     setimagenFile([...imagenFile, arrayFiles]);
     return arrayImages;
@@ -263,11 +261,11 @@ const AddPublications = ({ date, user }) => {
                       X
                     </button>
                     <img
-                      alt="algo"
+                      alt="imagen a publicar"
                       src={imagen.url}
                       data-toggle="modal"
                       data-target="#ModalPreViewImg"
-                      className={css.img_responsive}
+                      className={css.imgResponsive}
                     ></img>
                   </div>
                 );
