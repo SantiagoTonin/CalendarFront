@@ -5,12 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./post.css";
 
-//npm install react-slick slick-carousel
-
 function Post({ post, user }) {
   const images = post?.images || [];
-
-  // Configuración del carrusel
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -38,10 +34,10 @@ function Post({ post, user }) {
         </span>
       ) : (
         <>
-          <div className="imageContainer">
+          <div className="postImageContainer">
             <Slider {...sliderSettings}>
               {images.map((image, index) => (
-                <div key={index} className="image">
+                <div key={index}>
                   <img
                     src={image.path}
                     alt={`Imagen ${index + 1} del post`}
