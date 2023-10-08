@@ -180,3 +180,16 @@ export const apiGetPostByCalendarId = async (calendarId,token) => {
     return error
   }
 };
+
+
+export const deletePost = async (postId,token)=>{
+  try {
+    return await axiosInstance.delete(`/postDelete/${postId}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+  } catch (error) {
+    return error
+  }
+};
