@@ -132,7 +132,7 @@ const AddPublications = ({ date, user }) => {
   };
   useEffect(() => {
     if (userDb && imagePost && imagePost.status !== 404) {
-      setIsLoading(false);
+      setIsLoading(imagePost.data.data.posts.length === 0);
     }
   }, [imagePost]);
 
@@ -201,6 +201,8 @@ const AddPublications = ({ date, user }) => {
     const concatArray = [].concat(...matriz);
     return concatArray;
   }
+  
+ 
 
   return (
     <div>

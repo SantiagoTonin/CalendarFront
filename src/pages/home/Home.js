@@ -90,7 +90,7 @@ const Home = () => {
     if (view === "month") {
       const result = getdates(date);
 
-      if (result) {
+      if (result && result.length > 0) {
         return <Cell dayEvent={result} />;
       }
     }
