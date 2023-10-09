@@ -45,9 +45,9 @@ const Sidebar = () => {
   return (
     <>
       <section className="navbar">
-        <Link to="#" className="menuIcon" onClick={showSidebar}>
+        <div className="menuIcon" onClick={showSidebar}>
           <FaBars />
-        </Link>
+        </div>
         <Link to="/home" className="navIcons">
           <AiFillHome />
         </Link>
@@ -56,7 +56,7 @@ const Sidebar = () => {
             <IoIosPaper />
           </Link>
         )}
-        <Link to="#" className="navIcons">
+        <Link to="#" className="navIcons" onClick={(e) => e.preventDefault()}>
           <FaEnvelopeOpenText />
         </Link>
         <Link to="/userProfile" className="navIcons">
@@ -65,16 +65,16 @@ const Sidebar = () => {
         <Link to="#" className="navIcons" onClick={handleLogOut}>
           <FiLogOut />
         </Link>
-        <Link to="#" className="navIcons">
+        <Link to="#" className="navIcons" onClick={(e) => e.preventDefault()}>
           <IoMdHelpCircle />
         </Link>
       </section>
       <nav className={sidebar ? "navMenu active" : "navMenu"}>
         <ul className="navMenuItems" onClick={showSidebar}>
           <li className="navToggle">
-            <Link to="#" className="menuIcon">
+            <div className="menuIcon">
               <AiOutlineClose />
-            </Link>
+            </div>
           </li>
           <section className="navbar">
             <Link to="/home" className="navText">
@@ -85,7 +85,7 @@ const Sidebar = () => {
                 <IoIosPaper /> Usuarios
               </Link>
             )}
-            <Link to="#" className="navText">
+            <Link to="#" className="navText" onClick={(e) => e.preventDefault()}>
               <FaEnvelopeOpenText /> Mensajes
             </Link>
             <Link to="/userProfile" className="navText">
@@ -94,7 +94,7 @@ const Sidebar = () => {
             <Link to="#" className="navText" onClick={handleLogOut}>
               <FiLogOut /> Logout
             </Link>
-            <Link to="#" className="navText">
+            <Link to="#" className="navText" onClick={(e) => e.preventDefault()}>
               <IoMdHelpCircle /> Ayuda
             </Link>
           </section>
