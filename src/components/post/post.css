@@ -14,13 +14,11 @@
 }
 
 .postImageContainer .slick-slide img {
-  width: 70%;
-  height: 20vw;
+  width: 100%;
+  height: 45vw;
   max-height: 100%;
-  object-fit:fill;
+  object-fit: contain;
   border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .postImageContainer .slick-slide .title {
@@ -61,8 +59,35 @@
   border: 0;
   border-radius: 6px;
   outline: none;
-  background: rgb(255, 255, 255);
+  background: var(--icons-colors);
 }
 
+.slick-next:before {
+    color: var(--icons-colors);
+    font-size: 1.5rem;
+}
 
+.slick-prev:before {
+    color: var(--icons-colors);
+    font-size: 1.5rem;
+}
 
+@media (min-width: 245px) and (max-width: 576px) {
+  .slick-prev{
+    padding-left: 0.5rem;
+  }
+
+  .slick-next{
+    padding-right: 0.5rem;
+  }
+
+  .slick-next:before {
+    color: var(--icons-colors);
+    font-size: 1rem;
+  }
+  
+  .slick-prev:before {
+    color: var(--icons-colors);
+    font-size: 1rem;
+  }
+}
