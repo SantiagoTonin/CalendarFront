@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { deletePost } from '../../api/axiosApi';
+import { AiFillDelete } from "react-icons/ai";
 import './DropdownMenu.css';
 
 function DropdownMenu({postId}) {
@@ -19,13 +20,12 @@ function DropdownMenu({postId}) {
 
   return (
     <div className="dropdown">
-      <button className="menu-button" onClick={toggleMenu}>
-        ...
+      <button className="menuButton" onClick={toggleMenu}>
+        <AiFillDelete/>
       </button>
       {isOpen && (
-        <div className="dropdown-content">
-          {/* eslint-disable jsx-a11y/anchor-is-valid */}
-          <a onClick={handleDeleteClick}>Delete Post</a>
+        <div className="dropdownContent">
+          <a onClick={handleDeleteClick}>Borrar Publicación</a>
         </div>
       )}
     </div>

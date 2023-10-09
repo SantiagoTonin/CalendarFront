@@ -1,5 +1,5 @@
-import {AiOutlineLike} from "react-icons/ai";
-import {BsFillChatTextFill} from "react-icons/bs";
+import { AiOutlineLike } from "react-icons/ai";
+import { BsFillChatTextFill } from "react-icons/bs";
 import Slider from "react-slick";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import "slick-carousel/slick/slick.css";
@@ -19,13 +19,17 @@ function Post({ post, user }) {
   return (
     <div className="postContainer">
       <div className="infoPostContainer">
-        <span className="user">
-          {user.name} {user.lastName}
-        </span>
-        <span className="nameIconPost">
-          <BsFillChatTextFill />
-        </span>
-        <DropdownMenu  postId = {post.postId}/>
+        <div>
+          <span className="user">
+            {user.name} {user.lastName}
+          </span>
+          <span className="nameIconPost">
+            <BsFillChatTextFill />
+          </span>
+        </div>
+        <div className="deletePostIcon">
+          <DropdownMenu postId={post.postId} />
+        </div>
       </div>
       <div className="tasksContainer">
         <span className="tasksPost">{post?.tasks[0]?.postMessage}</span>
@@ -40,10 +44,7 @@ function Post({ post, user }) {
             <Slider {...sliderSettings}>
               {images.map((image, index) => (
                 <div key={index}>
-                  <img
-                    src={image.path}
-                    alt={`Imagen ${index + 1} del post`}
-                  />
+                  <img src={image.path} alt={`Imagen ${index + 1} del post`} />
                   <span className="title">{image.name}</span>
                 </div>
               ))}
@@ -62,4 +63,3 @@ function Post({ post, user }) {
 }
 
 export default Post;
-
