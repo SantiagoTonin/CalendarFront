@@ -16,6 +16,19 @@
   border: 1px solid var(--btn-backgroud-accent);
 }
 
+.menuButtonLight{
+  background-color: transparent;
+  color: var(--icons-colors);
+  border: none;
+  font-size: 1.3rem;
+  padding-inline: 0.3rem;
+  border-radius: 5px;
+}
+
+.menuButtonLight:hover {
+  border: 1px solid var(--btn-backgroud-accent);
+}
+
 .dropdownContent {
   display: none;
   position: absolute;
@@ -32,6 +45,28 @@
 }
 
 .dropdownContent > a {
+  padding: 0.6rem;
+  justify-content: center;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownContentLight {
+  display: none;
+  position: absolute;
+  background-color: var(--icons-colors);
+  color: var(--lightMode);
+  border-radius: 5px;
+  margin-left: -8rem;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdownContentLight {
+  display: block;
+}
+
+.dropdownContentLight > a {
   padding: 0.6rem;
   justify-content: center;
   text-decoration: none;
