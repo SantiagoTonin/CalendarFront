@@ -83,29 +83,29 @@ const AddPublications = ({ date, user }) => {
           result = await post(newCellsId);
         }
 
-
         if (imagenFile.length > 0) {
           const arrayImage = matrizToArray(imagenFile);
           console.log(arrayImage);
 
-          arrayImage.forEach(file => {
-      
+          arrayImage.forEach((file) => {
             formData.append("image", file);
-          })
+          });
           formData.append("postId", result);
-          const res = await apiCreateImages(formData, sessionStorage.getItem("token"));
+          const res = await apiCreateImages(
+            formData,
+            sessionStorage.getItem("token")
+          );
           if (typeof res.message === "string") {
-            sendTasks = false
+            sendTasks = false;
           }
         }
-        if (sendTasks) {         
+        if (sendTasks) {
           const postSend = { postId: result, postMessage: postMessage };
           await apiCreateTasks(postSend, token);
         }
 
-
         reset();
-         window.location.reload();
+        window.location.reload();
       }
     }
   };
@@ -130,6 +130,7 @@ const AddPublications = ({ date, user }) => {
       setImagePost(dateInfo);
     }
   };
+
   useEffect(() => {
     if (userDb && imagePost && imagePost.status !== 404) {
       setIsLoading(imagePost.data.data.posts.length === 0);
@@ -140,6 +141,7 @@ const AddPublications = ({ date, user }) => {
     const inputValue = event.target.value;
     setCharCount(inputValue.length);
   };
+
   const isCharCountRed = charCount >= 200;
 
   function changeInput(e) {
@@ -160,15 +162,12 @@ const AddPublications = ({ date, user }) => {
     const files = e.currentTarget.files;
     const arrayImages = [];
     let arrayFiles = [];
-
     let indexImg = startIndex;
 
     Object.keys(files).forEach((i) => {
       const file = files[i];
-
       let url = URL.createObjectURL(file);
       arrayFiles = [...arrayFiles, file];
-
       arrayImages.push({
         index: indexImg,
         name: file.name,
@@ -183,7 +182,6 @@ const AddPublications = ({ date, user }) => {
 
   function deleteImg(indice) {
     let name = "";
-
     const newImgs = preImg.filter(function (element) {
       if (element.index === indice) {
         name = element.name;
@@ -193,7 +191,6 @@ const AddPublications = ({ date, user }) => {
     setpreImg(newImgs);
     const concatArray = [].concat(...imagenFile);
     const newArrayFiles = concatArray.filter((file) => file.name !== name);
-
     setimagenFile(newArrayFiles);
   }
 
@@ -201,8 +198,6 @@ const AddPublications = ({ date, user }) => {
     const concatArray = [].concat(...matriz);
     return concatArray;
   }
-  
- 
 
   return (
     <div>
