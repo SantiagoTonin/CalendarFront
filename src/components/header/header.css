@@ -39,16 +39,18 @@
 
 .wellcomeUserContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-left: -10%;
 }
 
 .userImage{
-  height: 2.5rem;
-  width: 2.5rem;
-  margin: 0 0.8rem 0.2rem 0;
-  border: 1px solid var(--lightMode);
+  height: 3.8rem;
+  width: 3.8rem;
+  margin: 0 0.5rem 0.2rem 0;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .themeBtnContainer{
@@ -71,6 +73,7 @@
     display: flex;
     flex-direction: column;
     padding-top: 0.5rem;
+    margin-left: 0%;
   }
 
   .wellcomeUserContainer > h5 {
@@ -79,8 +82,8 @@
   }
 
   .userImage{
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
     border: 1px solid var(--lightMode);
   }
 

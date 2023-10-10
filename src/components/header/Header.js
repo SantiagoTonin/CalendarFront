@@ -42,7 +42,7 @@ const Header = () => {
       </div>
       {hasToken && (
         <div className="wellcomeUserContainer">
-          <img src={userPicture} className="userImage"></img>
+          <img src={userPicture} className="userImage" alt="imagen de perfil"></img>
           <h5>Hola {userName} !</h5>
         </div>
       )}

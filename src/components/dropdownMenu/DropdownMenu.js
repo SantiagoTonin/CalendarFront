@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { deletePost } from '../../api/axiosApi';
+import React, { useState, useContext } from "react";
+import { deletePost } from "../../api/axiosApi";
 import { AiFillDelete } from "react-icons/ai";
 import { ThemeContext } from "../../context/ThemeContext";
-import './DropdownMenu.css';
+import "./DropdownMenu.css";
 
-function DropdownMenu({postId}) {
+function DropdownMenu({ postId }) {
   const { lightMode } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,21 +13,27 @@ function DropdownMenu({postId}) {
   };
 
   const handleDeleteClick = async () => {
-   const result = await deletePost(postId,sessionStorage.getItem("token"))
+    const result = await deletePost(postId, sessionStorage.getItem("token"));
     setIsOpen(false);
-    if(result.status === 200){
+    if (result.status === 200) {
       window.location.reload();
     }
   };
 
   return (
     <div className="dropdown">
-      <button className={lightMode ? "menuButtonLight" : "menuButton"} onClick={toggleMenu}>
-        <AiFillDelete/>
+      <button
+        className={lightMode ? "menuButtonLight" : "menuButton"}
+        onClick={toggleMenu}
+      >
+        <AiFillDelete />
       </button>
       {isOpen && (
         <div className={lightMode ? "dropdownContentLight" : "dropdownContent"}>
-          <a onClick={handleDeleteClick}>Borrar Publicación</a>
+          {
+            // eslint-disable-next-line
+            <a onClick={handleDeleteClick}>Borrar Publicación</a>
+          }
         </div>
       )}
     </div>

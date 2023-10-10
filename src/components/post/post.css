@@ -47,6 +47,19 @@
   padding-inline: 0.5rem;
 }
 
+.profilePicturePost{
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-right: 0.3rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.nameIconPost{
+  font-size: 0.6rem;
+  vertical-align:text-top;
+}
+
 .slick-dots li button {
   font-size: 0;
   line-height: 0;
@@ -73,6 +86,14 @@
 }
 
 @media (min-width: 245px) and (max-width: 576px) {
+  .profilePicturePost{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 0.3rem;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
   .slick-prev{
     padding-left: 0.5rem;
   }

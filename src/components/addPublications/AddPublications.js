@@ -72,7 +72,6 @@ const AddPublications = ({ date, user }) => {
             break;
           }
         }
-
         if (!dateExists) {
           const res = await apiCreateCells(
             date,
@@ -82,11 +81,8 @@ const AddPublications = ({ date, user }) => {
           const newCellsId = res.data.cellsId;
           result = await post(newCellsId);
         }
-
         if (imagenFile.length > 0) {
           const arrayImage = matrizToArray(imagenFile);
-          console.log(arrayImage);
-
           arrayImage.forEach((file) => {
             formData.append("image", file);
           });
@@ -103,7 +99,6 @@ const AddPublications = ({ date, user }) => {
           const postSend = { postId: result, postMessage: postMessage };
           await apiCreateTasks(postSend, token);
         }
-
         reset();
         window.location.reload();
       }

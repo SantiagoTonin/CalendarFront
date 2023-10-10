@@ -13,10 +13,10 @@
 }
 
 .menuButton:hover {
-  border: 1px solid var(--btn-backgroud-accent);
+  color: orangered;
 }
 
-.menuButtonLight{
+.menuButtonLight {
   background-color: transparent;
   color: var(--icons-colors);
   border: none;
@@ -26,7 +26,7 @@
 }
 
 .menuButtonLight:hover {
-  border: 1px solid var(--btn-backgroud-accent);
+  color: orangered;
 }
 
 .dropdownContent {
