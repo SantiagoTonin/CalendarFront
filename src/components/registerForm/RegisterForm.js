@@ -141,7 +141,7 @@ const RegisterForm = () => {
             focusedField === "birthdate" ? "focused" : ""
           }`}
           type="date"
-          placeholder="Ingresar edad"
+          placeholder="Ingresar fecha de nacimiento"
           {...register("birthdate", {
             required: "Este campo es obligatorio.",
           })}
@@ -153,7 +153,7 @@ const RegisterForm = () => {
         <input
           className={`mt-3 mb-2 ${focusedField === "age" ? "focused" : ""}`}
           type="number"
-          placeholder="Ingresar fecha de nacimiento"
+          placeholder="Ingresar edad"
           {...register("age", {
             required: "Este campo es obligatorio.",
           })}

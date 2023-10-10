@@ -78,10 +78,10 @@ const Home = () => {
       const fecha2 = new Date(date);
       const formato2 = fecha2.toISOString();
       if (formato1 === formato2) {
-        return cell.posts; // Devuelve los posts en la primera coincidencia
+        return cell.posts;
       }
     }
-    return null; // Si no hay coincidencias, puedes devolver null o un valor predeterminado
+    return null;
   };
   
   

@@ -21,7 +21,8 @@ function Post({ post, user }) {
       <div className="infoPostContainer">
         <div>
           <span className="user">
-            {user.name} {user.lastName}
+            <img src={user?.pictures[0]?.path} className="profilePicturePost" alt="imagen de perfil" />
+           {user.name} {user.lastName}
           </span>
           <span className="nameIconPost">
             <BsFillChatTextFill />
@@ -45,7 +46,7 @@ function Post({ post, user }) {
               {images.map((image, index) => (
                 <div key={index}>
                   <img src={image.path} alt={`Imagen ${index + 1} del post`} />
-                  <span className="title">{image.name}</span>
+                  {/* <span className="title">{image.name}</span> */}
                 </div>
               ))}
             </Slider>
