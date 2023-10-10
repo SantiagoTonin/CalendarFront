@@ -8,6 +8,7 @@ const Header = () => {
   const { lightMode } = useContext(ThemeContext);
   const [hasToken, setHasToken] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userPicture,setUserPicture] = useState({});
 
   useEffect(() => {
     const tokenFromStorage = sessionStorage.getItem("token");
@@ -26,6 +27,7 @@ const Header = () => {
         .then((response) => {
           const user = response.data;
           setUserName(user.name);
+          setUserPicture(user.pictures[0].path);
         })
         .catch((error) => {
           console.error("Error fetching user info:", error);
@@ -40,7 +42,7 @@ const Header = () => {
       </div>
       {hasToken && (
         <div className="wellcomeUserContainer">
-          <div className="userImage"></div>
+          <img src={userPicture} className="userImage"></img>
           <h5>Hola {userName} !</h5>
         </div>
       )}
