@@ -1,8 +1,10 @@
 .profileCard {
-  height: 20rem;
+  height: 25rem;
   display: flex;
-  background-color: var(--lightMode);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  justify-content: space-around;
+  background: rgba(150, 150, 150, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.055);
   border-radius: 10px;
   margin: 0 auto;
 }
@@ -33,13 +35,24 @@
 
 .profileLabel {
   font-weight: bold;
-  color: var(--main-color);
+  color: var(--lightMode);
 }
 
 .profileValue {
-  color: var(--icons-colors);
+  color: var(--lightMode);
   font-size: 1em;
-  border-bottom: 1px dotted var(--main-color);
+  border-bottom: 1px dotted var(--secondary-color);
+}
+
+.profileLabelLight {
+  font-weight: bold;
+  color: var(--btn-color);
+}
+
+.profileValueLight {
+  color: var(--btn-color);
+  font-size: 1em;
+  border-bottom: 1px dotted var(--btn-contrast);
 }
 
 #imageInput {
@@ -48,7 +61,7 @@
   border: none;
   padding: 0;
   margin: 0;
-  width: auto;
+  width: 2rem;
   cursor: pointer;
   outline: none;
   opacity: 0;
@@ -118,7 +131,7 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    font-size: 0.5em;
+    font-size: 0.7em;
     padding: 1rem;
   }
 }

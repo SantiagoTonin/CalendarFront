@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { apiCreatePicture } from "../../api/axiosApi";
+import { ThemeContext } from "../../context/ThemeContext";
 import "./ProfileLetter.css";
 
 function ProfileLetter({ data }) {
+  const { lightMode } = useContext(ThemeContext);
   const [pictureError, setPictureError] = useState();
-
+  
   const handleImageClick = () => {
     document.getElementById("imageInput").click();
   };
@@ -42,23 +44,23 @@ function ProfileLetter({ data }) {
         />
       </div>
       <div className="profileInfo">
-        <label className="profileLabel">Nombre:</label>
-        <span className="profileValue">{data?.name}</span>
+        <label className={lightMode ? "profileLabelLight" : "profileLabel"}>Nombre:</label>
+        <span className={lightMode ? "profileValueLight" : "profileValue"}>{data?.name}</span>
 
-        <label className="profileLabel">Apellido:</label>
-        <span className="profileValue">{data?.lastName}</span>
+        <label className={lightMode ? "profileLabelLight" : "profileLabel"}>Apellido:</label>
+        <span className={lightMode ? "profileValueLight" : "profileValue"}>{data?.lastName}</span>
 
-        <label className="profileLabel">Edad:</label>
-        <span className="profileValue">{data?.age}</span>
+        <label className={lightMode ? "profileLabelLight" : "profileLabel"}>Edad:</label>
+        <span className={lightMode ? "profileValueLight" : "profileValue"}>{data?.age}</span>
 
-        <label className="profileLabel">Nacionalidad:</label>
-        <span className="profileValue">{data?.nationality}</span>
+        <label className={lightMode ? "profileLabelLight" : "profileLabel"}>Nacionalidad:</label>
+        <span className={lightMode ? "profileValueLight" : "profileValue"}>{data?.nationality}</span>
 
-        <label className="profileLabel">Fecha de Nacimiento:</label>
-        <span className="profileValue">{data?.birthdate}</span>
+        <label className={lightMode ? "profileLabelLight" : "profileLabel"}>Fecha de Nacimiento:</label>
+        <span className={lightMode ? "profileValueLight" : "profileValue"}>{data?.birthdate}</span>
 
-        <label className="profileLabel">Email:</label>
-        <span className="profileValue">{data?.email}</span>
+        <label className={lightMode ? "profileLabelLight" : "profileLabel"}>Email:</label>
+        <span className={lightMode ? "profileValueLight" : "profileValue"}>{data?.email}</span>
       </div>
       <div className="errorPicture">
       <span>{pictureError}</span>

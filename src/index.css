@@ -2,7 +2,7 @@
 @font-face {
   font-family: Expletus;
   src: url(./assets/fonts/ExpletusSans-Medium.ttf);
-  }
+}
 
 :root {
   --main-color: #121212;
@@ -22,7 +22,9 @@
 
 body {
   margin: 0;
-  font-family: 'Noto Sans', 'Roboto', 'Oxygen', 'Cantarell', sans-serif;
+  font-family: "Noto Sans", "Roboto", "Oxygen", "Cantarell", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: hidden;
 }
