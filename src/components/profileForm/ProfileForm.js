@@ -9,7 +9,6 @@ import "../../styles/buttonStyles.css";
 import "./profileForm.css";
 
 const ProfileForm = () => {
-
   const { lightMode } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
   const [user, setUserData] = useState(null);

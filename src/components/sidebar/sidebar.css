@@ -1,12 +1,11 @@
 .navbar {
-  min-height: calc(100%-15rem);
   font-size: 1.8rem;
   background-color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 2.5rem;
+  gap: 3.5rem;
   top: 0;
   position: sticky;
 }
