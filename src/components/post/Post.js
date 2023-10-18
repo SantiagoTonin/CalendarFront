@@ -21,8 +21,12 @@ function Post({ post, user }) {
       <div className="infoPostContainer">
         <div>
           <span className="user">
-            <img src={user?.pictures[0]?.path} className="profilePicturePost" alt="imagen de perfil" />
-           {user.name} {user.lastName}
+            <img
+              src={user?.pictures[0]?.path}
+              className="profilePicturePost"
+              alt="imagen de perfil"
+            />
+            {user.name} {user.lastName}
           </span>
           <span className="nameIconPost">
             <BsFillChatTextFill />
@@ -36,9 +40,12 @@ function Post({ post, user }) {
         <span className="tasksPost">{post?.tasks[0]?.postMessage}</span>
       </div>
       {images.length === 0 ? (
-        <span className="iconPost">
-          <AiOutlineLike className="likeBtn" />
-        </span>
+        <div className="dataPost">
+          <span className="iconPost">
+            <AiOutlineLike className="likeBtn" />
+          </span>
+          <span className="countComment">1</span>
+        </div>
       ) : (
         <>
           <div className="postImageContainer">
