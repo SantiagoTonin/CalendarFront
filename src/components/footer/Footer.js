@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
-import { BsMeta, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { BsMeta, BsInstagram, BsLinkedin } from "react-icons/bs";
+import { FaXTwitter } from "react-icons/fa6";
 import "./footer.css";
 
 const Footer = () => {
@@ -11,22 +13,52 @@ const Footer = () => {
         <span>My calendar</span>
         <article className="footerListItems d-flex flex-row">
           <ul>
-            <li>Términos y condiciones</li>
-            <li>Políticas de privacidad</li>
-            <li>Protección de datos</li>
-            <li>Uso de cookies</li>
+            <li>
+              <Link to="/underConstruction">Términos y condiciones</Link>
+            </li>
+            <li>
+              <Link to="/underConstruction">Políticas de privacidad</Link>
+            </li>
+            <li>
+              <Link to="/underConstruction">Protección de datos</Link>
+            </li>
+            <li>
+              <Link to="/underConstruction">Uso de cookies</Link>
+            </li>
           </ul>
           <ul>
             <li>Acerca de nosotros</li>
-            <li>Contactanos</li>
-            <li>Ubicación</li>
-            <li>Trabaja con nosotros</li>
+            <li>
+              <Link to="/underConstruction">Contactanos</Link>
+            </li>
+            <li>
+              <Link to="/underConstruction">Ubicación</Link>
+            </li>
+            <li>
+              <Link to="/underConstruction">Trabaja con nosotros</Link>
+            </li>
           </ul>
           <ul>
-            <li><BsLinkedin/> LinkedIn</li>
-            <li><BsInstagram/> Instagram</li>
-            <li><BsTwitter/> Twitter</li>
-            <li><BsMeta/> Facebook</li>
+            <li>
+              <Link to="https://www.linkedin.com/">
+                <BsLinkedin /> LinkedIn
+              </Link>
+            </li>
+            <li>
+              <Link to="https://www.instagram.com/">
+                <BsInstagram /> Instagram
+              </Link>
+            </li>
+            <li>
+              <Link to="https://twitter.com/?lang=es">
+                <FaXTwitter /> Twitter
+              </Link>
+            </li>
+            <li>
+              <Link to="https://www.facebook.com/?locale=es_LA">
+                <BsMeta /> Facebook
+              </Link>
+            </li>
           </ul>
         </article>
       </section>

@@ -38,13 +38,34 @@
 .footerListItems{
   width: 60%;
   font-size: 1em;
-  gap: 20%;
+  padding-top: 1%;
+  gap: 18%;
 }
 
 .footerListItems > ul {
   list-style: none;
   padding: 0;
+  text-decoration: none;
 }
+
+.footerListItems a {
+  text-decoration: none;
+  color: var(--lightMode);
+}
+
+.footerListItems a:is(:hover, :active) {
+  color: var(--btn-contrast);
+}
+
+.footerContainerLight .footerListItems a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+.footerContainerLight .footerListItems a:is(:hover, :active) {
+  color: var(--secondary-color);
+}
+
 
 .rightsContainer {
   width: 100%;
