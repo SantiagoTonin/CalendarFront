@@ -30,11 +30,21 @@
   padding-top: 0.5rem;
 }
 
+.calendarApp h1{
+  padding-block: 1rem;
+}
+
 .containerLink{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.homeText{
+  font-size: 1.3rem;
+  text-align: justify;
+  padding: 2rem;
 }
 
 .calendarContainer {

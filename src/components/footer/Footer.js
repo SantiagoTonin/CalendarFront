@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <main className={lightMode ? "footerContainerLight" : "footerContainer"}>
       <section className="footerContent">
-        <span>My calendar</span>
+        <span>Khronora</span>
         <article className="footerListItems d-flex flex-row">
           <ul>
             <li>
@@ -63,7 +63,7 @@ const Footer = () => {
         </article>
       </section>
       <section className="rightsContainer">
-        <span>© 2023 My Calendar — All rights reserved</span>
+        <span>© 2023 Khronora — All rights reserved</span>
       </section>
     </main>
   );

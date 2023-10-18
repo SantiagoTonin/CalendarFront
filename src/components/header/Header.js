@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <main className={lightMode ? "headerContainerLight" : "headerContainer"}>
       <div className="logoContainer">
-        <span>My Calendar</span>
+        <span>Khronora</span>
       </div>
       {hasToken && (
         <div className="wellcomeUserContainer">

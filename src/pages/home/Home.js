@@ -83,8 +83,6 @@ const Home = () => {
     }
     return null;
   };
-  
-  
 
   const tileContent = ({ date, view }) => {
     if (view === "month") {
@@ -106,18 +104,31 @@ const Home = () => {
         <div className="calendarApp">
           <h1>Mi Calendario</h1>
           {infoUser.calendar ? (
-            <Calendar
-              onChange={onChange}
-              value={date}
-              className="calendarContainer"
-              tileContent={tileContent}
-            ></Calendar>
+            <>
+              <Calendar
+                onChange={onChange}
+                value={date}
+                className="calendarContainer"
+                tileContent={tileContent}
+              ></Calendar>
+              <span className="homeText">
+                Planifica tu día, semana y mes de manera eficiente
+                para nunca perder una cita importante ni olvidar un
+                cumpleaños.
+              </span>
+            </>
           ) : (
-            <div className="buttonContainer">
-              <button className="orangeButton" onClick={handleClick}>
-                +NewCalendar
-              </button>
-            </div>
+            <>
+              <div className="buttonContainer">
+                <button className="orangeButton" onClick={handleClick}>
+                  +NewCalendar
+                </button>
+              </div>
+              <span className="homeText">
+                Presiona el botón para crear tu calendario y comenzar a
+                documentar tus fechas importantes.
+              </span>
+            </>
           )}
         </div>
       </article>
