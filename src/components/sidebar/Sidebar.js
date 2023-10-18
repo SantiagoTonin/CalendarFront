@@ -56,7 +56,7 @@ const Sidebar = () => {
             <IoIosPaper />
           </Link>
         )}
-        <Link to="#" className="navIcons" onClick={(e) => e.preventDefault()}>
+        <Link to="/underConstruction" className="navIcons">
           <FaEnvelopeOpenText />
         </Link>
         <Link to="/userProfile" className="navIcons">
@@ -65,7 +65,7 @@ const Sidebar = () => {
         <Link to="#" className="navIcons" onClick={handleLogOut}>
           <FiLogOut />
         </Link>
-        <Link to="#" className="navIcons" onClick={(e) => e.preventDefault()}>
+        <Link to="/underConstruction" className="navIcons">
           <IoMdHelpCircle />
         </Link>
       </section>
@@ -85,7 +85,7 @@ const Sidebar = () => {
                 <IoIosPaper /> Usuarios
               </Link>
             )}
-            <Link to="#" className="navText" onClick={(e) => e.preventDefault()}>
+            <Link to="/underConstruction" className="navText">
               <FaEnvelopeOpenText /> Mensajes
             </Link>
             <Link to="/userProfile" className="navText">
@@ -94,7 +94,7 @@ const Sidebar = () => {
             <Link to="#" className="navText" onClick={handleLogOut}>
               <FiLogOut /> Logout
             </Link>
-            <Link to="#" className="navText" onClick={(e) => e.preventDefault()}>
+            <Link to="/underConstruction" className="navText">
               <IoMdHelpCircle /> Ayuda
             </Link>
           </section>

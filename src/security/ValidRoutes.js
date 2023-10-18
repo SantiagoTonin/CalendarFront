@@ -9,6 +9,7 @@ export const validRoutes = (path) => {
     "/passwordRecovery",
     "/changePassword",
     "/userProfile",
+    "/UnderConstruction"
   ];
 
   if (routes.includes(path.pathname)) {

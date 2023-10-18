@@ -1,3 +1,6 @@
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { validRoutes } from "../security/ValidRoutes";
 import Abm from "../pages/dashboard/Abm";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -8,12 +11,10 @@ import Register from "../pages/register/Register";
 import PassRecovery from "../pages/passrecovery/PassRecovery";
 import ChangePasswordPage from "../pages/passrecovery/ChangePasswordPage";
 import UserProfile from "../pages/userProfile/UserProfile";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { validRoutes } from "../security/ValidRoutes";
 import ErrorPage from "../pages/error404/Error404";
 import Publications from "../pages/publications/Publications";
 import ProtectedRoutes from "../security/ProtectedRoutes";
-import { useEffect } from "react";
+import UnderConstruction from "../pages/underConstructionPage/UnderConstruction";
 
 const MyRoutes = () => {
   const redirect = useLocation();
@@ -43,6 +44,7 @@ const MyRoutes = () => {
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/error404" element={<ErrorPage />} />
+        <Route path="/underConstruction" element={<UnderConstruction />} />
         <Route path="/passwordRecovery" element={<PassRecovery />} />
         <Route path="/changePassword" element={<ChangePasswordPage />} />
         <Route element={<ProtectedRoutes isAllowed={!!token} />}>
