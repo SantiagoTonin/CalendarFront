@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { deletePost } from "../../api/axiosApi";
 import { AiFillDelete } from "react-icons/ai";
 import { ThemeContext } from "../../context/ThemeContext";
-import "./DropdownMenu.css";
+import "./dropdownMenu.css";
 
 function DropdownMenu({ postId }) {
   const { lightMode } = useContext(ThemeContext);

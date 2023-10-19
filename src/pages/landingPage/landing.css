@@ -5,7 +5,10 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  background-color: var(--main-color);
+  background-image: url("../../assets/images/landing/landingBcg3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   color: white;
   padding: 1.5rem;
 }
@@ -21,13 +24,19 @@
   font-family: Expletus;
 }
 
+.landingMainContainer div h4 {
+  color: var(--lightMode);
+  font-weight: 600;
+}
+
 .landingMainContainer > div:nth-child(2) {
   display: grid;
   grid-template-columns: 1.5fr 2fr;
   grid-template-rows: 500px;
   text-align: center;
-  background-color: rgb(29, 29, 29);
-  border: 2px solid rgb(77, 77, 77);
+  background: rgba(66, 66, 66, 0.345);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.055);
   font-size: x-large;
 }
 
@@ -51,8 +60,9 @@
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 250px 250px;
-  background-color: var(--secondary-color);
-  border: 4px solid #e5ac26;
+  background: rgba(66, 66, 66, 0.339);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.055);
   text-align: justify;
   font-size: large;
 }
@@ -63,7 +73,7 @@
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid rgba(144, 143, 143, 0.721);
 }
 
 .grid1 > p,
@@ -73,6 +83,11 @@
 
 .grid1 {
   grid-template-columns: 0.3fr 2fr;
+}
+
+.grid1 > div:last-child,
+.grid2 > div {
+  padding-inline: 2.5rem;
 }
 
 .grid2 {
@@ -98,7 +113,7 @@
   box-shadow: inset 0px 0px 0px 6px #c8c8c87d;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 556px) and (max-width: 768px) {
   .adImage2,
   .adImage1 {
     height: 5rem;
@@ -110,11 +125,34 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (min-width: 221px) and (max-width: 556px) {
+  .landingMainContainer div h4 {
+    font-size: medium;
+  }
+
+  .landingMainContainer > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: large;
+  }
+
+  .loginLanding {
+    height: 8rem;
+    background-position: center;
+  }
+
+  .loginBtnContainer {
+    padding-block: 0.8rem;
+    gap: 1.3rem;
+    font-size: small;
+  }
+
   .adImage2,
   .adImage1 {
-    height: 3rem;
-    width: 4.5rem;
+    display: none;
+    /* height: 3rem;
+    width: 4.5rem; */
   }
 
   .landingMainContainer > div:nth-child(2) {
@@ -125,14 +163,20 @@
 
   .landingMainContainer > div:nth-child(3) {
     font-size: x-small;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
   }
 
-  .grid1 {
-    grid-template-columns: 0.1fr 2fr;
-  }
-
+  .grid1,
   .grid2 {
-    grid-template-columns: 2fr 0.1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .grid1 > div:last-child,
+  .grid2 > div {
+    padding: 1rem;
   }
 }
