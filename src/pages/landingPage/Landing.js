@@ -6,10 +6,10 @@ const Landing = () => {
   return (
     <div className="landingMainContainer">
       <div>
-        <h1 className="pageTitle pt-3">My Calendar</h1>
+        <h1 className="pageTitle pt-3">Khronora</h1>
         <h4>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-          aspernatur tenetur doloremque iste{" "}
+          ¡Transforma tu forma de organizar, capturar y compartir! Registrate en
+          Khronora y lleva tu vida al siguiente nivel.
         </h4>
       </div>
       <div>
@@ -27,24 +27,33 @@ const Landing = () => {
       <div>
         <div className="grid1">
           <div className="adImage1"></div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-            aspernatur tenetur doloremque iste. consectetur adipisicing elit.
-            Eos aspernatur tenetur doloremque iste. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Qui veniam illum eius neque fugit
-            quisquam beatae corporis et doloribus, sapiente libero! Aliquam
-            error hic dolores voluptas ipsam esse quae nihil!{" "}
-          </p>
+          <div>
+            <p>
+              📆 Organiza Tu Vida: Con una interfaz intuitiva y similar a Google
+              Calendar, Khronora te permite planificar tu día, semana y mes de
+              manera eficiente. Nunca pierdas una cita importante ni olvides un
+              cumpleaños.
+            </p>
+            <p>
+              📸 Captura y Almacena Momentos: ¿Tomaste una foto especial o
+              escribiste una nota importante? Guárdala en Khronora para revivir
+              esos momentos una y otra vez.
+            </p>
+          </div>
         </div>
         <div className="grid2">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-            aspernatur tenetur doloremque iste. consectetur adipisicing elit.
-            Eos aspernatur tenetur doloremque iste. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Qui veniam illum eius neque fugit
-            quisquam beatae corporis et doloribus, sapiente libero! Aliquam
-            error hic dolores voluptas ipsam esse quae nihil!{" "}
-          </p>
+          <div>
+            <p>
+              🌐 Comparte con Amigos: Comparte tus eventos y recuerdos con tus
+              amigos y familiares en tiempo real. Haz que todos sean parte de tu
+              vida y celebra juntos.
+            </p>
+            <p>
+              🔒 Privacidad y Control: Tú decides quién puede ver tus eventos y
+              recuerdos. Khronora te brinda control total sobre
+              tu perfil y contenido.
+            </p>
+          </div>
           <div className="adImage2"></div>
         </div>
       </div>
