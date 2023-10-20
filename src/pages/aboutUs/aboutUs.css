@@ -1,0 +1,137 @@
+.aboutUsContainer {
+  width: 100vw;
+  min-height: calc(100vh - 16rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--lightMode);
+  background-image: url("../../assets/images/underConstruction/underConstructionBcg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.aboutUsContainerLight{
+  width: 100vw;
+  min-height: calc(100vh - 16rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+  background-image: url("../../assets/images/underConstruction/lightBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center - top;
+}
+
+.santiagoContainer,
+.alexiaContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-block: 1rem;
+}
+
+.alexiaContainer img,
+.santiagoContainer img {
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+}
+
+.alexiaContainer div:last-child,
+.santiagoContainer div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  width: 10rem;
+  margin-inline: 0.8rem;
+  border-radius: 50%;
+  background: rgba(198, 198, 198, 0.199);
+  backdrop-filter: blur(10px);
+}
+
+.metalTitle {
+  background: linear-gradient(to bottom, #e0c00b, #b27b14);
+  color: #573d0d;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-shadow: -2px -2px 3px rgba(76, 57, 5, 0.5);
+  position: relative;
+  margin: 20px 0;
+}
+
+.metalTitle::before,
+.metalTitle::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(to bottom, #e0c00b, #b27b14);
+  border: 1px solid #89751a;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.metalTitle::before {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.metalTitle::after {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 221px) and (max-width: 556px) {
+  .santiagoContainer,
+  .alexiaContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 0.5rem;
+  }
+
+  .alexiaContainer div:first-child,
+  .santiagoContainer div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .alexiaContainer p,
+  .santiagoContainer p {
+    padding-inline: 1rem;
+    text-align: center;
+  }
+
+  .metalTitle {
+    width: 85%;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+}
+
+@media (min-width: 556px) and (max-width: 768px) {
+  .santiagoContainer,
+  .alexiaContainer {
+    padding-inline: 0.8rem;
+  }
+  .metalTitle {
+    width: 85%;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+}

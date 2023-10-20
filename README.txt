@@ -43,6 +43,7 @@ Estructura de archivos:
     assets
         fonts
         images
+            aboutUs
             error404
             landing
             profile
@@ -133,6 +134,10 @@ Estructura de archivos:
         Navigate.js
 
     pages
+        aboutUs
+           aboutUs.css
+           AboutUs.js 
+
         dashboard
             Abm.js
             abm.css

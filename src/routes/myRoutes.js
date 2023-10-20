@@ -15,6 +15,7 @@ import ErrorPage from "../pages/error404/Error404";
 import Publications from "../pages/publications/Publications";
 import ProtectedRoutes from "../security/ProtectedRoutes";
 import UnderConstruction from "../pages/underConstructionPage/UnderConstruction";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 const MyRoutes = () => {
   const redirect = useLocation();
@@ -47,6 +48,7 @@ const MyRoutes = () => {
         <Route path="/underConstruction" element={<UnderConstruction />} />
         <Route path="/passwordRecovery" element={<PassRecovery />} />
         <Route path="/changePassword" element={<ChangePasswordPage />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route element={<ProtectedRoutes isAllowed={!!token} />}>
           <Route path="/home" element={<Home />} />
           <Route path="/abm" element={<Abm />} />
