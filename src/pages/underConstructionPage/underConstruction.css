@@ -8,6 +8,16 @@
   background-position: center;
 }
 
+.underConstructionContainerLight {
+  width: 100vw;
+  height: calc(100vh - 16rem);
+  color: var(--main-color);
+  background-image: url("../../assets/images/underConstruction/lightBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center - top;
+}
+
 .underConstruction {
   height: 100%;
   display: flex;
@@ -23,6 +33,12 @@
 .underConstruction img {
   height: 15rem;
   width: 15rem;
+}
+
+.backToLandingBtn{
+  display: flex;
+  justify-content: flex-end;
+  margin-block: 0.5rem;
 }
 
 .progressBar {
