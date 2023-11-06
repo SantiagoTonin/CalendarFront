@@ -1,4 +1,4 @@
-import ChangePasswordForm from "../../components/passRecoveryForm/ChangePassword";
+import ChangePasswordForm from "../../components/passRecoveryForm/ChangePassword.js";
 import "../../components/passRecoveryForm/passRecovery.css";
 
 const PassRecovery = () => {
