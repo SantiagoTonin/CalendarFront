@@ -12,7 +12,7 @@
   background-position: center;
 }
 
-.aboutUsContainerLight{
+.aboutUsContainerLight {
   width: 100vw;
   min-height: calc(100vh - 16rem);
   display: flex;
